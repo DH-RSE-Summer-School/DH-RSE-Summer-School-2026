@@ -13,7 +13,7 @@
 
 ---
 
-## Data Visualisation in Practice
+# Data Visualisation in Practice
 
 This hands-on workshop introduces participants to core principles and practices of **data visualization (VIS)** in the **Digital Humanities (DH)**. The session combines a brief conceptual introduction with extensive practical work, enabling participants to create and publish their own interactive visualizations using modern web technologies.
 
@@ -31,8 +31,6 @@ No advanced technical expertise is required, although some familiarity with web 
 | **Theory & Inspiration** | 15 minutes |
 | **Hands-on Development** | 3 hours 15 minutes |
 
----
-
 ## Learning Goals
 
 By the end of the workshop, participants will be able to:
@@ -42,8 +40,6 @@ By the end of the workshop, participants will be able to:
 - Reflect critically on visualization design and data transformation.
 - Build an interactive web-based visualization.
 - Publish and share a project online.
-
----
 
 # Part I — Rapid Theory & Context (15 minutes)
 
@@ -62,8 +58,6 @@ Examples include visualizing:
 - Places and movement
 - Temporal change
 
----
-
 ## 2. Example: Mapping the Republic of Letters
 
 A brief case study exploring:
@@ -76,8 +70,6 @@ A brief case study exploring:
 
 Visualization enables new research questions and perspectives that may be difficult to identify through traditional methods alone.
 
----
-
 ## 3. A Critical Perspective
 
 Discussion topics include:
@@ -86,8 +78,6 @@ Discussion topics include:
 - Data cleaning as interpretation
 - Uncertainty and missing data
 - Bias in historical sources
-
----
 
 ## 4. Transition to Hands-On Work
 
@@ -103,10 +93,6 @@ A supplementary Markdown resource will be provided containing:
 - Useful tools and references
 
 This serves as a workshop takeaway and reference guide.
-
----
-
-# Part II — Building a Humanities Visualization (3h 15min)
 
 ## 5. Dataset Introduction (15 minutes)
 
@@ -128,8 +114,6 @@ Participants will consider:
 - Name variation and normalization
 - Temporal ambiguity
 - Geographic uncertainty
-
----
 
 ## 6. Technical Stack Overview (10 minutes)
 
@@ -168,8 +152,6 @@ project/
 
 > Detailed setup instructions will be provided separately.
 
----
-
 ## 8. Working with Humanities Data (25 minutes)
 
 ### Data Formats
@@ -186,8 +168,6 @@ Topics include:
 - Normalizing names and entities
 - Handling dates and time ranges
 - Linking people to places
-
----
 
 ## 9. Building Visualizations with D3 (60 minutes)
 
@@ -219,8 +199,6 @@ Topics include:
 
 What interpretive assumptions shape these visual forms?
 
----
-
 ## 10. Mapping Data with Leaflet (45 minutes)
 
 ### Map Setup
@@ -242,8 +220,6 @@ What interpretive assumptions shape these visual forms?
   - Highlighting
   - Exploration
 
----
-
 ## 11. Publishing with GitHub Pages (20 minutes)
 
 ### Steps
@@ -255,8 +231,6 @@ What interpretive assumptions shape these visual forms?
 ### Outcome
 
 Participants publish their visualization online and make it accessible to others.
-
----
 
 ## 12. Wrap-Up & Discussion (10 minutes)
 
@@ -275,8 +249,6 @@ Topics for further consideration:
 - Skills development
 - Maintaining and extending visualization projects
 
----
-
 ## Recommended Technologies
 
 | Tool | Purpose |
@@ -287,6 +259,7 @@ Topics for further consideration:
 | GitHub | Collaboration and publishing |
 | GitHub Pages | Static website hosting |
 
+---
 
 ## Working Critically with AI Coding Tools
 
