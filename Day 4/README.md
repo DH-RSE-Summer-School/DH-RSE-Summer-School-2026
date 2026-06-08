@@ -264,7 +264,7 @@ Blurb
 ## Speakers and Trainers
 
 - [Mary Chester-Kadwell](https://kdl.kcl.ac.uk/about/people/mary-chester-kadwell/), King's College London
-- [Tomas Vancisin](https://tomasvancisin.co.uk/), University of Edinburgh
+- Tomas Vancisin, University of Edinburgh
 - Somya Iqbal, University of Edinburgh
 
 ## On-the-day Slides and Instructions
