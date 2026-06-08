@@ -11,6 +11,8 @@
 - 15:00-15:30 BREAK
 - 15:30-17:00 Working Critically with AI Coding Tools
 
+---
+
 ## Data Visualisation in Practice
 
 This hands-on workshop introduces participants to core principles and practices of **data visualization (VIS)** in the **Digital Humanities (DH)**. The session combines a brief conceptual introduction with extensive practical work, enabling participants to create and publish their own interactive visualizations using modern web technologies.
@@ -18,8 +20,6 @@ This hands-on workshop introduces participants to core principles and practices 
 The workshop begins by exploring visualization as a research method and examining a historical dataset from the **University of Edinburgh medical students (1760–1920)**. Participants will then build interactive visualizations using **D3.js** and **Leaflet**, before publishing their projects online with **GitHub Pages**.
 
 No advanced technical expertise is required, although some familiarity with web technologies or programming will be beneficial.
-
----
 
 ## Workshop Information
 
