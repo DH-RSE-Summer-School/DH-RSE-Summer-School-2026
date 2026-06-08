@@ -41,8 +41,6 @@ By the end of the workshop, participants will be able to:
 - Build an interactive web-based visualization.
 - Publish and share a project online.
 
-# Part I — Rapid Theory & Context (15 minutes)
-
 ## 1. Visualization in the Humanities
 
 Visualization can serve as both an **epistemic** and **interpretive** tool, supporting:
