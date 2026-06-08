@@ -129,8 +129,6 @@ Interactive web mapping.
 
 Publishing and sharing projects online.
 
----
-
 ## 7. Project Setup (15 minutes)
 
 ### Environment
