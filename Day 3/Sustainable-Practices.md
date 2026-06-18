@@ -5,27 +5,27 @@
 - *Essential:*  Add docstrings	
 - *Essential:*  Add a README file	
 - *Essential:*  Add a requirements.txt file	
-- Create a tutorial notebook
-- Go through a software quality checklist	
+- *Optional:* Create a tutorial notebook
+- *Optional:* Go through a software quality checklist	
 
 ### Tasks: Formatting & Refactoring	
 - *Essential:*  Improve formatting	
 - *Essential:*  Improve variable and function naming	
 - *Essential:*  Fix non-DRY code	
-- Translate the notebook into an executable python script	
-- Refactor the script into functions	
-- Input arguments: Allow for flexible input dataset	
-- Input arguments: Allow for a flexible location to save results	
-- Add automated tests	
+- *Optional:* Translate the notebook into an executable python script	
+- *Optional:* Refactor the script into functions	
+- *Optional:* Input arguments: Allow for flexible input dataset	
+- *Optional:* Input arguments: Allow for a flexible location to save results	
+- *Optional:* Add automated tests	
 
 ### Tasks: Publishing	
 - *Essential:*  Create a DOI	
 - *Essential:*  Add a LICENSE file	
 - *Essential:*  Add a copyright statement	
 - *Essential:*  Add a CITATION.cff file	
-- Prepare a GitHub release	
-- Package the project	
-- Prepare the work for publication in the Journal of Open Source Software	
+- *Optional:* Prepare a GitHub release	
+- *Optional:* Package the project	
+- *Optional:* Prepare the work for publication in the Journal of Open Source Software	
 
 ## Scenario
 
@@ -61,14 +61,14 @@ If you have any issues accessing or editing the project, please refer to the Wor
 - **Task:** Create a requirements.txt file in the top-most directory of the project. Populate this file with a list of Python packages that the program relies on and make sure that you include only packages that are actually used by the program.
 - **More information:** : https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
 
-### Create a tutorial notebook
+### *Optional:* Create a tutorial notebook
 - **Description:** Code packages often come with a set of instructions on how to install and use the package on an example dataset. By providing an example of how to run the provided code, the project outputs will be easily replicable and future users will be more likely to use and cite the project. 
 - **Task:** Create a jupyter notebook file named “example.ipynb”. In this file, include an example for how to use the code in its new script form, including what input and output arguments are expected and how the results are saved. Include details of how to run the tutorial notebook in the README file and have a different member of the team test the instructions to make sure they work and are easy to follow.
 - **Task Dependencies:** This task relies on the following tasks to be completed prior to beginning this task:
   - Documentation: Add a README file
   - Formatting & Refactoring: Translate the notebook into an executable python script
 
-### Go through a software quality checklist
+### *Optional:* Go through a software quality checklist
 - **Description:** Software quality checklists can help you write good quality software and align software quality standards across software projects. They also help others who are viewing or contributing to a project understand the state of the code and what could still be improved. A software quality checklist is an assessment of the current state of the code, rather than a list of tasks that should be completed before reporting the results of the checklist.
 - **Task:** Go through the following software quality checklist and evaluate the current state of the software project: https://fairsoftwarechecklist.net/v0.2/. When you are finished, include the checklist as part of the README, in its own section.
 - **More information:** : Other software quality checklists and an explanation for their use can be found here: https://fair-software.nl/recommendations/checklist 
@@ -90,28 +90,28 @@ If you have any issues accessing or editing the project, please refer to the Wor
 - **Description:** DRY stands for Don’t Repeat Yourself. DRY code is streamlined to remove code repetitions, for instance when multiple lines could be better implemented in a single line by efficiently using existing function calls, by using a loop, or by creating a new function, and considerably improves readability and clarity.
 - **Task:** Locate the lines indicated by “TODO DRY” and modify these sections to remove repetition by taking advantage of existing code, adding in a function call, or using a loop, as appropriate.
 
-### Translate the notebook into an executable python script
+### *Optional:* Translate the notebook into an executable python script
 - **Description:** To facilitate reproduction and enable future extensions to the project, the components of the Jupyter notebook can be repackaged into an executable python script.
 - **Task:** Convert the Jupyter notebook into an executable python script that contains a main() function. All code that is not already inside of a function should be placed inside the main() function. Be careful to include all variable definitions inside the functions where they are used.
 - **More information:** : https://realpython.com/python-main-function/
 
-### Refactor the script into functions
+### *Optional:* Refactor the script into functions
 - **Description:** Each function should accomplish one logical task, enabling the script to read like a series of instructions. Smaller functions are also easier to read and understand, providing greater clarity for future developers.
 - **Task:** Identify the key components of the project and factor out main functionality into separate functions. As a hint, recall the main functionality that is expected in text processing applications. 
 
-### Input arguments: Allow for flexible input dataset
+### *Optional:* Input arguments: Allow for flexible input dataset
 - **Description:** Executable scripts allow for flexible processing and code reuse through the use of input arguments. By changing the script to accept input arguments, the analysis could be easily applied to other collections of files.
 - **Task:** Locate the lines indicated by “TODO Inputs” and change the script to accept different inputs, such as a single file, a list of file locations, or a directory containing multiple files. All lines indicated by the comment “TODO Inputs” are related to the use of input arguments, although not all of them will need to be changed. The input should include a complete path to the location of the input arguments or be able to create a complete path from the input arguments. 
 - **More information:** : https://www.geeksforgeeks.org/command-line-arguments-in-python/ 
 - **Task Dependencies:** This task relies on the following tasks to be completed prior to beginning this task:
   - Formatting and Refactoring: Translate the notebook into an executable python script
 
-### Input arguments: Allow for a flexible location to save results
+### *Optional:* Input arguments: Allow for a flexible location to save results
 - **Task:** As in the preceding task, change the main script to accept a second input argument. This second input argument should be a string that indicates the location where the output histogram figure will be saved, including the complete path to that location. Change the code that saves the histogram figure to use the updated location.
 - **Task Dependencies:** This task relies on the following tasks to be completed prior to beginning this task:
   - Formatting and Refactoring: Translate the notebook into an executable python script
 
-### Add automated tests
+### *Optional:* Add automated tests
 - **Description:** Testing code thoroughly and frequently ensures each component of the code functions as intended. 
 - **Task:** Create a script that performs automated testing of your python functions, for instance verifying that the flexible input arguments you implemented in the previous task are parsed and used as intended. For more guidance on creating tests, see this guide: https://realpython.com/python-testing/ 
 - **More information:** : https://book.the-turing-way.org/reproducible-research/testing 
@@ -144,16 +144,16 @@ https://www.data.cam.ac.uk/data-management-guide/choosing-software-licence
 - **Task Dependencies:** This task relies on the following tasks to be completed prior to beginning this task:
   - Publishing: Create a DOI
 
-### Prepare a GitHub release
+### *Optional:* Prepare a GitHub release
 - **Description:** Once a software project has reached a milestone in its development, either in the development of new features or integration of new packages, a “release” of the package is created 
 - **Task:** Create an initial release of your project, following these instructions: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository 
 - **More information:** : https://docs.github.com/en/repositories/releasing-projects-on-github 
 
-### Package the project
+### *Optional:* Package the project
 - **Description:** Packaging a python project enables others to easily access it using the Python Package Index (PyPI) by using the command “pip install mypackage” where mypackage is the name of the python project. Packaging your Python projects enables others to easily implement your analyses, validating your findings and extending them to other datasets.
 - **Task:** Package your python project by following this tutorial: https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
-### Prepare the work for publication in the Journal of Open Source Software
+### *Optional:* Prepare the work for publication in the Journal of Open Source Software
 - **Description:** The Journal of Open Source Software (JOSS) is an open access journal for research software packages. JOSS enables the quality of software to be improved through a formal peer review process while giving researchers a citable DOI from an academic journal. 
 - **Task:** The JOSS review criteria (https://joss.readthedocs.io/en/latest/review_criteria.html) contain several of the recommended tasks already completed in this workshop. To prepare a submission for JOSS, you must prepare a short paper and a metadata file. See the JOSS guidelines for submission (https://joss.readthedocs.io/en/latest/submitting.html) for more guidance.
 
