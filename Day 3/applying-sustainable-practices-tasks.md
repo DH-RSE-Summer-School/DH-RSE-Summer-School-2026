@@ -4,7 +4,7 @@
 - *Essential:*  Add descriptive comments	
 - *Essential:*  Add docstrings	
 - *Essential:*  Add a README file	
-- *Essential:*  Add a requirements.txt file	
+- *Essential:*  Add a `requirements.txt` file	
 - *Optional:* Create a tutorial notebook
 - *Optional:* Go through a software quality checklist	
 
@@ -39,7 +39,7 @@ In your pre-assigned groups, you will work together to prepare the project for p
 
 If you have any issues accessing or editing the project, please refer to the Working on the Workshop Repository guide or, if you’re still having trouble, ask a workshop helper for assistance.
 
-## Tasks: Documentation
+## Tasks: Documentation (30 min)
 
 ### *Essential:*  Add descriptive comments 
 - **Description:** Comments should be useful and informative to future developers of the project. They can explain the overall outline of the code, describe specific intent of certain sections of the code, and explain specific algorithmic decisions. In Python, comments begin with a hash (#) symbol on each line of the comment. 
@@ -75,7 +75,7 @@ If you have any issues accessing or editing the project, please refer to the Wor
 - **Task Dependencies:** This task relies on the following tasks to be completed prior to beginning this task:
   - Documentation: Add a README file
 
-## Tasks: Formatting & Refactoring
+## Tasks: Formatting & Refactoring (45 min)
 
 ### *Essential:*  Improve formatting
 - **Description:** Code can become considerably more readable with the addition of blank lines that group lines of code into logical sections. Although badly formatted code will still run, it is very difficult for others to read and interpret and thus limits the likelihood that others will use and extend the code.
@@ -90,7 +90,7 @@ If you have any issues accessing or editing the project, please refer to the Wor
 - **Description:** DRY stands for Don’t Repeat Yourself. DRY code is streamlined to remove code repetitions, for instance when multiple lines could be better implemented in a single line by efficiently using existing function calls, by using a loop, or by creating a new function, and considerably improves readability and clarity.
 - **Task:** Locate the lines indicated by “TODO DRY” and modify these sections to remove repetition by taking advantage of existing code, adding in a function call, or using a loop, as appropriate.
 
-### *Optional:* Translate the notebook into an executable python script
+### *Optional:* Translate the notebook into an executable Python script
 - **Description:** To facilitate reproduction and enable future extensions to the project, the components of the Jupyter notebook can be repackaged into an executable python script.
 - **Task:** Convert the Jupyter notebook into an executable python script that contains a main() function. All code that is not already inside of a function should be placed inside the main() function. Be careful to include all variable definitions inside the functions where they are used.
 - **More information:** : https://realpython.com/python-main-function/
@@ -119,7 +119,7 @@ If you have any issues accessing or editing the project, please refer to the Wor
   - Formatting and Refactoring: Translate the notebook into an executable python script
   - Formatting and Refactoring: Refactor the script into functions
 
-## Tasks: Publishing
+## Tasks: Publishing (45 min)
 
 ### *Essential:*  Create a DOI
 - **Description:** A digital object identifier (DOI) is a unique and persistent identifier that enables proper attribution and reproduction. Zenodo is a data archiving tool that is commonly used to create DOIs for digital research objects. 
