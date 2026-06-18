@@ -27,7 +27,6 @@ Blurb
 
 - [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute
 - [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute
-- [Person Name](https://url/), Institution
 
 ## On-the-day Slides and Instructions
 
