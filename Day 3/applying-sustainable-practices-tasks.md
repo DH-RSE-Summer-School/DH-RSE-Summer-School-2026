@@ -56,9 +56,9 @@ If you have any issues accessing or editing the project, please refer to the Wor
 - **Task:** Edit the provided README.md file for the project to describe how the components of the project fit together. Include stepwise instructions on downloading and running the project and how to test the project output using the provided test data file `test_data.txt` located in the `data` directory. Also include a message encouraging others to contribute to the project and outlining how contributions can be made. Use the following template to organise the contents of the README: https://ha0ye.github.io/CW21-README-tips/template_README.html 
 - **More information:** : https://book.the-turing-way.org/project-design/pd-overview/project-repo/project-repo-readme/
 
-### *Essential:*  Add a requirements.txt file
-- **Description:** The requirements.txt file lists the packages that the project depends on for proper execution and makes installation of these dependencies easy using the “pip install requirements.txt” command. A requirements.txt file reduces the likelihood of compatibility issues and ensures that a project is well-documented, maintainable, and reproducible.
-- **Task:** Create a requirements.txt file in the top-most directory of the project. Populate this file with a list of Python packages that the program relies on and make sure that you include only packages that are actually used by the program.
+### *Essential:*  Add a `requirements.txt` file
+- **Description:** The `requirements.txt` file lists the packages that the project depends on for proper execution and makes installation of these dependencies easy using the “pip install requirements.txt” command. A requirements.txt file reduces the likelihood of compatibility issues and ensures that a project is well-documented, maintainable, and reproducible.
+- **Task:** Create a `requirements.txt` file in the top-most directory of the project. Populate this file with a list of Python packages that the program relies on and make sure that you include only packages that are actually used by the program.
 - **More information:** : https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
 
 ### *Optional:* Create a tutorial notebook
