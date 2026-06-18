@@ -1,5 +1,4 @@
-# Day 3: 1 July 2026
-# Version Control and Sustainable Software Practices
+# Day 3: 1 July 2026: Version Control and Sustainable Software Practices
 
 ## Tentative Schedule
 
