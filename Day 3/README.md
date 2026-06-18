@@ -4,11 +4,11 @@
 
 - 09:00-10:30 Version Control for Digital Humanists (Part 1)
   - Track 1: Beginner
-  - Track 2: Intermediate 
+  - Track 2: [Intermediate][byte-sized-rse-intermediate-git]
 - 10:30-11:00 BREAK
 - 11:00-12:30 Version Control for Digital Humanists (Part 2)
   - Track 1: Beginner
-  - Track 2: Intermediate 
+  - Track 2: [Intermediate][byte-sized-rse-intermediate-git]
 - 12:30-13:30 LUNCH
 - 13:30-15:00 Sustainable Software Practices (Part 1)
 - 15:00-15:30 BREAK
@@ -30,3 +30,5 @@ Blurb
 ## On-the-day Slides and Instructions
 
 Here
+
+[byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
