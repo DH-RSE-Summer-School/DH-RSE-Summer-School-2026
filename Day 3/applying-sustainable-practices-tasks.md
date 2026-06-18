@@ -1,6 +1,6 @@
-# Applying Best Practices for Sustainable Code:	
+# Applying Best Practices for Sustainable Code - Tasks
 
-### Tasks: Documentation	
+## Tasks: Documentation	
 - *Essential:*  Add descriptive comments	
 - *Essential:*  Add docstrings	
 - *Essential:*  Add a README file	
@@ -8,7 +8,7 @@
 - *Optional:* Create a tutorial notebook
 - *Optional:* Go through a software quality checklist	
 
-### Tasks: Formatting & Refactoring	
+## Tasks: Formatting & Refactoring	
 - *Essential:*  Improve formatting	
 - *Essential:*  Improve variable and function naming	
 - *Essential:*  Fix non-DRY code	
@@ -18,7 +18,7 @@
 - *Optional:* Input arguments: Allow for a flexible location to save results	
 - *Optional:* Add automated tests	
 
-### Tasks: Publishing	
+## Tasks: Publishing	
 - *Essential:*  Create a DOI	
 - *Essential:*  Add a LICENSE file	
 - *Essential:*  Add a copyright statement	
