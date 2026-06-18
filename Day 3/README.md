@@ -3,9 +3,13 @@
 
 ## Schedule (to be confirmed)
 
-- 09:00-10:30 Version Control for Digital Humanists (beginner/intermediate tracks)
+- 09:00-10:30 Version Control for Digital Humanists
+  - Track 1: Beginner
+  - Track 2: Intermediate 
 - 10:30-11:00 BREAK
-- 11:00-12:30 Version Control for Digital Humanists (beginner/intermediate tracks)
+- 11:00-12:30 Version Control for Digital Humanists
+  - Track 1: Beginner
+  - Track 2: Intermediate 
 - 12:30-13:30 LUNCH
 - 13:30-15:00 Sustainable Software Practices
 - 15:00-15:30 BREAK
