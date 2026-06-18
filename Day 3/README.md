@@ -20,7 +20,9 @@ Blurb
 
 ## Sustainable Software Practices
 
-Blurb
+- Introduction slides (TODO)
+- [Tasks & exercises](./applying-sustainable-practices-tasks.md)
+- [Example code](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code)
 
 ## Speakers and Trainers
 
