@@ -32,3 +32,4 @@ Blurb
 Here
 
 [byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
+[swc-git-novice]: https://swcarpentry.github.io/git-novice/
