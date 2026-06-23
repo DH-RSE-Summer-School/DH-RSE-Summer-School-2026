@@ -20,7 +20,8 @@ This hands-on workshop introduces participants to core principles and practices 
 The workshop begins by exploring visualization as a research method and examining a historical dataset from the **University of Edinburgh medical students (1760–1920)**. Participants will then build interactive visualizations using **D3.js** and **Leaflet**, before publishing their projects online with **GitHub Pages**.
 
 No advanced technical expertise is required, although some familiarity with web technologies or programming will be beneficial.
-All the necessary information for the Visualization Workshop are available here: 
+All the necessary information for the Visualization Workshop are available here:
+
 https://github.com/DH-RSE-Summer-School/uoe_visualization_workshop
 
 ---
