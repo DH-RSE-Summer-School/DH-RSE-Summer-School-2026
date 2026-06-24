@@ -1,4 +1,4 @@
-# Applying Best Practices for Sustainable Code - Tasks
+# Applying Good Practices for Sustainable Code - Tasks
 
 ## Tasks: Documentation	
 - *Essential:*  Add descriptive comments	
