@@ -20,7 +20,7 @@ Blurb
 
 ## Sustainable Software Practices
 
-- Introduction slides (TODO)
+- Introduction slides ([old slides](./Applying%20Best%20Practices%20for%20Sustainable%20Code%20(2).pdf))
 - [Tasks & exercises](./applying-sustainable-practices-tasks.md)
 - [Example code](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code)
 
