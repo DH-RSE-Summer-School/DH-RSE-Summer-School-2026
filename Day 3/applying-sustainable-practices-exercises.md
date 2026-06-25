@@ -1,24 +1,95 @@
-# Applying Good Practices for Sustainable Code - Tasks
+# Building Better Research Software to Support Open and Reproducible Research
 
-## Tasks: Documentation	
-- *Essential:*  Add descriptive comments	
-- *Essential:*  Add docstrings	
-- *Essential:*  Add a README file	
-- *Essential:*  Add a `requirements.txt` file	
-- *Optional:* Create a tutorial notebook
-- *Optional:* Go through a software quality checklist	
+## Scenario
 
-## Tasks: Formatting & Refactoring	
+You have inherited code from a post-doctoral researcher who has since left your group. 
+The lead of your research group wants to publish a paper along with this code used to generate the analyses, with the hope that other researchers may apply the analysis to their own datasets and extend the capabilities of the project to other analyses. 
+
+Your task is to download the code, understand what it does, run it on your machine reproducing its results, and improve the code's readability and structure using code reformatting and refactoring software engineering practices. 
+Next, you will need to prepare the code for publication in a journal and reuse by others by applying good software engineering practices around software documentation, packaging and publishing, improving its maintainability and sustainability.
+
+## Reproducible Software Environments
+
+**Virtual development environments** help us create an **isolated working copy** of a software project that uses a specific version of Python interpreter together with specific versions of a number of external libraries (that our software depends on) installed into that virtual environment.
+Python virtual environments are implemented as directories with a particular structure within software projects, containing links to specified dependencies allowing isolation from other software projects on your machine that may require different versions of Python or external libraries.
+
+Virtual environments are not just a feature of Python - most modern programming languages use a similar mechanism to isolate libraries or dependencies for a specific project, making it easier to develop, run, test and share code with others.
+
+It is recommended to create a separate virtual environment for each software project.
+Then you do not have to worry about changes to the environment of the current project you are working on affecting other projects - you can use different Python versions and different versions of the same third party dependency by different projects on your machine independently of one another.
+
+### Essential task: Create a virtual development environment using `pip` and `venv`	
+
+Creating a virtual environment with venv is done by executing the following command from the project root:
+
+```
+python -m venv venv
+source venv/bin/activate
+```
+
+You should see your terminal's prompt change now to include the name if the virtual environment in round braces - "(venv)" - to indicate that the environment is active.
+
+When you’re done working on your project, you can exit the environment with:
+```
+(venv) $ deactivate
+```
+
+You can now install your software's dependencies into your environment, e.g. using `pip`:
+
+```
+(venv) $ pip install matplotlib pandas
+```
+
+### Essential task: Create `requirements.txt` file to record dependencies
+
+To export your active environment - use `pip freeze` command to produce a list of packages installed in the virtual environment. 
+A common convention is to put this list in a `requirements.txt` file in your project’s root directory:
+
+```
+(venv) $ pip freeze > requirements.txt
+```
+
+You should also put `requirements.txt` under version control and share it along with our code.
+```
+(venv) $ git add requirements.txt
+(venv) $ git commit -m "Initial commit of requirements.txt"
+(venv) $ git push origin main
+```
+
+To recreate a virtual environment from `requirements.txt` (e.g. on another machine), from the project root one should create the virtual environment and then install dependencies from the requirements file into that environment:
+
+```
+python -m venv venv
+source venv/bin/activate
+(venv) $ pip install -r requirements.txt
+```
+
+### *Essential:*  Add a `requirements.txt` file
+- **Description:** The `requirements.txt` file lists the packages that the project depends on for proper execution and makes installation of these dependencies easy using the “pip install requirements.txt” command. A requirements.txt file reduces the likelihood of compatibility issues and ensures that a project is well-documented, maintainable, and reproducible.
+- **Task:** Create a `requirements.txt` file in the top-most directory of the project. Populate this file with a list of Python packages that the program relies on and make sure that you include only packages that are actually used by the program.
+- **More information:** : https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
+
+## Code Readability & Structure (Formatting & Refactoring)
+
 - *Essential:*  Improve formatting	
 - *Essential:*  Improve variable and function naming	
 - *Essential:*  Fix non-DRY code	
-- *Optional:* Translate the notebook into an executable python script	
 - *Optional:* Refactor the script into functions	
 - *Optional:* Input arguments: Allow for flexible input dataset	
 - *Optional:* Input arguments: Allow for a flexible location to save results	
-- *Optional:* Add automated tests	
 
-## Tasks: Publishing	
+
+## Software Documentation	
+
+- *Essential:*  Add descriptive comments	
+- *Essential:*  Add docstrings	
+- *Essential:*  Add a README file	
+- *Optional:* Create a tutorial notebook
+- *Optional:* Go through a software quality checklist	
+
+
+
+## Publishing Software	
 - *Essential:*  Create a DOI	
 - *Essential:*  Add a LICENSE file	
 - *Essential:*  Add a copyright statement	
@@ -27,17 +98,6 @@
 - *Optional:* Package the project	
 - *Optional:* Prepare the work for publication in the Journal of Open Source Software	
 
-## Scenario
-
-**You’ve inherited code from a post-doctoral researcher who has since left your group.** The PI of your research group wants to publish a paper along with the code used to generate the analyses, with the hope that other researchers may apply the analysis to their own datasets and extend the capabilities of the project to other analyses. 
-
-**Your task is to prepare the code for publication**, applying project management practices and coding design principles concerning documentation, formatting, refactoring, and publishing, to enhance the lifecycle of the code.
-
-Your PI is unusually proactive and well-informed about best-practices in research software engineering and has **provided you with the following checklist** to prepare the project for publication. The checklist is divided into tasks concerning documentation, formatting and refactoring, and publication.
-
-In your pre-assigned groups, you will work together to prepare the project for publication, **dividing the following tasks amongst the members of your group.** Feel free to pair up on tasks that interest you or have relevance for your own work, or to work solo. You do not have to complete all tasks in the time available and tasks beginning with the phrase “Essential” should be prioritised. The remaining tasks are nice to have in a research software project, but you may decide which of these tasks are the most important for the project at hand.
-
-If you have any issues accessing or editing the project, please refer to the Working on the Workshop Repository guide or, if you’re still having trouble, ask a workshop helper for assistance.
 
 ## Tasks: Documentation (30 min)
 
@@ -56,10 +116,6 @@ If you have any issues accessing or editing the project, please refer to the Wor
 - **Task:** Edit the provided README.md file for the project to describe how the components of the project fit together. Include stepwise instructions on downloading and running the project and how to test the project output using the provided test data file `test_data.txt` located in the `data` directory. Also include a message encouraging others to contribute to the project and outlining how contributions can be made. Use the following template to organise the contents of the README: https://ha0ye.github.io/CW21-README-tips/template_README.html 
 - **More information:** : https://book.the-turing-way.org/project-design/pd-overview/project-repo/project-repo-readme/
 
-### *Essential:*  Add a `requirements.txt` file
-- **Description:** The `requirements.txt` file lists the packages that the project depends on for proper execution and makes installation of these dependencies easy using the “pip install requirements.txt” command. A requirements.txt file reduces the likelihood of compatibility issues and ensures that a project is well-documented, maintainable, and reproducible.
-- **Task:** Create a `requirements.txt` file in the top-most directory of the project. Populate this file with a list of Python packages that the program relies on and make sure that you include only packages that are actually used by the program.
-- **More information:** : https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
 
 ### *Optional:* Create a tutorial notebook
 - **Description:** Code packages often come with a set of instructions on how to install and use the package on an example dataset. By providing an example of how to run the provided code, the project outputs will be easily replicable and future users will be more likely to use and cite the project. 

@@ -21,7 +21,7 @@ Blurb
 ## Sustainable Software Practices
 
 - Introduction slides ([old slides](./Applying%20Best%20Practices%20for%20Sustainable%20Code%20(2).pdf))
-- [Tasks & exercises](./applying-sustainable-practices-tasks.md)
+- [Tasks & exercises](applying-sustainable-practices-exercises.md)
 - [Example code](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code)
 
 ## Speakers and Trainers
@@ -35,4 +35,4 @@ Here
 
 [byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
 [swc-git-novice]: https://swcarpentry.github.io/git-novice/
-[applying-sustainable-practices-tasks]: ./applying-sustainable-practices-tasks.md
+[applying-sustainable-practices-tasks]: applying-sustainable-practices-exercises.md
