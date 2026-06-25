@@ -1,4 +1,4 @@
-# Building Better Research Software to Support Open and Reproducible Research
+# Building Better Software to Support Open and Reproducible Research
 
 ## Scenario
 
