@@ -79,12 +79,24 @@ The lead of your research group wants to publish a paper along with this code us
 Your task is to download the code, understand what it does, run it on your machine reproducing its results, and improve the code's readability and structure using code reformatting and refactoring software engineering practices. 
 Next, you will need to prepare the code for publication in a journal and reuse by others by applying good software engineering practices around software documentation, packaging and publishing, improving its maintainability and sustainability.
 
-### Example code we will use
+### Starter code
 
-The code you inherited from your colleague in located in GitHub - so it is already version controlled and shared in a more accessible way (which is good).
+The code you inherited from your colleague in located in a [software project repository in GitHub](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code/) - so it is already version controlled and shared in a more accessible way (which is good).
 
-TODO - import from the example code repo (by using the template option) and open in GitHub's Codespaces.
+The software project contains Python code that uses the NASA data on human space walks (Extravehicular activities - EVAs) undertaken by astronauts and cosmonauts from 1965 to 2013 (data provided by NASA via its Open Data Portal).
+The code does some analysis over this data. 
 
+In detail, the project contains:
+
+- JSON file called `eva_data.json` with data on extra-vehicular activities (EVAs, i.e. spacewalks).
+- Python script `eva_analysis.py` that does some common research tasks:
+  - Reads in the data from the JSON file
+  - Changes the data from one data format to another and saves to a file in the new format (CSV)
+  - Performs some calculations to generate summary statistics about the data
+  - Makes a plot to visualise the data
+
+This project is intentionally constructed to illustrate some common mistakes in research software development.
+Throughout the session, you will learn and apply better research software practices — including elements of FAIR — as you work to improve the software project.
 
 ### Better research software practices we will cover
 
