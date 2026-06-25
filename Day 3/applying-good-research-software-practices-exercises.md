@@ -27,6 +27,8 @@ In detail, the project contains:
 This project is intentionally constructed to illustrate some common mistakes in research software development.
 Throughout the session, you will learn and apply better research software practices — including elements of FAIR — as you work to improve the software project.
 
+## Obtain and inspect the software project
+
 ### Essential task: Make a copy the software project
 - **Description:** Make a copy of the software project into your GitHub space so you can continue working on it.
 - **Task:**
