@@ -35,7 +35,7 @@ $ source venv/bin/activate # Linux and macOS
 $ source venv/Scripts/activate # Windows
 ```
 
-[!NOTE]
+>[!NOTE]
 > On some systems you may have to invoke the Python and Pip commands as `python3` or `pip3`.
 
 You should see your terminal's prompt change now to include the name if the virtual environment in round braces - "(venv)" - to indicate that the environment is active.
