@@ -8,7 +8,10 @@ The lead of your research group wants to publish a paper along with this code us
 Your task is to download the code, understand what it does, run it on your machine reproducing its results, and improve the code's readability and structure using code reformatting and refactoring software engineering practices. 
 Next, you will need to prepare the code for publication in a journal and reuse by others by applying good software engineering practices around software documentation, packaging and publishing, improving its maintainability and sustainability.
 
-## Reproducible Software Environments
+## Code example we will use
+TODO
+
+## Reproducible software environments
 
 **Virtual development environments** help us create an **isolated working copy** of a software project that uses a specific version of Python interpreter together with specific versions of a number of external libraries (that our software depends on) installed into that virtual environment.
 Python virtual environments are implemented as directories with a particular structure within software projects, containing links to specified dependencies allowing isolation from other software projects on your machine that may require different versions of Python or external libraries.
@@ -27,12 +30,13 @@ The venv module supports creating lightweight “virtual environments”, each w
 Creating a virtual environment called "venv" with the `venv` command line tool is done by executing the following command from the project root:
 
 ```
-python -m venv venv
-source venv/bin/activate # Linux and macOS
-source venv/Scripts/activate # Windows
+$ python -m venv venv
+$ source venv/bin/activate # Linux and macOS
+$ source venv/Scripts/activate # Windows
 ```
 
-**Note:** on some systems you may have to invoke the Python and Pip commands as `python3` or `pip3`.
+[!NOTE]
+> On some systems you may have to invoke the Python and Pip commands as `python3` or `pip3`.
 
 You should see your terminal's prompt change now to include the name if the virtual environment in round braces - "(venv)" - to indicate that the environment is active.
 You could have called your virtual environment something else - by convention they are called "venv" or ".venv", with the caveat that it may cause confusion when you have multiple environements all called "venv".
@@ -84,40 +88,58 @@ You should put `requirements.txt` under version control and share it along with 
 To recreate a virtual environment from `requirements.txt` (e.g. on another machine), from the project root one should create the virtual environment and then install dependencies from the requirements file into that environment:
 
 ```
-python -m venv venv
-source venv/bin/activate
+$ python -m venv venv
+$ source venv/bin/activate
 (venv) $ pip install -r requirements.txt
 ```
 
-## Code Readability & Structure (Formatting & Refactoring)
+## Code formatting & structure for readability
 
-- *Essential:*  Improve formatting	
-- *Essential:*  Improve variable and function naming	
-- *Essential:*  Fix non-DRY code	
-- *Optional:* Refactor the script into functions	
-- *Optional:* Input arguments: Allow for flexible input dataset	
-- *Optional:* Input arguments: Allow for a flexible location to save results	
+### Essential task: Improve code structure & formatting
+- import statements at the top, PEP8
 
+### Essential task: Improve variable naming
 
-## Software Documentation	
+### Essential task: Remove unused variables
 
-- *Essential:*  Add descriptive comments	
-- *Essential:*  Add docstrings	
-- *Essential:*  Add a README file	
-- *Optional:* Create a tutorial notebook
-- *Optional:* Go through a software quality checklist	
+### Essential task: Refactor the script into functions
+
+### Optional task: Add input command-line arguments to allow for a flexible input dataset	
+
+### Optional task: Add input command-line arguments to allow for a flexible location to save results	
 
 
+## Software documentation	
 
-## Publishing Software	
-- *Essential:*  Create a DOI	
-- *Essential:*  Add a LICENSE file	
-- *Essential:*  Add a copyright statement	
-- *Essential:*  Add a CITATION.cff file	
-- *Optional:* Prepare a GitHub release	
-- *Optional:* Package the project	
-- *Optional:* Prepare the work for publication in the Journal of Open Source Software	
+### Essential task: Add descriptive comments to code
 
+### Essential task: Add docstrings to functions
+
+### Essential task: Add a README file
+
+### Optional task: Create a tutorial notebook
+
+### Optional task: Go through a software quality checklist	
+
+
+## Publishing software	
+
+### Essential task: Create a DOI	
+
+### Essential task: Add a `LICENSE` file	
+
+### Essential task: Add a copyright statement	
+
+### Essential task: Add a `CITATION.cff` file	
+
+### Essential task: Release software on GitHub + Zenodo
+
+### Optional task: Package the software project
+
+### Optional task: Prepare the work for publication in the Journal of Open Source Software	
+
+---
+Old tasks 
 
 ## Tasks: Documentation (30 min)
 
