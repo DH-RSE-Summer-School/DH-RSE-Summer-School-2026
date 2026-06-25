@@ -19,9 +19,10 @@ It is recommended to create a separate virtual environment for each software pro
 Then you do not have to worry about changes to the environment of the current project you are working on affecting other projects - you can use different Python versions and different versions of the same third party dependency by different projects on your machine independently of one another.
 
 ### Essential task: Create a virtual development environment using `venv`	
-- **Description:** The `requirements.txt` file can be used to list the packages (and their versions) that the project depends on for proper execution and makes installation of these dependencies easy using `pip` command-line tool. A `requirements.txt` file reduces the likelihood of compatibility issues and ensures that a project is well-documented, maintainable, and reproducible.
-- **Task:** Create a `requirements.txt` file in the root directory of the project. Populate this file with a list of Python packages that the program relies on using `pip` and make sure that you include only packages that are actually used by your software.
-- **More information:** : https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
+- **Description:**  `venv` command-line tool (and a Python module) is a package installer and manager for Python (as of Python v3.3 it is included as part of a standard Python distribution). 
+The venv module supports creating lightweight “virtual environments”, each with their own independent set of Python packages installed in their site directories.
+- **Task:** Create and activate a Python virtual environment using `venv`.
+- **More information:** : https://docs.python.org/3/library/venv.html
 
 Creating a virtual environment called "venv" with the `venv` command line tool is done by executing the following command from the project root:
 
@@ -42,7 +43,7 @@ When you are done working on your project, you can exit/deactivate the environme
 ```
 
 ### Essential task: Install your software's dependencies into virtual development environment using `pip`
-- **Description:**  `pip` command-line tool is a package installer and manager for Python. You can use it to install packages from the Python Package Index and other indexes.
+- **Description:**  `pip` command-line tool (and a Python module) is a package installer and manager for Python (as of Python v3.3 it is included as part of a standard Python distribution). You can use it to install packages from the Python Package Index and other indexes.
 - **Task:** Identify dependencies for your software and install them into an active virtual environment using `pip`.
 - **More information:** : https://pip.pypa.io/en/stable/
 
