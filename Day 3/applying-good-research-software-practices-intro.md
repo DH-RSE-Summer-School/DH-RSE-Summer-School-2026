@@ -51,16 +51,27 @@ Next time you start a project from scratch - you will start using these practice
 
 ## FAIR software
 
-Some of the practices covered here also align with the FAIR Research Software Principles. 
+Some of the practices covered here also align with the [FAIR Research Software Principles](https://www.nature.com/articles/s41597-022-01710-x). 
+FAIR stands for Findable, Accessible, Interoperable, and Reusable and comprises a set of principles designed to increase the visibility and usefulness of your research to others. 
+The [FAIR data principles](https://www.nature.com/articles/sdata201618), first published in 2016, are widely known and applied today. 
+Similar FAIR principles for software have now been defined too. In general, they mean:
+
+* Findable - software and its associated metadata must be easy to discover by humans and machines.
+* Accessible - in order to reuse software, the software and its metadata must be retrievable by standard protocols, free and legally usable.
+* Interoperable - when interacting with other software it must be done by exchanging data and/or metadata through standardised protocols and application programming interfaces (APIs).
+* Reusable - software should be usable (can be executed) and reusable (can be understood, modified, built upon, or incorporated into other software).
+
 However, FAIR is just one of several frameworks that can guide the development of high-quality research software. 
 What matters most is recognising how each of these individual practices — whether or not they come from FAIR — helps you produce software that is more reliable, maintainable, and useful to others.
 
+## What we will do today?
+
+### Reflect in your own practices
+
 > [!NOTE]  
-> ### Tools and practices you use
+> ### Exercise: Tools and practices you use
 > Individually, reflect on what practices or tools you are already using in your software development workflow, list some new practices or tools that you would like to start employing or using.
 > Write your reflections in the shared collaborative document.
-
-## What we will do today?
 
 ### Scenario
 
