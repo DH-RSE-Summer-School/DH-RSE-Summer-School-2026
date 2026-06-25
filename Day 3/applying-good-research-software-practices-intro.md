@@ -66,7 +66,7 @@ What matters most is recognising how each of these individual practices — whet
 
 ## What we will do today?
 
-### Reflect in your own practices
+### Reflect on your own practices
 
 > [!NOTE]  
 > ### Exercise: Tools and practices you use
@@ -81,10 +81,6 @@ The lead of your research group wants to publish a paper along with this code us
 Your task is to download the code, understand what it does, run it on your machine reproducing its results, and improve the code's readability and structure using code reformatting and refactoring software engineering practices. 
 Next, you will need to prepare the code for publication in a journal and reuse by others by applying good software engineering practices around software documentation, packaging and publishing, improving its maintainability and sustainability.
 
-### Example code
-
-TODO - import from the example code repo and open in code spaces.
-
 ### Better research software practices we will cover
 
 We will go through a number of exercises that cover the following good practices:
@@ -92,3 +88,10 @@ We will go through a number of exercises that cover the following good practices
 * [Use reproducible software environments to make it easier to develop, install and run software](./applying-good-research-software-practices-exercises.md#reproducible-software-environments)
 * Improving code structure to make it more readable and understandable
 * Document and publish software for research publications, getting credit for our work and reuse by others
+
+Some exercises we will do in "live-coding" style - the instructor will share their screen and do the exercise while everyone will follow along.
+Other exercises you will do individually or in small groups.
+
+### Example code
+
+TODO - import from the example code repo and open in code spaces.
