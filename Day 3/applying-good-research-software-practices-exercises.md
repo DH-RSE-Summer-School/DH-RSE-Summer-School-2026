@@ -122,9 +122,13 @@ $ source venv/bin/activate
 ## Code formatting & structure for readability
 
 ### Essential task: Place import statements at the top
+- **Description:** Conventionally, all import statements are placed at the top of the script so that dependent libraries are clearly visible and not buried inside the code.
+This helps with readability and reusability of our code.
+- **Task:** Modify `eva-analysis.py` script so that all import statements are placed at the top of the file.
+
 
 ### Essential task: Improve code structure & formatting
-- import statements at the top, PEP8
+- e.g. PEP8, blank lines
 
 ### Essential task: Improve variable naming
 - **Description:** Variable and function names should succinctly indicate what a function does or a variable means. When variable and function names are uninformative, code can be considerably harder to understand. As a rule of thumb, the length of the name should be proportional to the scope and complexity of the variable or function, and formatting conventions (such as using snake_case or camelCase) should be consistent throughout the project. 
