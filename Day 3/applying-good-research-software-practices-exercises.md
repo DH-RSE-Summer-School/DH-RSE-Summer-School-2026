@@ -27,13 +27,6 @@ In detail, the project contains:
 This project is intentionally constructed to illustrate some common mistakes in research software development.
 Throughout the session, you will learn and apply better research software practices — including elements of FAIR — as you work to improve the software project.
 
-### Essential task: Copy the software project
-- **Description:** Make a copy of the software project into your GitHub space so you can continue working on it.
-- **Task:**
-  - Log in to GitHub.
-  - Go to https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code/.
-  - Click `Use this template` button to create a copy of the template code repository in your own GitHub.
-
 ## Reproducible software environments
 
 **Virtual development environments** help us create an **isolated working copy** of a software project that uses a specific version of Python interpreter together with specific versions of a number of external libraries (that our software depends on) installed into that virtual environment.
@@ -43,6 +36,13 @@ Virtual environments are not just a feature of Python - most modern programming 
 
 It is recommended to create a separate virtual environment for each software project.
 Then you do not have to worry about changes to the environment of the current project you are working on affecting other projects - you can use different Python versions and different versions of the same third party dependency by different projects on your machine independently of one another.
+
+### Essential task: Make a copy the software project
+- **Description:** Make a copy of the software project into your GitHub space so you can continue working on it.
+- **Task:**
+  - Log in to GitHub.
+  - Go to https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code/.
+  - Click `Use this template` button to create a copy of the template code repository in your own GitHub.
 
 ### Essential task: Create a virtual development environment using `venv`	
 - **Description:**  `venv` command-line tool (and a Python module) is a package installer and manager for Python (as of Python v3.3 it is included as part of a standard Python distribution). 
