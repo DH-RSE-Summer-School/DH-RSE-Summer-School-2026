@@ -29,13 +29,13 @@ It can also be overwhelming to try and change all at once in your code - try doi
 Small changes over time will compound together and lead to a much better software.
 Next time you start a project from scratch - you will start using these practices from the beginning, saving yourself some time.
 
-## Improving source code and its structure to make it more readable and understandable
+### Improving code structure to make it more readable and understandable
 
 * Organising and structuring your code and project directory keeps your software clean, modular, and reusable, enhancing its readability, extensibility, and reusability.
 * Following coding conventions for your programming language produces consistently formatted code that others find it easy to read, reuse or extend in their own examples and applications.
 * Writing structured documentation strings and comments within your code will make it more understandable to others who wish to use or extend it.
 
-## Code correctness
+### Improving code correctness and confidence in results in produces
 
 * Testing can save time spent on debugging and ensures that your code is correct and does what it is set out to do, giving you and others confidence in your code and the results it produces.
 
@@ -49,8 +49,26 @@ Next time you start a project from scratch - you will start using these practice
 * Accompanying your software with clear information about its licensing terms and how it should be cited ensures that others can reuse and adapt your code with confidence and that you receive credit when they do so.
 * Packaging code and publishing it in code repositories makes it easier for people to install and use your software.
 
-### FAIR software
+## FAIR software
 
 Some of the practices covered here also align with the FAIR Research Software Principles. 
 However, FAIR is just one of several frameworks that can guide the development of high-quality research software. 
-What matters most is recognising how each of these individual practices—whether or not they come from FAIR — helps you produce software that is more reliable, maintainable, and useful to others.
+What matters most is recognising how each of these individual practices — whether or not they come from FAIR — helps you produce software that is more reliable, maintainable, and useful to others.
+
+## What we will do today?
+
+### Scenario
+
+You have inherited code from a post-doctoral researcher who has since left your group. 
+The lead of your research group wants to publish a paper along with this code used to generate the analyses, with the hope that other researchers may apply the analysis to their own datasets and extend the capabilities of the project to other analyses. 
+
+Your task is to download the code, understand what it does, run it on your machine reproducing its results, and improve the code's readability and structure using code reformatting and refactoring software engineering practices. 
+Next, you will need to prepare the code for publication in a journal and reuse by others by applying good software engineering practices around software documentation, packaging and publishing, improving its maintainability and sustainability.
+
+### Better research software practices we will cover
+
+We will go through a number of exercises that cover the following good practices:
+
+* Use reproducible software environments to make it easier to develop, install and run software
+* Improving code structure to make it more readable and understandable
+* Document and publish software for research publications, getting credit for our work and reuse by others
