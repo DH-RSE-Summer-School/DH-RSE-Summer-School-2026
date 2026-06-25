@@ -88,8 +88,8 @@ The code does some analysis over this data.
 
 In detail, the project contains:
 
-- JSON file called `eva_data.json` with data on extra-vehicular activities (EVAs, i.e. spacewalks).
-- Python script `eva_analysis.py` that does some common research tasks:
+- JSON file called `eva-data.json` with data on extra-vehicular activities (EVAs, i.e. spacewalks).
+- Python script `eva-analysis.py` that does some common research tasks:
   - Reads in the data from the JSON file
   - Changes the data from one data format to another and saves to a file in the new format (CSV)
   - Performs some calculations to generate summary statistics about the data
