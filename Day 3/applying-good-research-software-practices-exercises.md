@@ -141,6 +141,9 @@ This helps with readability and reusability of our code.
 - **Description:** Each function should accomplish one logical task, enabling the script to read like a series of instructions. Smaller functions are also easier to read and understand, providing greater clarity for future developers.
 - **Task:** Identify the key components of the project and factor out main functionality into separate functions. As a hint, recall the main functionality that is expected in text processing applications. 
 
+### Essential task: Use `main()` function
+
+
 ### Optional task: Add input command-line arguments to allow for a flexible input dataset	
 - **Description:** Executable scripts allow for flexible processing and code reuse through the use of input arguments. By changing the script to accept input arguments, the analysis could be easily applied to other collections of files.
 - **Task:** Locate the lines indicated by “TODO Inputs” and change the script to accept different inputs, such as a single file, a list of file locations, or a directory containing multiple files. All lines indicated by the comment “TODO Inputs” are related to the use of input arguments, although not all of them will need to be changed. The input should include a complete path to the location of the input arguments or be able to create a complete path from the input arguments. 
