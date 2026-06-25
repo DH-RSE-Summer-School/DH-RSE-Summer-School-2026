@@ -69,6 +69,6 @@ Next, you will need to prepare the code for publication in a journal and reuse b
 
 We will go through a number of exercises that cover the following good practices:
 
-* Use reproducible software environments to make it easier to develop, install and run software
+* [Use reproducible software environments to make it easier to develop, install and run software](./applying-good-research-software-practices-exercises.md#reproducible-software-environments)
 * Improving code structure to make it more readable and understandable
 * Document and publish software for research publications, getting credit for our work and reuse by others
