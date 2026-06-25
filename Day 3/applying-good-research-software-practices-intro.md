@@ -66,12 +66,10 @@ What matters most is recognising how each of these individual practices — whet
 
 ## What we will do today?
 
-### Reflect on your own practices
+### Exercise: Tools and practices you use
 
-> [!NOTE]  
-> ### Exercise: Tools and practices you use
-> Individually, reflect on what practices or tools you are already using in your software development workflow, list some new practices or tools that you would like to start employing or using.
-> Write your reflections in the shared collaborative document.
+Individually, reflect on what practices or tools you are already using in your software development workflow, list some new practices or tools that you would like to start employing or using.
+Write your reflections in the shared collaborative document.
 
 ### Scenario
 
@@ -80,6 +78,13 @@ The lead of your research group wants to publish a paper along with this code us
 
 Your task is to download the code, understand what it does, run it on your machine reproducing its results, and improve the code's readability and structure using code reformatting and refactoring software engineering practices. 
 Next, you will need to prepare the code for publication in a journal and reuse by others by applying good software engineering practices around software documentation, packaging and publishing, improving its maintainability and sustainability.
+
+### Example code
+
+The code you inherited from your colleague in located in GitHub - so it is already version controlled and shared in a more accessible way (which is good).
+
+TODO - import from the example code repo (by using the template option) and open in GitHub's Codespaces.
+
 
 ### Better research software practices we will cover
 
@@ -92,6 +97,3 @@ We will go through a number of exercises that cover the following good practices
 Some exercises we will do in "live-coding" style - the instructor will share their screen and do the exercise while everyone will follow along.
 Other exercises you will do individually or in small groups.
 
-### Example code
-
-TODO - import from the example code repo and open in code spaces.
