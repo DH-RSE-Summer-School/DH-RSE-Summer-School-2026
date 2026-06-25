@@ -231,17 +231,3 @@ Old tasks
 ### *Essential:*  Fix non-DRY code
 - **Description:** DRY stands for Don’t Repeat Yourself. DRY code is streamlined to remove code repetitions, for instance when multiple lines could be better implemented in a single line by efficiently using existing function calls, by using a loop, or by creating a new function, and considerably improves readability and clarity.
 - **Task:** Locate the lines indicated by “TODO DRY” and modify these sections to remove repetition by taking advantage of existing code, adding in a function call, or using a loop, as appropriate.
-
-
-
-
-### *Optional:* Add automated tests
-- **Description:** Testing code thoroughly and frequently ensures each component of the code functions as intended. 
-- **Task:** Create a script that performs automated testing of your Python functions, for instance verifying that the flexible input arguments you implemented in the previous task are parsed and used as intended. For more guidance on creating tests, see this guide: https://realpython.com/python-testing/ 
-- **More information:** : https://book.the-turing-way.org/reproducible-research/testing 
-- **Task Dependencies:** This task relies on the following tasks to be completed prior to beginning this task:
-  - Formatting and Refactoring: Translate the notebook into an executable python script
-  - Formatting and Refactoring: Refactor the script into functions
-
-
-
