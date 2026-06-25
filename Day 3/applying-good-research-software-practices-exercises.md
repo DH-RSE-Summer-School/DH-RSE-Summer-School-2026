@@ -1,4 +1,4 @@
-# Building Better Software to Support Open and Reproducible Research
+# Building Better Software to Support Open and Reproducible Research - Exercises
 
 ## Scenario
 
@@ -20,16 +20,20 @@ Then you do not have to worry about changes to the environment of the current pr
 
 ### Essential task: Create a virtual development environment using `pip` and `venv`	
 
-Creating a virtual environment with venv is done by executing the following command from the project root:
+Creating a virtual environment called "venv" with the `venv` command line tool is done by executing the following command from the project root:
 
 ```
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activate # Linux and macOS
+source venv/Scripts/activate # Windows
 ```
 
-You should see your terminal's prompt change now to include the name if the virtual environment in round braces - "(venv)" - to indicate that the environment is active.
+**Note:** on some systems you may have to invoke the Python and Pip commands as `python3` or `pip3`.
 
-When you’re done working on your project, you can exit the environment with:
+You should see your terminal's prompt change now to include the name if the virtual environment in round braces - "(venv)" - to indicate that the environment is active.
+You could have called your virtual environment something else - by convention they are called "venv" or ".venv", with the caveat that it may cause confusion when you have multiple environements all called "venv".
+
+When you are done working on your project, you can exit/deactivate the environment with:
 ```
 (venv) $ deactivate
 ```
