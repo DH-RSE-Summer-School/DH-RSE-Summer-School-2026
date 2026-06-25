@@ -35,7 +35,7 @@ Next time you start a project from scratch - you will start using these practice
 * Following coding conventions for your programming language produces consistently formatted code that others find it easy to read, reuse or extend in their own examples and applications.
 * Writing structured documentation strings and comments within your code will make it more understandable to others who wish to use or extend it.
 
-### Improving code correctness and confidence in results in produces
+### Improving code correctness and confidence in results it produces
 
 * Testing can save time spent on debugging and ensures that your code is correct and does what it is set out to do, giving you and others confidence in your code and the results it produces.
 
@@ -55,6 +55,11 @@ Some of the practices covered here also align with the FAIR Research Software Pr
 However, FAIR is just one of several frameworks that can guide the development of high-quality research software. 
 What matters most is recognising how each of these individual practices — whether or not they come from FAIR — helps you produce software that is more reliable, maintainable, and useful to others.
 
+> [!NOTE]  
+> ### Tools and practices you use
+> Individually, reflect on what practices or tools you are already using in your software development workflow, list some new practices or tools that you would like to start employing or using.
+> Write your reflections in the shared collaborative document.
+
 ## What we will do today?
 
 ### Scenario
@@ -64,6 +69,10 @@ The lead of your research group wants to publish a paper along with this code us
 
 Your task is to download the code, understand what it does, run it on your machine reproducing its results, and improve the code's readability and structure using code reformatting and refactoring software engineering practices. 
 Next, you will need to prepare the code for publication in a journal and reuse by others by applying good software engineering practices around software documentation, packaging and publishing, improving its maintainability and sustainability.
+
+### Example code
+
+TODO - import from the example code repo and open in code spaces.
 
 ### Better research software practices we will cover
 
