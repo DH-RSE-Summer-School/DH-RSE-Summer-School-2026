@@ -20,6 +20,7 @@ Blurb
 
 ## Sustainable Software Practices
 
+- [Introduction](applying-good-research-software-practices-intro.md)
 - Introduction slides ([old slides](./Applying%20Best%20Practices%20for%20Sustainable%20Code%20(2).pdf))
 - [Tasks & exercises](applying-good-research-software-practices-exercises.md)
 - [Example code](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code)
