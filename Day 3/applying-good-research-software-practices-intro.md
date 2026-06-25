@@ -79,7 +79,7 @@ The lead of your research group wants to publish a paper along with this code us
 Your task is to download the code, understand what it does, run it on your machine reproducing its results, and improve the code's readability and structure using code reformatting and refactoring software engineering practices. 
 Next, you will need to prepare the code for publication in a journal and reuse by others by applying good software engineering practices around software documentation, packaging and publishing, improving its maintainability and sustainability.
 
-### Example code
+### Example code we will use
 
 The code you inherited from your colleague in located in GitHub - so it is already version controlled and shared in a more accessible way (which is good).
 

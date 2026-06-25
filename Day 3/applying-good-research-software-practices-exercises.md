@@ -18,7 +18,10 @@ Virtual environments are not just a feature of Python - most modern programming 
 It is recommended to create a separate virtual environment for each software project.
 Then you do not have to worry about changes to the environment of the current project you are working on affecting other projects - you can use different Python versions and different versions of the same third party dependency by different projects on your machine independently of one another.
 
-### Essential task: Create a virtual development environment using `pip` and `venv`	
+### Essential task: Create a virtual development environment using `venv`	
+- **Description:** The `requirements.txt` file can be used to list the packages (and their versions) that the project depends on for proper execution and makes installation of these dependencies easy using `pip` command-line tool. A `requirements.txt` file reduces the likelihood of compatibility issues and ensures that a project is well-documented, maintainable, and reproducible.
+- **Task:** Create a `requirements.txt` file in the root directory of the project. Populate this file with a list of Python packages that the program relies on using `pip` and make sure that you include only packages that are actually used by your software.
+- **More information:** : https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
 
 Creating a virtual environment called "venv" with the `venv` command line tool is done by executing the following command from the project root:
 
@@ -38,22 +41,39 @@ When you are done working on your project, you can exit/deactivate the environme
 (venv) $ deactivate
 ```
 
-You can now install your software's dependencies into your environment, e.g. using `pip`:
+### Essential task: Install your software's dependencies into virtual development environment using `pip`
+- **Description:**  `pip` command-line tool is a package installer and manager for Python. You can use it to install packages from the Python Package Index and other indexes.
+- **Task:** Identify dependencies for your software and install them into an active virtual environment using `pip`.
+- **More information:** : https://pip.pypa.io/en/stable/
+
+You can install your software's dependencies into your active environment using `pip` as follows:
 
 ```
 (venv) $ pip install matplotlib pandas
 ```
 
+You can see all packages currently installed in your environment with:
+
+```
+(venv) $ pip list
+```
+
 ### Essential task: Create `requirements.txt` file to record dependencies
 
-To export your active environment - use `pip freeze` command to produce a list of packages installed in the virtual environment. 
-A common convention is to put this list in a `requirements.txt` file in your project’s root directory:
+- **Description:** The `requirements.txt` file can be used to list the packages (and their versions) that the project depends on for proper execution and makes installation of these dependencies easy using `pip` command-line tool. A `requirements.txt` file reduces the likelihood of compatibility issues and ensures that a project is well-documented, maintainable, and reproducible.
+- **Task:** Create a `requirements.txt` file in the root directory of the project. Populate this file with a list of Python packages that the program relies on using `pip` and make sure that you include only packages that are actually used by your software.
+- **More information:** : https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
+
+To export your active virtual development environment that contains your software's dependencies you can use `pip freeze` command.
+It will produce a list of packages installed in your virtual development environment. 
+A common convention is to save this list in a `requirements.txt` file in your project’s root directory:
 
 ```
 (venv) $ pip freeze > requirements.txt
 ```
 
-You should also put `requirements.txt` under version control and share it along with our code.
+You should put `requirements.txt` under version control and share it along with our code - so that others can more easily reproduce the same environment, should they wish to run or modify your code.
+
 ```
 (venv) $ git add requirements.txt
 (venv) $ git commit -m "Initial commit of requirements.txt"
@@ -67,11 +87,6 @@ python -m venv venv
 source venv/bin/activate
 (venv) $ pip install -r requirements.txt
 ```
-
-### *Essential:*  Add a `requirements.txt` file
-- **Description:** The `requirements.txt` file lists the packages that the project depends on for proper execution and makes installation of these dependencies easy using the “pip install requirements.txt” command. A requirements.txt file reduces the likelihood of compatibility issues and ensures that a project is well-documented, maintainable, and reproducible.
-- **Task:** Create a `requirements.txt` file in the top-most directory of the project. Populate this file with a list of Python packages that the program relies on and make sure that you include only packages that are actually used by the program.
-- **More information:** : https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
 
 ## Code Readability & Structure (Formatting & Refactoring)
 
