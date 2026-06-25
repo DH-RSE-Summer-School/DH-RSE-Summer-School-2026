@@ -39,7 +39,7 @@ Throughout the session, you will learn and apply better research software practi
 ### Essential task: Open and expect software project in a code editor of choice
 - **Description:** 
 - **Task:**
-  - Checkout locally your copy of the software project from GitHub and open in, for example, VS Code or another code editor of your choice.
+  - Using Git from command line, checkout locally your copy of the software project from GitHub and open in, for example, VS Code or another code editor of your choice.
   - Alternatively, open the software project in GitHub's Codespace.
 
 
