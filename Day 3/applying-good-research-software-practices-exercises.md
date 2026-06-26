@@ -137,20 +137,26 @@ This helps with readability and reusability of our code.
 
 
 ### Essential task: Improve code structure & formatting
-- e.g. PEP8, blank lines
+- **Description:** Code can become considerably more readable with the addition of blank lines that group lines of code into logical sections, and by following a consistent style guide such as PEP 8 (e.g. import statements grouped at the top of the file, consistent spacing around operators, lines kept to a reasonable length).
+- **Task:** Open `eva_data_analysis.py`. Notice the script runs as one long, flat sequence of statements at module level (no `main()`, no blank-line separation between logical sections such as "read data", "summarise by astronaut", and "plot"). Reformat the script so that related statements are visually grouped with blank lines, and check it against PEP 8 (https://peps.python.org/pep-0008/). You may find it helpful to run a formatter/linter such as `black` or `flake8` over the file.
+- **More information:** : https://peps.python.org/pep-0008/
 
 ### Essential task: Improve variable naming
-- **Description:** Variable and function names should succinctly indicate what a function does or a variable means. When variable and function names are uninformative, code can be considerably harder to understand. As a rule of thumb, the length of the name should be proportional to the scope and complexity of the variable or function, and formatting conventions (such as using snake_case or camelCase) should be consistent throughout the project. 
-- **Task:** Locate the lines indicated by “TODO Naming” and modify the relevant variable and function names for clarity and consistency.  Make sure variable and function names throughout the code use a consistent style and are adequately descriptive. There are additional unmarked sections where variable names could be improved – challenge yourself to find them all!
+- **Description:** Variable and function names should succinctly indicate what a function does or a variable means. When variable and function names are uninformative, code can be considerably harder to understand. Single-letter or cryptic names (`f`, `o`, `d`, `g`, `h`, `m`, `hrs`, `hrs2`) force a reader to trace back through the code to figure out what's being stored. As a rule of thumb, the length of the name should be proportional to the scope and complexity of the variable or function, and formatting conventions (such as using snake_case or camelCase) should be consistent throughout the project. 
+- **Task:** Locate the lines marked `TODO Naming` in `eva_data_analysis.py` and rename the flagged variables (e.g. `f` → something describing the input file, `d` → something describing the cleaned EVA dataframe, `o` and `g` → something describing the output CSV/graph paths, `hrs`/`hrs2` → something describing duration in hours) to be clear and descriptive. There are additional unmarked variables in the script (e.g. `h`, `m`, `val`) that could also be improved - don't limit yourself to only the marked lines.
 - **More information:** : The python style guide (PEP 8: https://peps.python.org/pep-0008/) provides rules for consistent formatting, including use of blank space, naming conventions, and comments, and is generally followed by production-level projects.
 
 ### Essential task: Remove unused variables
+- **Description:** Dead code - variables or functions that are defined but never used - adds confusion for future readers, who may assume it serves some purpose or waste time trying to find where it's called.
+- **Task:** The function `calculate_crew_size` is defined near the bottom of `eva_data_analysis.py` (marked with a `TODO`) but is never called anywhere in the script. Decide whether to remove it, or to actually use it by adding a `crew_size` column to the dataset - either is a reasonable choice, but document your decision in a comment.
+
 
 ### Essential task: Refactor the script into functions and use standard libraries
-- **Description:** Each function should accomplish one logical task, enabling the script to read like a series of instructions. Smaller functions are also easier to read and understand, providing greater clarity for future developers.
-- **Task:** Identify the key components of the project and factor out main functionality into separate functions. As a hint, recall the main functionality that is expected in text processing applications. 
+- **Description:** Each function should accomplish one logical task, enabling the script to read like a series of instructions, rather than as one long unbroken block of statements.
+- **Task:** `eva_data_analysis.py` currently has no functions at all - everything happens at module level. Identify the distinct pieces of functionality in the script (reading the JSON file, writing a dataframe to CSV, converting a duration string to hours, summarising duration by astronaut, plotting the cumulative time graph) and factor each into its own function. Then add a `main()` function that calls them in sequence, and a `if __name__ == "__main__":` block that calls `main()`.
+- **More information:** : https://realpython.com/python-main-function/ 
 
-### Essential task: Use `main()` function
+### Essential task: Use `main()` function (Can be removed?)
 
 
 ### Optional task: Add input command-line arguments to allow for a flexible input dataset	
