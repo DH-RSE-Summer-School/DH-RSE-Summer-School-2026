@@ -27,8 +27,9 @@ Blurb
 
 ## Speakers and Trainers
 
-- [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute
-- [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute
+- [Phil Reed]([https://github.com/philreeddata](https://github.com/philreeddata)), University of Manchester, SSI Fellow, Office for Open Research Fellow
+- [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Training and Community Manager
+- [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute, Reseach Software Training Lead
 
 ## On-the-day Slides and Instructions
 
