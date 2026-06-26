@@ -1,0 +1,1 @@
+Material in this folder has been obtained from Mary Chester-Kadwell and was used in [DH Summer school 2024](https://github.com/DCS-training/DH-RSESummerSchool2024/tree/main/day%202).
