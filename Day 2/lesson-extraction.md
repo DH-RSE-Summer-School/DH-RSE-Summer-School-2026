@@ -28,35 +28,12 @@ Don't worry if that looks like a lot. We add one node per stage and check it wor
 
 ---
 
-## Stage 1 — Get the data
-
-We use the official short descriptions of UK World Heritage Sites, published by UNESCO.
-
-1. In a web browser, open: `https://whc.unesco.org/en/list/xml`
-2. Save the page as a file called `whs.xml`.
-3. Run the small filter script (provided separately in the repo as `make_whs_csv.py`) in the same folder. It keeps only the UK rows and writes `uk_whs.csv`.
-4. Open `uk_whs.csv` and **delete the three "series" rows** if present — *Frontiers of the Roman Empire*, *The Great Spa Towns of Europe*, and *Moravian Church Settlements*. These describe multi-country groupings rather than single places, so they don't suit the task.
-
-> ## Why not just fetch it in the tool?
-> UNESCO blocks automated downloads, so we grab the file by hand once. This is normal — plenty of useful data needs a manual download. You only do this step once.
-{: .callout}
-
-> ## Checkpoint
-> You should now have a file `uk_whs.csv` with about 32 rows, each having a `name` and a `description`.
-{: .checkpoint}
-
----
-
-## Stage 2 — Load the records onto the canvas
+## Stage 1 — Load the records onto the canvas
 
 1. On the canvas, open the node sidebar.
-2. Add a **Local Folder source** node (under *Source*).
-3. Click its button to choose a folder, and select the folder containing `uk_whs.csv`.
+2. Add a **Sample data** node (under *Source*).
+3. Choose the World Heritage Site package and load the CSV.
 4. The node should report how many records it has loaded.
-
-> ## Tip — a quick alternative for a small demo
-> If selecting a folder is fiddly, you can instead add a few **Param** nodes and paste one record's description into each. For learning the workflow, three or four records is plenty.
-{: .callout}
 
 5. Add a **Table Output** node (under *Output*).
 6. Connect the source node's output handle to the Table Output's input handle (drag from the small circle on the right of the source to the circle on the left of the table).
@@ -66,16 +43,16 @@ We use the official short descriptions of UK World Heritage Sites, published by 
 {: .callout}
 
 > ## Checkpoint
-> The Table Output should now show your records, with a `description` column containing the UNESCO text. If the table is empty, re-check the connection and that the source actually loaded the file.
+> The Table Output should now show your records, with a `description` column containing the UNESCO 'description' text. If the table is empty, re-check the connection and that the source actually loaded the file.
 {: .checkpoint}
 
 ---
 
-## Stage 3 — Run the model (the extraction)
+## Stage 2 — Run the model (the extraction)
 
 Now we ask `arc:nano` to extract four fields from each description.
 
-1. Add an **Inference** node (the ARC/KCL inference node).
+1. Add an **Inference** node (the KCL inference by field node).
 2. Connect the **source** node's output to the inference node's input.
 3. Set the model to **`arc:nano`**.
 4. Set the **temperature to 0**. This makes the model's output repeatable — run it twice and you get the same answer, which an evaluation needs.
@@ -95,7 +72,7 @@ Respond as JSON:
 7. Click **Run**.
 
 > ## What is `{{description}}`?
-> The double-brace token is a placeholder. For each record, the tool swaps `{{description}}` for that record's actual description before sending it to the model. You'll use the same trick to point other nodes at other fields.
+> The double-brace token is a substitition placeholder. For each record, the tool swaps `{{description}}` for that record's actual description before sending it to the model. You'll use the same trick to point other nodes at other fields.
 {: .callout}
 
 > ## Checkpoint
@@ -104,7 +81,7 @@ Respond as JSON:
 
 ---
 
-## Stage 4 — Write the gold standard
+## Stage 3 — Write the gold standard
 
 The model has produced an answer. To judge it, we need to know what a **correct** answer looks like. You provide that — it's the "gold standard". We use the **QuickNote** node in **Structured** mode so you can type plain values into boxes instead of writing JSON yourself.
 
@@ -134,8 +111,7 @@ The model has produced an answer. To judge it, we need to know what a **correct*
 
 ---
 
-## Stage 5 — Judge the model against the gold standard
-
+## Stage 4 — Judge the model against the gold standard
 Now an LLM judge compares the model's `inference_output` against your `_note` and scores it.
 
 1. Add an **Evaluator** node.
@@ -189,7 +165,7 @@ Respond with ONLY this JSON, no other text:
 
 ---
 
-## Stage 6 — Read the results
+## Stage 5 — Read the results
 
 1. Add a **Comparison Report** node.
 2. Connect the **Evaluator** node's output to it.
