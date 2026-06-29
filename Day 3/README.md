@@ -1,4 +1,4 @@
-# Day 3: 1 July 2026: Version Control and Applying Good Research Software Practices to Support Reproducible Research and Sustainabile Software
+# Day 3: 1 July 2026: Good Practices for Sustainable Software & Reproducible Research 
 
 ## Tentative Schedule
 
