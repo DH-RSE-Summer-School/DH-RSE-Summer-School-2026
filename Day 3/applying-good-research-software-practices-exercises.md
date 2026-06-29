@@ -173,15 +173,15 @@ $ source venv/bin/activate
 ### **1.1** *Essential task:* Place import statements at the top
 
 - **Description:** Conventionally, all import statements are placed at the top of the script so that dependent libraries are clearly visible and not buried inside the code.
- - **Task:** In `eva_data_analysis.py`, only `import pandas as pd` is at the top of the file. `import matplotlib.pyplot as plt` appears mid-script, right before it's first used to plot the graph, and `import re` appears even further down, right before the (unused) `calculate_crew_size` function that needs it. Both are marked with a `TODO: Import statements should be grouped at the top` comment. Move both import statements to the top of the file, alongside `pandas`.
-- **Task:** Modify `eva_data_analysis.py` script so that all import statements are placed at the top of the file.
+- **Task:** In `eva_data_analysis.py`, only `import pandas as pd` is at the top of the file. `import matplotlib.pyplot as plt` appears mid-script, right before it's first used to plot the graph, and `import re` appears even further down, right before the (unused) `calculate_crew_size` function that needs it. Both are marked with a `TODO: Import statements should be grouped at the top` comment. Move both import statements to the top of the file, alongside `pandas`.
 
 ### **1.2** *Essential task:* Improve code structure & formatting
 
 - **Description:** Code can become considerably more readable with the addition of blank lines that group lines of code into logical sections, and by following a consistent style guide such as PEP 8 for Python.
 For example, consistent spacing around operators and blank lines separating logical blocks of code, consistent "if then else" block/"for loop" formatting, 
 lines kept to a reasonable length (e.g. 80-100 characters), consistent notation.
-- **Task:** Open `eva_data_analysis.py`. Notice the script runs as one long, flat sequence of statements at module level (no `main()`, no blank-line separation between logical sections such as "read data", "summarise by astronaut", and "plot"). 
+- **Task:** In `eva_data_analysis.py` script, the code runs as one long, flat sequence of statements at module level. 
+For example, no blank-line separation between logical sections such as "read data", "summarise by astronaut", and "plot". 
 Reformat the script so that related statements are visually grouped with blank lines, and check it against [PEP 8](https://peps.python.org/pep-0008/). 
 You may find it helpful to run a formatter/linter such as `pylint`, `black` or `flake8` over the Python script.
 - **More information:** : The Python style guide [PEP 8](https://peps.python.org/pep-0008/) provides rules for consistent formatting, including use of blank space, naming conventions, and comments, and is generally followed by production-level software projects.
@@ -192,14 +192,14 @@ You may find it helpful to run a formatter/linter such as `pylint`, `black` or `
 - **Task:** Locate the lines marked `TODO Naming` in `eva_data_analysis.py` and rename the flagged variables (e.g. `f` → something describing the input file, `d` → something describing the cleaned EVA dataframe, `o` and `g` → something describing the output CSV/graph paths, `hrs`/`hrs2` → something describing duration in hours) to be clear and descriptive.
 There are additional unmarked variables in the script (e.g. `h`, `m`, `val`) that could also be improved - don't limit yourself to only the marked lines.
 
-### **1.4** *Essential task:* Remove unused variables
+### **1.4** *Essential task:* Remove unused functions and variables
 
 - **Description:** Dead code - variables or functions that are defined but never used - adds confusion for future readers, who may assume it serves some purpose or waste time trying to find where it is being used or called.
 - **Task:** The function `calculate_crew_size` is defined near the bottom of `eva_data_analysis.py` (marked with a `TODO`) but is never called anywhere in the script.
 Decide whether to remove it, or to actually use it by adding a `crew_size` column to the dataset - either is a reasonable choice, but document your decision in a comment.
 Similarly, variable `fieldnames` is unused and "pollutes" the code and should be removed.
 
-### **1.5** *Essential task:* Refactor the monolithic script into multiple functions and fix non-DRY code
+### **1.5** *Essential task:* Refactor the script into multiple functions and fix non-DRY code
 
 - **Description:** Each function should accomplish one logical task, enabling the script to read like a series of instructions, rather than as one long unbroken block of statements.
 *DRY* stands for Don’t Repeat Yourself. 
@@ -217,20 +217,18 @@ Nevertheless, having a defined starting point for the execution of a program is 
 - **Task:** Add a `main()` function that calls the functions you defined in the previous exercise in sequence, and add `if __name__ == "__main__":` block that calls `main()` to start off the script execution.
 - **More information:** : https://realpython.com/python-main-function/.
 
-### **1.7** *Optional task:* Add input command-line arguments to allow for a flexible input dataset
+### **1.7** *Optional task:* Add an input command-line argument to allow for a flexible input dataset
 
 - **Description:** Executable scripts allow for flexible processing and code reuse through the use of input arguments. 
 By changing the script to accept input arguments, the analysis could be easily applied to other collections of files.
-- **Task:** Locate the lines indicated by “TODO Inputs” and change the script to accept different inputs, such as a single file, a list of file locations, or a directory containing multiple files. All lines indicated by the comment “TODO Inputs” are related to the use of input arguments, although not all of them will need to be changed. The input should include a complete path to the location of the input arguments or be able to create a complete path from the input arguments. 
+- **Task:** Locate the lines marked `TODO Inputs` in `eva_data_analysis.py` - currently the input file path is hardcoded to `f = 'eva_data.json'`. Change the script to accept the input file as a command-line argument (e.g. via `sys.argv` or the `argparse` module), falling back to `eva_data.json` as a default if none is given.
 - **More information:** : https://www.geeksforgeeks.org/command-line-arguments-in-python/ 
 
-### **1.8** *Optional task:* Add input command-line arguments to allow for a flexible location to save results
+### **1.8** *Optional task:* Add an input command-line argument to allow for flexible file locations for results
 
-- **Description:** Executable scripts allow for flexible saving of results through the use of output arguments. 
-By changing the script to accept an input argument for the location of where to save the resulting plot, the analysis could be made more flexible and applied to a collection of files.
-- **Task:** As in the preceding task, change the main script to accept a second input argument. 
-This second input argument should be a string that indicates the location where the output figure will be saved, including the complete path to that location. 
-Change the code that saves the histogram figure to use the updated location.
+- **Description:** As above task, but allow to specify where result files get saved. The output CSV path (`o = 'eva_data.csv'`), the per-astronaut summary CSV (`dur_out = 'duration_by_astronaut.csv'`), and the graph image path (`g = 'cumulative_eva_graph.png'`) are all hardcoded, each marked with a `TODO Inputs` comment.
+- **Task:** Extend the command-line arguments so that the output locations can be customised, falling back to the current hardcoded values as defaults if not provided.
+
 
 ## **2. Software documentation**
 
@@ -250,11 +248,12 @@ In Python, comments begin with a hash (#) symbol on each line of the comment.
 
 ### **2.3** *Essential task:* Add a README file
 
-- **Description:** A README file describes the purpose and components of a software project and provides potential users with instructions on how to install and run the software. The file will also list the current contributors to the project, how others can contribute to the project, and where to find relevant resources. On GitHub, the README file also acts as the landing page for the repository project and will be the first thing that any visitors to the repository will see. 
+- **Description:** A README file describes the purpose and components of a software project and provides potential users with instructions on how to install and run the software. The file will also list the current contributors to the project, how others can contribute to the project, and where to find relevant resources. On GitHub, the README file also acts as the landing page for the repository project and will be the first thing that any visitors to the repository will see.
 - **Task:** Edit the provided `README.md` file for the project to describe how the components of the project fit together. 
-Include stepwise instructions on downloading and running the project and how to test the project output using the provided test data file `test_data.txt` located in the `data` directory. 
-Also include a message encouraging others to contribute to the project and outlining how contributions can be made. Use the following template to organise the contents of the README: https://ha0ye.github.io/CW21-README-tips/template_README.html 
-- **More information:** : https://book.the-turing-way.org/project-design/pd-overview/project-repo/project-repo-readme/
+Include stepwise instructions on downloading and running the project and how to test the project output using the provided `eva_data.json` file in the repository. 
+Also include a message encouraging others to contribute to the project and outlining how contributions can be made. 
+Use the following template to organise the contents of the README: <https://ha0ye.github.io/CW21-README-tips/template_README.html>.
+- **More information:** : <https://book.the-turing-way.org/project-design/pd-overview/project-repo/project-repo-readme/>
 
 ### **2.4** *Optional task:* Go through a software quality checklist
 
@@ -272,11 +271,11 @@ Also include a message encouraging others to contribute to the project and outli
 
 - **Description:** A digital object identifier (DOI) is a unique and persistent identifier that enables proper attribution and reproduction. Zenodo is a data archiving tool that is commonly used to create DOIs for digital research objects. 
 - **Task:** In [Zenodo Sandbox](https://sandbox.zenodo.org/), log in or create an account via the menu in the top right corner.
-- Note we are using Zenodo Sandbox rather than real Zenodo so we do not pollute the "real" DOI space with test DOIs we generate during the workshop.
+Note we are using Zenodo Sandbox rather than real Zenodo so we do not pollute the "real" DOI space with test DOIs we generate during the workshop.
 Then, go to “new upload” and add details about the project. Click the “reserve” button to get the DOI. 
 Include this DOI in the project README and in any other relevant documents such as the CITATION.cff file (created in the below task, Publishing: Add a CITATION.cff file). 
 Download the repository from GitHub as a compressed `.zip` file and upload the compressed repository to Zenodo. Add details of all contributors to the project in the Zenodo entry and include a link to the GitHub repository. 
-- **More information:** : To learn more about depositing records on Zenodo, visit the records documentation page here: https://help.zenodo.org/docs/deposit/about-records/; Zenodo is also directly integrated with GitHub and allows you to mint a DOI for public repositories which you own. A tutorial for minting DOIs directly for GitHub repositories can be found here: https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content 
+- **More information:** To learn more about depositing records on Zenodo, visit the records documentation page here: https://help.zenodo.org/docs/deposit/about-records/; Zenodo is also directly integrated with GitHub and allows you to mint a DOI for public repositories which you own. A tutorial for minting DOIs directly for GitHub repositories can be found here: https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content 
 
 ### **3.2** *Essential task:* Add a `LICENSE` file
 
