@@ -226,7 +226,8 @@ Identify the distinct pieces of functionality in the script (reading the JSON fi
 ### **2.2** *Essential task:* Add docstrings to functions
 
 - **Description:** In Python, the initial comment in a function or script that describes the objectives and interface is referred to as a docstring. The docstring describes the purpose, parameters, and return values of the function or script. Python includes a built-in function help() that prints the docstring for the input to help() to the console, so docstrings should ideally contain all information that will help guide a user in using the function or script. Docstrings are denoted by three quotation marks (""") before and after the docstring and can span multiple lines.
-- **Task:** None of the functions in `eva_data_analysis.py` currently have docstrings (including `calculate_crew_size`, if you choose to keep it). Once you've refactored the script into functions (task 1.5), add a docstring at the top of each function, and one at the top of the script itself, describing the objective, interface (the expected inputs and outputs), and specific implementation.
+- **Task:** Add a docstring at the very top of `eva_data_analysis.py` describing what the script does, what input file it expects, and what files it produces - this can be done regardless of whether you've completed task 1.5. The script's only existing function, `calculate_crew_size` (if you've chosen to keep it), also has no docstring - add one describing what it takes in and returns.
+If you've completed task 1.5 and refactored the script into functions, add a docstring to each of those functions too, describing its objective, expected inputs and outputs, and implementation.
 - **More information:** : For more guidance on how to write docstrings and examples of docstrings, see this tutorial: <https://www.dataquest.io/blog/documenting-in-python-with-docstrings/>
 
 ### **2.3** *Essential task:* Add a README file
