@@ -18,6 +18,7 @@
   - [**1.3** *Essential task:* Improve variable naming](#13-essential-task-improve-variable-naming)
   - [**1.4** *Essential task:* Remove unused variables](#14-essential-task-remove-unused-variables)
   - [**1.5** *Essential task:* Refactor the script into functions and use standard libraries](#15-essential-task-refactor-the-script-into-functions-and-use-standard-libraries)
+  - [*Essential task:* Use `main()` function (Can be removed?)](#essential-task-use-main-function-can-be-removed)
   - [**1.6** *Optional task:* Add input command-line arguments to allow for a flexible input dataset](#16-optional-task-add-input-command-line-arguments-to-allow-for-a-flexible-input-dataset)
   - [**1.7** *Optional task:* Add input command-line arguments to allow for a flexible location to save results](#17-optional-task-add-input-command-line-arguments-to-allow-for-a-flexible-location-to-save-results)
 - [**2. Software documentation**](#2-software-documentation)
@@ -173,68 +174,87 @@ $ source venv/bin/activate
 
 - **Description:** Conventionally, all import statements are placed at the top of the script so that dependent libraries are clearly visible and not buried inside the code.
 This helps with readability and reusability of our code.
-- **Task:** In `eva_data_analysis.py`, only `import pandas as pd` is at the top of the file. `import matplotlib.pyplot as plt` appears mid-script, right before it's first used to plot the graph, and `import re` appears even further down, right before the (unused) `calculate_crew_size` function that needs it. Both are marked with a `TODO: Import statements should be grouped at the top` comment. Move both import statements to the top of the file, alongside `pandas`.
+- **Task:** Modify `eva_data_analysis.py` script so that all import statements are placed at the top of the file.
 
 ### **1.2** *Essential task:* Improve code structure & formatting
 
-- **Description:** Code can become considerably more readable with the addition of blank lines that group lines of code into logical sections, and by following a consistent style guide such as PEP 8 (e.g. consistent spacing around operators, lines kept to a reasonable length, indentation using 4 spaces rather than the single-space indentation currently used inside the `for` loops and `calculate_crew_size`).
-- **Task:** Open `eva_data_analysis.py`. Notice the script runs as one long, flat sequence of statements with no blank-line separation between logical sections - reading the JSON data, writing CSV output, summarising duration by astronaut, and plotting the cumulative graph all run straight into one another. Reformat the script so that related statements are visually grouped with blank lines, and check it against PEP 8 (<https://peps.python.org/pep-0008/>), paying particular attention to indentation. You may find it helpful to run a formatter/linter such as `black` or `flake8` over the file.
-- **More information:** : <https://peps.python.org/pep-0008/>
+- **Description:** Code can become considerably more readable with the addition of blank lines that group lines of code into logical sections, and by following a consistent style guide such as PEP 8 for Python.
+For example, consistent spacing around operators and blank lines separating logical blocks of code, consistent "if then else" block/"for loop" formatting, 
+lines kept to a reasonable length (e.g. 80-100 characters), consistent notation.
+- **Task:** Open `eva_data_analysis.py`. Notice the script runs as one long, flat sequence of statements at module level (no `main()`, no blank-line separation between logical sections such as "read data", "summarise by astronaut", and "plot"). 
+Reformat the script so that related statements are visually grouped with blank lines, and check it against [PEP 8](https://peps.python.org/pep-0008/). 
+You may find it helpful to run a formatter/linter such as `pylint`, `black` or `flake8` over the Python script.
+- **More information:** : The Python style guide [PEP 8](https://peps.python.org/pep-0008/) provides rules for consistent formatting, including use of blank space, naming conventions, and comments, and is generally followed by production-level software projects.
 
 ### **1.3** *Essential task:* Improve variable naming
 
 - **Description:** Variable and function names should succinctly indicate what a function does or a variable means. When variable and function names are uninformative, code can be considerably harder to understand. Single-letter or cryptic names (`f`, `o`, `d`, `g`, `h`, `m`, `hrs`, `hrs2`) force a reader to trace back through the code to figure out what's being stored. As a rule of thumb, the length of the name should be proportional to the scope and complexity of the variable or function, and formatting conventions (such as using snake_case or camelCase) should be consistent throughout the project.
-- **Task:** Locate the lines marked `TODO Naming` in `eva_data_analysis.py` (on `f`, `o`, and `d`) and rename these and other cryptic variables for clarity - e.g. `f` → something describing the input file, `o` → something describing the output CSV path, `d` → something describing the cleaned EVA dataframe.
-There are additional unmarked variables in the script that could also be improved - in particular `g` (the graph output path), `h`/`m` (hours/minutes inside the duration-parsing loops), and `hrs`/`hrs2` (lists of duration in hours) - don't limit yourself to only the marked lines.
-- **More information:** : The Python style guide (PEP 8: <https://peps.python.org/pep-0008/>) provides rules for consistent formatting, including use of blank space, naming conventions, and comments, and is generally followed by production-level software projects.
+- **Task:** Locate the lines marked `TODO Naming` in `eva_data_analysis.py` and rename the flagged variables (e.g. `f` → something describing the input file, `d` → something describing the cleaned EVA dataframe, `o` and `g` → something describing the output CSV/graph paths, `hrs`/`hrs2` → something describing duration in hours) to be clear and descriptive.
+There are additional unmarked variables in the script (e.g. `h`, `m`, `val`) that could also be improved - don't limit yourself to only the marked lines.
 
 ### **1.4** *Essential task:* Remove unused variables
 
 - **Description:** Dead code - variables or functions that are defined but never used - adds confusion for future readers, who may assume it serves some purpose or waste time trying to find where it is being used or called.
-- **Task:** `eva_data_analysis.py` contains two pieces of dead code, both marked with a `TODO: Unused ... - candidate for removal` comment:
-  - The `fieldnames` tuple, defined near the top of the script, is never referenced anywhere afterwards.
-  - The function `calculate_crew_size`, defined near the bottom of the script, is never called.
-  
-  For each, decide whether to remove it, or to actually put it to use (e.g. using `calculate_crew_size` to add a `crew_size` column to the dataset) - either is a reasonable choice, but document your decision in a comment.
+- **Task:** The function `calculate_crew_size` is defined near the bottom of `eva_data_analysis.py` (marked with a `TODO`) but is never called anywhere in the script.
+Decide whether to remove it, or to actually use it by adding a `crew_size` column to the dataset - either is a reasonable choice, but document your decision in a comment.
+Similarly, variable `fieldnames` is unused and "pollutes" the code and should be removed.
 
-### **1.5** *Essential task:* Refactor the script into functions and use standard libraries
+### **1.5** *Essential task:* Refactor the monolithic script into multiple functions and fix non-DRY code
 
 - **Description:** Each function should accomplish one logical task, enabling the script to read like a series of instructions, rather than as one long unbroken block of statements.
-- **Task:** `eva_data_analysis.py` currently has no functions at all (apart from the unused `calculate_crew_size`) - everything else happens at module level.
-Identify the distinct pieces of functionality in the script (reading the JSON file, writing a dataframe to CSV, converting a duration string to hours, summarising duration by astronaut, plotting the cumulative time graph) and factor each into its own function, each with a clear, single responsibility. Then add a `main()` function that calls them in sequence, and a `if __name__ == "__main__":` block that calls `main()`.
-- **More information:** : <https://realpython.com/python-main-function/>
+*DRY* stands for Don’t Repeat Yourself. 
+DRY code is streamlined to remove code repetitions, for instance when multiple lines could be better implemented in a single line by efficiently using existing function calls, by using a loop, or by creating a new function, and considerably improves readability and clarity.
+- **Task:** `eva_data_analysis.py` currently has no functions at all - everything happens at module level. 
+Identify the distinct pieces of functionality in the script (reading the JSON file, writing a dataframe to CSV, converting a duration string to hours, summarising duration by astronaut, plotting the cumulative time graph) and factor each into its own function.
+Locate the lines indicated by “TODO DRY” and modify these sections to remove repetition by taking advantage of existing code, adding in a function call, or using a loop, as appropriate.
 
-### **1.6** *Optional task:* Add input command-line arguments to allow for a flexible input dataset
+### **1.6** *Essential task:* Use `main()` function
 
-- **Description:** Executable scripts allow for flexible processing and code reuse through the use of input arguments. By changing the script to accept input arguments, the analysis could be easily applied to other collections of files.
-- **Task:** Locate the lines marked `TODO Inputs` in `eva_data_analysis.py` - currently the input file path is hardcoded to `f = 'eva_data.json'`. Change the script to accept the input file as a command-line argument (e.g. via `sys.argv` or the `argparse` module), falling back to `eva_data.json` as a default if none is given.
-- **More information:** : <https://www.geeksforgeeks.org/command-line-arguments-in-python/>
+- **Description:** Many programming languages have a special function that is automatically executed when an operating system starts to run a program (usually called `main()`). 
+It must have a specific return type and arguments according to the programming language standard. 
+Python interpreter executes scripts starting at the top of the file and executing it line by line and there is no specific function that Python automatically executes.
+Nevertheless, having a defined starting point for the execution of a program is useful for understanding how a program works and Python programmers have come up with several conventions to define this starting point.
+- **Task:** Add a `main()` function that calls the functions you defined in the previous exercise in sequence, and add `if __name__ == "__main__":` block that calls `main()` to start off the script execution.
+- **More information:** : https://realpython.com/python-main-function/.
 
-### **1.7** *Optional task:* Add input command-line arguments to allow for a flexible location to save results
+### **1.7** *Optional task:* Add input command-line arguments to allow for a flexible input dataset
 
-- **Description:** As above, but for where results get written. The output CSV path (`o = 'eva_data.csv'`), the per-astronaut summary CSV (`dur_out = 'duration_by_astronaut.csv'`), and the graph image path (`g = 'cumulative_eva_graph.png'`) are all hardcoded, each marked with a `TODO Inputs` comment.
-- **Task:** Extend the command-line arguments so that the output locations can be customised, falling back to the current hardcoded values as defaults if not provided.
+- **Description:** Executable scripts allow for flexible processing and code reuse through the use of input arguments. 
+By changing the script to accept input arguments, the analysis could be easily applied to other collections of files.
+- **Task:** Locate the lines indicated by “TODO Inputs” and change the script to accept different inputs, such as a single file, a list of file locations, or a directory containing multiple files. All lines indicated by the comment “TODO Inputs” are related to the use of input arguments, although not all of them will need to be changed. The input should include a complete path to the location of the input arguments or be able to create a complete path from the input arguments. 
+- **More information:** : https://www.geeksforgeeks.org/command-line-arguments-in-python/ 
+
+### **1.8** *Optional task:* Add input command-line arguments to allow for a flexible location to save results
+
+- **Description:** Executable scripts allow for flexible saving of results through the use of output arguments. 
+By changing the script to accept an input argument for the location of where to save the resulting plot, the analysis could be made more flexible and applied to a collection of files.
+- **Task:** As in the preceding task, change the main script to accept a second input argument. 
+This second input argument should be a string that indicates the location where the output figure will be saved, including the complete path to that location. 
+Change the code that saves the histogram figure to use the updated location.
 
 ## **2. Software documentation**
 
 ### **2.1** *Essential task:* Add descriptive comments to code
 
-- **Description:** Comments should be useful and informative to future developers of the project. They can explain the overall outline of the code, describe specific intent of certain sections of the code, and explain specific algorithmic decisions. In Python, comments begin with a hash (#) symbol on each line of the comment.
-- **Task:** Most of `eva_data_analysis.py` already has comments, but the line above `subset = d.loc[:, ['crew', 'duration']]` is marked `TODO Descriptive comment: add an explanation of that the 3 lines below do` - the three lines that subset the dataframe, split/clean the `crew` column into a list of names, and explode it into one row per astronaut. Add a clear comment (or comments) explaining what these lines do and why. While you're there, check the rest of the script for comments that are inconsistent in style, redundant (simply restating the code), or could be more informative, and tidy them up too.
+- **Description:** Comments should be useful and informative to future developers of the project.
+They can explain the overall outline of the code, describe specific intent of certain sections of the code, and explain specific algorithmic decisions. 
+In Python, comments begin with a hash (#) symbol on each line of the comment.
+- **Task:** Comments are provided throughout the project, but there are instances where comments are missing (indicated by the placeholder comment “Descriptive comment”), the comments are not sufficiently descriptive, or the formatting of comments is inconsistent. Step through the notebook and add or edit comments throughout to explain specific lines and blocks.
 - **More information:** : <https://realpython.com/python-comments-guide/>
 
 ### **2.2** *Essential task:* Add docstrings to functions
 
 - **Description:** In Python, the initial comment in a function or script that describes the objectives and interface is referred to as a docstring. The docstring describes the purpose, parameters, and return values of the function or script. Python includes a built-in function help() that prints the docstring for the input to help() to the console, so docstrings should ideally contain all information that will help guide a user in using the function or script. Docstrings are denoted by three quotation marks (""") before and after the docstring and can span multiple lines.
-- **Task:** Add a docstring at the very top of `eva_data_analysis.py` describing what the script does, what input file it expects, and what files it produces - this can be done regardless of whether you've completed task 1.5. The script's only existing function, `calculate_crew_size` (if you've chosen to keep it), also has no docstring - add one describing what it takes in and returns.
-If you've completed task 1.5 and refactored the script into functions, add a docstring to each of those functions too, describing its objective, expected inputs and outputs, and implementation.
+- **Task:** Include a docstring at the beginning of the main script and at the beginning of each function. The docstrings should describe the objective, interface (the expected inputs and outputs), and specific implementation.
 - **More information:** : For more guidance on how to write docstrings and examples of docstrings, see this tutorial: <https://www.dataquest.io/blog/documenting-in-python-with-docstrings/>
 
 ### **2.3** *Essential task:* Add a README file
 
-- **Description:** A README file describes the purpose and components of a software project and provides potential users with instructions on how to install and run the software. The file will also list the current contributors to the project, how others can contribute to the project, and where to find relevant resources. On GitHub, the README file also acts as the landing page for the repository project and will be the first thing that any visitors to the repository will see.
-- **Task:** Edit the provided README.md file for the project to describe how the components of the project fit together. Include stepwise instructions on downloading and running the project and how to test the project output using the provided `eva_data.json` file in the repository. Also include a message encouraging others to contribute to the project and outlining how contributions can be made. Use the following template to organise the contents of the README: <https://ha0ye.github.io/CW21-README-tips/template_README.html>
-- **More information:** : <https://book.the-turing-way.org/project-design/pd-overview/project-repo/project-repo-readme/>
+- **Description:** A README file describes the purpose and components of a software project and provides potential users with instructions on how to install and run the software. The file will also list the current contributors to the project, how others can contribute to the project, and where to find relevant resources. On GitHub, the README file also acts as the landing page for the repository project and will be the first thing that any visitors to the repository will see. 
+- **Task:** Edit the provided `README.md` file for the project to describe how the components of the project fit together. 
+Include stepwise instructions on downloading and running the project and how to test the project output using the provided test data file `test_data.txt` located in the `data` directory. 
+Also include a message encouraging others to contribute to the project and outlining how contributions can be made. Use the following template to organise the contents of the README: https://ha0ye.github.io/CW21-README-tips/template_README.html 
+- **More information:** : https://book.the-turing-way.org/project-design/pd-overview/project-repo/project-repo-readme/
 
 ### **2.4** *Optional task:* Go through a software quality checklist
 
@@ -248,27 +268,39 @@ If you've completed task 1.5 and refactored the script into functions, add a doc
 
 ### **3.1** *Essential task:* Create a DOI
 
-- **Description:** A digital object identifier (DOI) is a unique and persistent identifier that enables proper attribution and reproduction. Zenodo is a data archiving tool that is commonly used to create DOIs for digital research objects.
-- **Task:** In Zenodo (<https://zenodo.org/>), log in or create an account via the menu in the top right corner. Then, go to “new upload” and add details about the project. Click the “reserve” button to get the DOI. Include this DOI in the project README and in any other relevant documents such as the CITATION.cff file (created in the below task, Publishing: Add a CITATION.cff file).  Download the repository from GitHub as a compressed .zip file and upload the compressed repository to Zenodo. Add details of all contributors to the project in the Zenodo entry and include a link to the GitHub repository.
-- **More information:** : To learn more about depositing records on Zenodo, visit the records documentation page here: <https://help.zenodo.org/docs/deposit/about-records/>; Zenodo is also directly integrated with GitHub and allows you to mint a DOI for public repositories which you own. A tutorial for minting DOIs directly for GitHub repositories can be found here: <https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content>
+### Essential task: Create a DOI
+
+- **Description:** A digital object identifier (DOI) is a unique and persistent identifier that enables proper attribution and reproduction. Zenodo is a data archiving tool that is commonly used to create DOIs for digital research objects. 
+- **Task:** In [Zenodo Sandbox](https://sandbox.zenodo.org/), log in or create an account via the menu in the top right corner.
+- Note we are using Zenodo Sandbox rather than real Zenodo so we do not pollute the "real" DOI space with test DOIs we generate during the workshop.
+Then, go to “new upload” and add details about the project. Click the “reserve” button to get the DOI. 
+Include this DOI in the project README and in any other relevant documents such as the CITATION.cff file (created in the below task, Publishing: Add a CITATION.cff file). 
+Download the repository from GitHub as a compressed `.zip` file and upload the compressed repository to Zenodo. Add details of all contributors to the project in the Zenodo entry and include a link to the GitHub repository. 
+- **More information:** : To learn more about depositing records on Zenodo, visit the records documentation page here: https://help.zenodo.org/docs/deposit/about-records/; Zenodo is also directly integrated with GitHub and allows you to mint a DOI for public repositories which you own. A tutorial for minting DOIs directly for GitHub repositories can be found here: https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content 
 
 ### **3.2** *Essential task:* Add a `LICENSE` file
 
-- **Description:** A software licence describes how a piece of software can legally be used. The licence is a legal agreement between the software developer(s) and the users. By default, any creative work (such as code) is under exclusive copyright, so the authors of open-source code must explicitly grant permission for others to use their work through a licence. Depending on the needs of your project, there are many open-source licenses that may be appropriate. You can find guidelines on choosing a licence here: <https://choosealicense.com/>, and the Open Source Initiative (OSI) also maintains a list of open-source and accredit licences here: <https://opensource.org/licenses>  
-- **Task:** Select a license file appropriate for the given project and add it as a plain text file named LICENSE.txt in the top-most (root) project directory.
-- **More information:** : For more information on licensing, we recommend this guide provided by the Turing Institute: <https://book.the-turing-way.org/reproducible-research/licensing>
-<https://www.data.cam.ac.uk/data-management-guide/choosing-software-licence>
+- **Description:** A software licence describes how a piece of software can legally be used. 
+The licence is a legal agreement between the software developer(s) and the users. 
+By default, any creative work (such as code) is under exclusive copyright, so the authors of open-source code must explicitly grant permission for others to use their work through a licence. 
+Depending on the needs of your project, there are many open-source licenses that may be appropriate. 
+You can find guidelines on choosing a licence at: https://choosealicense.com/, and the Open Source Initiative (OSI) also maintains a list of open-source and accredit licences here: https://opensource.org/licenses  
+- **Task:** Select a licence file appropriate for the given project and add it as a plain text file named LICENSE.txt in the top-most (root) project directory. 
+- **More information:** : For more information on licensing, we recommend the [Turing Way Handbook's guide on licencing](https://book.the-turing-way.org/reproducible-research/licensing) and https://www.data.cam.ac.uk/data-management-guide/choosing-software-licence.
 
 ### **3.3** *Essential task:* Add a copyright statement
 
-- **Description:** A copyright statement indicates who owns the intellectual property included in the research code. It is important to establish who owns the intellectual property and therefore who can licence the software. All contributors to the project are considered copyright holders but sometimes, if the contributors are not students and the work was completed using time or resources provided by an employer, the contributor’s employer may hold the copyright. This differs from institution to institution.
+- **Description:** A copyright statement indicates who owns the intellectual property included in the research code. 
+It is important to establish who owns the intellectual property and therefore who can licence the software. 
+All contributors to the project are considered copyright holders but sometimes, if the contributors are not students and the work was completed using time or resources provided by an employer, the contributor’s employer may hold the copyright. 
+This differs from institution to institution.
 - **Task:** Include a copyright statement at the beginning of your licence file, stating the copyright holders (in this case, yourself and the fictional post doc).
-- **More information:** : The Legal Side of Open Source <https://opensource.guide/legal/>
+- **More information:** : [The Legal Side of Open Source](https://opensource.guide/legal/).
 
 ### **3.4** *Essential task:* Add a `CITATION.cff` file
 
 - **Description:** Adding a citation file provides clear information on how to cite your work and ensures authors receive credit for their software development work while improving dissemination and software sustainability. The citation file format (cff) provides citation metadata for software in a human- and machine-readable format.
-- **Task:** Include a CITATION.cff file in the top-most (root) directory of the project repository, using the **example_citation.cff** file in the repository as a template.
+- **Task:** Include a CITATION.cff file in the top-most (root) directory of the project repository, using the example_citation.cff file in the repository as a template.
 - **More information:** : <https://citation-file-format.github.io/>, <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files>
 - **Task Dependencies:** This task relies on the following tasks to be completed prior to beginning this task:
   - Publishing: Create a DOI
