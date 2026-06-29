@@ -54,7 +54,7 @@ Virtual environments are not just a feature of Python - most modern programming 
 It is recommended to create a separate virtual environment for each software project.
 Then you do not have to worry about changes to the environment of the current project you are working on affecting other projects - you can use different Python versions and different versions of the same third party dependency by different projects on your machine independently of one another.
 
-### 0.3 Essential task: Create a virtual development environment using `venv` 
+### 0.3 Essential task: Create a virtual development environment using `venv`
 
 - **Description:**  `venv` command-line tool (and a Python module) is a package installer and manager for Python (as of Python v3.3 it is included as part of a standard Python distribution).
 The venv module supports creating lightweight “virtual environments”, each with their own independent set of Python packages installed in their site directories.
