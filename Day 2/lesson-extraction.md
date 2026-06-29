@@ -7,12 +7,10 @@
 > - Record a human "gold standard" answer for each record
 > - Have an LLM judge score the model's extraction against your gold standard
 > - Read the results in a comparison report
-{: .objectives}
 
 > ## Prerequisites
 > - You have completed PoC orientation (placing and connecting nodes)
 > - The PoC canvas is open in your browser
-{: .prereq}
 
 In this evaluation you will test how well a small model (`arc:nano`) pulls **structured facts** out of a short description — the place, the period, the site type, and the nation. Because the answers sit plainly in the text, this is a task a non-expert can check. That makes it a good first evaluation: the "right answer" is not very contestable, so you can focus on learning the workflow.
 
@@ -38,11 +36,10 @@ Don't worry if that looks like a lot. We add one node per stage and check it wor
 
 > ## Connecting nodes
 > Nodes are joined by dragging from an **output handle** (right side of a node) to an **input handle** (left side of the next). If a connection won't "take", check you started from the right-hand circle.
-{: .callout}
+
 
 > ## Checkpoint
 > The Table Output should now show your records, with a `description` column containing the UNESCO 'description' text. If the table is empty, re-check the connection and that the source actually loaded the file.
-{: .checkpoint}
 
 ---
 
@@ -71,11 +68,9 @@ Respond as JSON:
 
 > ## What is `{{description}}`?
 > The double-brace token is a substitition placeholder. For each record, the tool swaps `{{description}}` for that record's actual description before sending it to the model. You'll use the same trick to point other nodes at other fields.
-{: .callout}
 
 > ## Checkpoint
 > Connect a Table Output to the inference node (or reuse the one from Stage 2). Each record should now have an `inference_output` field containing a small JSON object like `{"place":"Wiltshire","period_or_date":"prehistoric",...}`. The exact values don't matter yet — we just need the column to appear.
-{: .checkpoint}
 
 ---
 
@@ -97,15 +92,13 @@ The model has produced an answer. To judge it, we need to know what a **correct*
 
 > ## Why type it as the text says, not more precisely?
 > If the description is vague, the correct answer is vague. Writing "1850" when the text only says "second half of the 19th century" invents precision. Later you'll see the model do exactly this — and your honest gold standard is what catches it.
-{: .callout}
+
 
 > ## You don't have to annotate every record
 > Even a handful of annotated records is enough to learn from. Records you leave un-annotated simply won't get a quality score — that's fine.
-{: .callout}
 
 > ## Checkpoint
 > Each record you annotated now has a `_note` field containing a clean JSON object with your four values. You never typed a brace or a quote — the node built the JSON for you.
-{: .checkpoint}
 
 ---
 
