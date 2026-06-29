@@ -173,7 +173,7 @@ $ source venv/bin/activate
 ### **1.1** *Essential task:* Place import statements at the top
 
 - **Description:** Conventionally, all import statements are placed at the top of the script so that dependent libraries are clearly visible and not buried inside the code.
-This helps with readability and reusability of our code.
+ - **Task:** In `eva_data_analysis.py`, only `import pandas as pd` is at the top of the file. `import matplotlib.pyplot as plt` appears mid-script, right before it's first used to plot the graph, and `import re` appears even further down, right before the (unused) `calculate_crew_size` function that needs it. Both are marked with a `TODO: Import statements should be grouped at the top` comment. Move both import statements to the top of the file, alongside `pandas`.
 - **Task:** Modify `eva_data_analysis.py` script so that all import statements are placed at the top of the file.
 
 ### **1.2** *Essential task:* Improve code structure & formatting
