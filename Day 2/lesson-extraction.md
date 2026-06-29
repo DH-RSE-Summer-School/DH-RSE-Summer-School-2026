@@ -10,10 +10,8 @@
 {: .objectives}
 
 > ## Prerequisites
-> - You have completed Workshop 1 (placing and connecting nodes)
+> - You have completed PoC orientation (placing and connecting nodes)
 > - The PoC canvas is open in your browser
-> - You have access to the ARC platform
-> - You have the file `uk_whs.csv` (see Stage 1)
 {: .prereq}
 
 In this evaluation you will test how well a small model (`arc:nano`) pulls **structured facts** out of a short description — the place, the period, the site type, and the nation. Because the answers sit plainly in the text, this is a task a non-expert can check. That makes it a good first evaluation: the "right answer" is not very contestable, so you can focus on learning the workflow.
