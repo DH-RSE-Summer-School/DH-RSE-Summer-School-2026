@@ -21,13 +21,13 @@ Blurb
 ## Sustainable Software Practices
 
 - [Introduction](applying-good-research-software-practices-intro.md)
-- Introduction slides ([old slides](./Applying%20Best%20Practices%20for%20Sustainable%20Code%20(2).pdf))
+- [Slides](https://docs.google.com/presentation/d/1cGyoB7HSrqk35a8xTNXVXz6ipUYTTMy981tuKxnzg-g/edit?usp=sharing)
 - [Tasks & exercises](applying-good-research-software-practices-exercises.md)
 - [Example code](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code)
 
 ## Speakers and Trainers
 
-- [Phil Reed]([https://github.com/philreeddata](https://github.com/philreeddata)), University of Manchester, SSI Fellow, Office for Open Research Fellow
+- [Phil Reed]([https://github.com/philreeddata](https://github.com/philreeddata), University of Manchester, SSI Fellow, Office for Open Research Fellow
 - [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Training and Community Manager
 - [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute, Reseach Software Training Lead
 
