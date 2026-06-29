@@ -7,12 +7,10 @@
 > - Score the model two ways: with an LLM judge, and with your own human scoring
 > - Compare the judge's scores against your own
 > - See why the choice of standard is itself a judgement
-{: .objectives}
 
 > ## Prerequisites
 > - You have completed **Evaluation 1 — Extraction** (you'll reuse the same pipeline shape)
 > - You have `uk_whs.csv` loaded, or a few records in Param nodes
-{: .prereq}
 
 In the extraction task, the answers sat plainly in the text. This task is different. We ask the model what each site is **significant for** — the underlying reason it matters, beyond what it physically is. That is **interpretation**, and reasonable people will word it differently. There is no clean answer key.
 
@@ -47,7 +45,6 @@ Description: {{description}}
 
 > ## Checkpoint
 > Each record has an `inference_output` containing a one-sentence significance claim. Read a few — notice they're prose, not neat fields. That's what makes scoring them harder.
-{: .checkpoint}
 
 ---
 
@@ -71,11 +68,10 @@ Some worked readings (yours may differ — that's expected and important):
 
 > ## These are readings, not facts
 > Notice "paternalism" (Saltaire) carries a mild judgement — UNESCO's own wording does too. Another annotator might write "philanthropy", which sounds approving rather than critical. Both are defensible. Hold on to that thought — it's the heart of this lesson.
-{: .callout}
+
 
 > ## Checkpoint
 > Each record has a `_note` containing your one-sentence reading. Unlike extraction, this is prose, not JSON.
-{: .checkpoint}
 
 ---
 
@@ -116,7 +112,6 @@ Respond with ONLY this JSON, no other text:
 
 > ## Checkpoint
 > Each annotated record has judge scores. Look at a few of the judge's one-sentence reasons — do you agree with them? Hold any disagreements; the next stage is where you record your own view.
-{: .checkpoint}
 
 ---
 
@@ -134,15 +129,12 @@ Here's the step extraction didn't have. You will now score the **same model outp
 
 > ## Why mirror the rubric?
 > The whole point of this stage is to compare your scores against the judge's. That only works if you're both scoring the *same criteria on the same scale*. If your scale doesn't match, the comparison is meaningless.
-{: .callout}
 
 > ## You click; the tool structures it
 > Just like the structured gold standard, you never type JSON here. You click 0, 1 or 2 and the node records it cleanly. No malformed scores possible.
-{: .callout}
 
 > ## Checkpoint
 > Records you scored now carry both a judge score and your human score, on the same scale.
-{: .checkpoint}
 
 ---
 
@@ -158,13 +150,11 @@ Here's the step extraction didn't have. You will now score the **same model outp
 3. Read the **cards**: each shows the source, your reading, the model's answer, and the two scores side by side, with agreement or disagreement flagged.
 4. Read the **summary** at the top: how often did the judge and you agree, per criterion, across the records you scored.
 
-> ## Honest denominators
+> ## Clear denominators
 > The summary only counts records you actually scored. If you scored 8 of 32, it says "agreed on 7/8", not "7/32". Un-scored records are never quietly treated as agreement.
-{: .callout}
 
 > ## Checkpoint
 > You can now see, at a glance, where the LLM judge and you agreed — and exactly which records you disagreed on. Use the filter to show just the disagreements.
-{: .checkpoint}
 
 ---
 
@@ -178,7 +168,6 @@ This is the part that makes the lesson land. Find another pair who scored the **
 
 > ## Discuss
 > For Saltaire, did one reading emphasise "paternalism" (faintly critical) and another "philanthropy" (approving)? The *same model answer* can score differently depending on whose gold standard it's judged against. That's the lesson: **the standard you measure against is itself a choice, and it changes the result.** This is the same problem that haunts interpreting any undocumented site — the measuring instrument carries assumptions. You can't remove that, but you can state your criteria openly so others can see them.
-{: .discussion}
 
 ---
 
@@ -188,15 +177,13 @@ This is the part that makes the lesson land. Find another pair who scored the **
 > - **Literal vs interpretive.** Did `arc:nano` answer "a well-preserved Victorian village" (a *description*) instead of reaching the *significance* (industrial paternalism)? Smaller models often stay literal. A larger model is likelier to reach the deeper claim — the gap that barely showed in extraction.
 > - **Confident over-reading.** Did any model assert Stonehenge was "an astronomical calendar"? The text only says its significance is "still being explored". Stating it as settled fact is over-reading — the *fabrication* criterion should catch it.
 > - **Did the judge agree with you?** Where you and the LLM judge diverged, who was right? Sometimes the judge; sometimes you. That uncertainty is the honest finding.
-{: .discussion}
 
 > ## Optional — compare two models
 > Run the interpretation prompt on `arc:apex` as well, into `inference_output_apex`, and judge it too. The quality gap between `arc:apex` and `arc:nano` is usually clearer here than it was for extraction — because interpretation is where a bigger model earns its keep.
-{: .challenge}
 
 > ## Key points
 > - Interpretation has **no single right answer** — the gold standard is a *reading*, not a fact.
 > - Scoring the model yourself, on the **same criteria** as the judge, lets you check whether the judge can be trusted.
 > - Two reasonable gold standards can rank the same answer differently — so **"which model is better" depends on whose standard you use**.
 > - This is the same problem as bias in interpreting the past: you can't remove it, only make your criteria explicit.
-{: .keypoints}
+
