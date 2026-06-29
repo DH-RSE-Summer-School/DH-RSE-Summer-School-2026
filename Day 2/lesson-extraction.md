@@ -113,7 +113,6 @@ Now an LLM judge compares the model's `inference_output` against your `_note` an
 
 > ## Why a different model for the judge?
 > The judge should not be the same model that produced the answer — a model marking its own work is biased toward liking it. `arc:nano` answered, so `arc:nexus` judges.
-{: .callout}
 
 6. In the rubric box, paste:
 
@@ -148,11 +147,9 @@ Respond with ONLY this JSON, no other text:
 
 > ## Save your work now
 > Save the workflow as a JSON file (export/save). This preserves every node's settings — **including your pasted prompts** — so an accidental page reload won't lose them. Save again whenever you've edited a prompt.
-{: .callout}
 
 > ## Checkpoint
 > Each annotated record now has evaluation scores (`eval_c1`, `eval_c2`, or similar). Records you didn't annotate are marked as not scored rather than getting a made-up score.
-{: .checkpoint}
 
 ---
 
@@ -170,7 +167,6 @@ Respond with ONLY this JSON, no other text:
 
 > ## Checkpoint
 > You can now read, per record, what the model extracted and how the judge scored it — and at a glance, how well `arc:nano` did overall.
-{: .checkpoint}
 
 ---
 
@@ -179,16 +175,16 @@ Respond with ONLY this JSON, no other text:
 > ## Discuss
 > - **Did the model invent precision?** Look for records where the description was vague ("second half of the 19th century") but the model gave a specific year. The *fabrication* score should catch this.
 > - **Stated vs inferred.** For Ironbridge, the text names Coalbrookdale but not the county. If the model added "Shropshire" — correct, but not *stated* — is that good extraction or outside knowledge creeping in? There's no single right answer; that's worth a conversation.
-> - **Was the small model good enough?** For clear extraction from short text, `arc:nano` is often nearly as good as a much larger model. If so — that's a real and useful finding, not a boring one.
-{: .discussion}
+> - **Was the small model good enough?** For clear extraction from short text, `arc:nano` is often nearly as good as a much larger model.
+
 
 > ## Optional — compare two models
 > Repeat Stage 3 with the model set to `arc:apex`, writing to a new field `inference_output_apex`, and add a second Evaluator and Comparison Report for it. Now compare: did the big model actually do better on this task? Often, for extraction, it barely does.
-{: .challenge}
+
+
 
 > ## Key points
 > - An evaluation needs a **gold standard** — a human-made correct answer to compare against.
 > - **Temperature 0** makes both the model run and the judge repeatable.
 > - The **judge** should be a different model from the one being judged.
 > - For clear extraction tasks, **small models are often good enough** — and proving that is the point.
-{: .keypoints}
