@@ -234,6 +234,9 @@ for duration_str in subset['duration']:  # was 'val'
 Decide whether to remove it, or to actually use it by adding a `crew_size` column to the dataset - either is a reasonable choice, but document your decision in a comment.
 Similarly, variable `fieldnames` is unused and "pollutes" the code and should be removed.
 
+<details>
+<summary><i>Solution</i></summary>
+
 ```python
 # DELETE this line
 fieldnames = ("EVA number", "Country", "Crew", "Vehicle", "Date", "Duration", "Purpose")
@@ -242,6 +245,7 @@ fieldnames = ("EVA number", "Country", "Crew", "Vehicle", "Date", "Duration", "P
 def calculate_crew_size(crew):
     ...
 ```
+</details>
 
 ### **1.5** *Essential task:* Refactor the script into multiple functions and fix non-DRY code
 
@@ -368,6 +372,9 @@ In Python, comments begin with a hash (#) symbol on each line of the comment.
 - **Task:** Comments are provided throughout the project, but there are instances where comments are missing (indicated by the placeholder comment “Descriptive comment”), the comments are not sufficiently descriptive, or the formatting of comments is inconsistent. Step through the notebook and add or edit comments throughout to explain specific lines and blocks.
 - **More information:** : <https://realpython.com/python-comments-guide/>
 
+<details>
+<summary><i>Solution</i></summary>
+
 ```python
 # Clean the data by removing any rows where duration is missing
 eva_df.dropna(axis=0, subset=['duration', 'date'], inplace=True)
@@ -376,6 +383,8 @@ subset['crew'] = subset['crew'].str.split(';') # split crew field by semicolon t
 
 subset = subset.explode('crew') # separating lists of crew into individual rows
 ```
+
+</details>
 
 ### **2.2** *Essential task:* Add docstrings to functions
 
