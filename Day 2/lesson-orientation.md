@@ -11,7 +11,6 @@
 
 > ## Prerequisites
 > - The PoC canvas is open in your browser [https://nfcs-poc.sites.er.kcl.ac.uk](https://nfcs-poc.sites.er.kcl.ac.uk)
-> - You have a KCL API key (needed from Stage 4 onwards)
 
 In this lesson you will build a pipeline that searches the ARIADNE European archaeological database, runs a language model over each site description to pull out the place names mentioned in it, then checks those place names against Wikidata to find their canonical identifiers. You will build this in three steps of increasing complexity — each step works on its own before you add the next layer.
 
