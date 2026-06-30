@@ -10,9 +10,9 @@
   - Track 1: Beginner track
   - Track 2: [Intermediate track][byte-sized-rse-intermediate-git]
 - 12:30-13:30 LUNCH
-- 13:30-15:00 [Building Better Research Software - good practices for sustainable software & reproducible research][applying-sustainable-practices-tasks] (Part 1)
+- 13:30-15:00 [Building Better Research Software - good practices for sustainable software & reproducible research][applying-sustainable-practices] (Part 1)
 - 15:00-15:30 BREAK
-- 15:30-17:00 [Building Better Research Software - good practices for sustainable software & reproducible research][applying-sustainable-practices-tasks] (Part 2)
+- 15:30-17:00 [Building Better Research Software - good practices for sustainable software & reproducible research][applying-sustainable-practices] (Part 2)
 
 ## Version Control for Digital Humanists
 
@@ -38,4 +38,4 @@
 
 [byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
 [swc-git-novice]: https://swcarpentry.github.io/git-novice/
-[applying-sustainable-practices-tasks]: applying-good-research-software-practices-exercises.md
+[applying-sustainable-practices]: https://github.com/DH-RSE-Summer-School/DH-RSE-Summer-School-2026/blob/main/Day%203/README.md#building-better-research-software
