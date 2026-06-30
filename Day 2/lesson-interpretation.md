@@ -9,7 +9,7 @@
 > - See why the choice of standard is itself a judgement
 
 > ## Prerequisites
-> - You have completed **Evaluation 1 — Extraction** (you'll reuse the same pipeline shape)
+> - You have completed **Evaluation 1 — Extraction** (you'll reuse the same pipeline shape, prompt, and rubric principles)
 > - You have the World Heritage Site records loaded
 
 In the extraction task, the answers sat plainly in the text. This task is different. We ask the model what each site is **significant for** — the underlying reason it matters, beyond what it physically is. That is **interpretation**, and reasonable people will word it differently. There is no clean answer key.
@@ -20,11 +20,11 @@ The pipeline is almost the same as Evaluation 1, with one addition — a **human
 
 ```
 Source → Inference (arc:nano) → QuickNote (gold standard)
-       → Evaluator → QuickNote (human score) → Comparison Report
+       → Evaluator → QuickNote (your human score) → Comparison Report
 ```
 
 > ## How this lesson works
-> As before: each stage gives you the **goal and the why**, and you work out the *how*. Reveal boxes are there if you're stuck. You've built most of this pipeline already in Evaluation 1, so lean on that.
+> As before: each stage gives you the **goal and the why**, and you work out the *how*. Reveal boxes are there if you're stuck. You've already learned the principles of a good prompt and a good rubric in Evaluation 1 — this time the hints are shorter, because the job is to *adapt* what you know rather than invent it from scratch.
 
 ---
 
@@ -34,7 +34,16 @@ Source → Inference (arc:nano) → QuickNote (gold standard)
 
 If you still have the canvas from Evaluation 1, reuse it — you only need to change the inference prompt. Otherwise rebuild the start: a Sample data source with the World Heritage records, and an Inference node fed from it, set to the small model and made repeatable (same two decisions as last time).
 
-The new **interpretation** prompt to paste into the inference node:
+> ## Hints for adapting the prompt
+> Your extraction prompt named four fields and asked for JSON. This task wants one sentence of *judgement*, not a lookup — so think about what changes:
+> - You're asking the model to weigh up the text and reach a conclusion, not just copy values out — so the instruction should ask for a single, considered claim.
+> - You still want it grounded — "use only the text provided" still matters, maybe more than before, since interpretation is where models are most tempted to add outside knowledge.
+> - You probably don't want strict JSON this time — one sentence of prose is the natural answer shape for "what is this significant for".
+>
+> Try adapting your own extraction prompt before revealing.
+
+<details>
+<summary>▸ Stuck? Reveal the prompt</summary>
 
 ```
 In one sentence, state what this World Heritage Site is most significant FOR —
@@ -44,12 +53,14 @@ description of what it physically is. Use only the text provided.
 Description: {{description}}
 ```
 
+</details>
+
 <details>
-<summary>▸ Stuck? Reveal the settings</summary>
+<summary>▸ Stuck? Reveal the node settings</summary>
 
 - Source: Sample data → World Heritage Site package.
 - Inference node fed from the source, model **`arc:nano`**, temperature **0**.
-- Paste the interpretation prompt above; output field **`inference_output`**.
+- Paste your prompt; output field **`inference_output`**.
 - Click **Run**.
 
 </details>
@@ -94,9 +105,24 @@ Some worked readings (yours may differ — that's expected and important):
 
 ## Stage 3 — Judge the model
 
-**Goal:** have the LLM judge score the model's interpretation against your reading, using the same two-criterion rubric as before.
+**Goal:** have the LLM judge score the model's interpretation against your reading.
 
-Add an **Evaluator** node after the QuickNote. Set the reference and candidate fields, and pick a judge model that *isn't* the one being judged. Paste the rubric.
+Unlike extraction's four field-level criteria, interpretation is scored holistically — there's nothing to break into separate fields, just one prose claim to weigh against another. Two criteria do the job: **quality** (does it match your reading's substance) and **fabrication** (did it invent anything not in the source).
+
+Add an **Evaluator** node after the QuickNote. Set the reference and candidate fields, and pick a judge model that *isn't* the one being judged.
+
+> ## Which model should be the judge?
+> Not the same one that produced the answer. A model marking its own work is biased toward liking it. `arc:nano` answered — so pick a *different* model to judge. `arc:nexus` is a good choice.
+
+> ## Hints for adapting the rubric
+> Same five rules as before (one criterion per thing you care about, anchored scores, reason before score, ground it in the texts, constrain the output to JSON) — but this time there are only two things to check, not four:
+> - **Quality** — does the claim match the substance of your gold standard? This needs more than 0/1 — interpretation deserves partial credit, since a model can be *close* without being exact.
+> - **Fabrication** — did it state anything as fact that the source doesn't support? This one can stay binary: grounded, or not.
+>
+> Try sketching it before revealing.
+
+<details>
+<summary>▸ Stuck? Reveal the rubric</summary>
 
 ```
 You are scoring a model's response against a human gold-standard annotation.
@@ -124,8 +150,10 @@ Respond with ONLY this JSON, no other text:
 {"c1_reason":"","c1":0,"c2_reason":"","c2":0}
 ```
 
+</details>
+
 <details>
-<summary>▸ Stuck? Reveal the settings</summary>
+<summary>▸ Stuck? Reveal the node settings</summary>
 
 - Reference field: **`_note`**; Candidate field: **`inference_output`**.
 - Judge model: **`arc:nexus`** (different from the candidate).
@@ -141,7 +169,7 @@ Respond with ONLY this JSON, no other text:
 
 ## Stage 4 — Add your own human score
 
-Here's the step extraction didn't have. You will now score the **same model outputs yourself**, on the **same two criteria** the judge used. Then we can ask: *does the LLM judge agree with a human?*
+You will now score the **same model outputs yourself**, on the **same two criteria** the judge used. Then we can ask: *does the LLM judge agree with a human?*
 
 **Goal:** record your own 0–2 quality and 0–1 fabrication scores for each output, so they can be compared against the judge's.
 
@@ -223,6 +251,7 @@ This is the part that makes the lesson land. Find another pair who scored the **
 
 > ## Key points
 > - Interpretation has **no single right answer** — the gold standard is a *reading*, not a fact.
+> - Holistic, partial-credit scoring suits interpretation; per-field exact scoring suited extraction. Match the rubric to the shape of the task.
 > - Scoring the model yourself, on the **same criteria** as the judge, lets you check whether the judge can be trusted.
 > - Two reasonable gold standards can rank the same answer differently — so **"which model is better" depends on whose standard you use**.
 > - This is the same problem as bias in interpreting the past: you can't remove it, only make your criteria explicit.

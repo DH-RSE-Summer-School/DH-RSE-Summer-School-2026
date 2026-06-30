@@ -4,8 +4,10 @@
 > By the end of this lesson you will be able to:
 > - Load a set of records into the workflow canvas
 > - Run a small language model to extract structured fields from text
+> - Write a prompt that gets clean, structured output from a model
 > - Record a human "gold standard" answer for each record
-> - Have an LLM judge score the model's extraction against your gold standard
+> - Write a rubric that lets an LLM judge score a model's extraction field by field
+> - Score the outputs yourself and compare against the judge
 > - Read the results in a comparison report
 
 > ## Prerequisites
@@ -17,13 +19,14 @@ In this evaluation you will test how well a small model (`arc:nano`) pulls **str
 We will build this pipeline, one node at a time:
 
 ```
-Source  →  Inference (arc:nano)  →  QuickNote (gold standard)  →  Evaluator  →  Comparison Report
+Source → Inference (arc:nano) → QuickNote (gold standard)
+       → Evaluator (LLM judge) → QuickNote (your score) → Comparison Report
 ```
 
 Don't worry if that looks like a lot. We add one node per stage and check it works before moving on.
 
 > ## How this lesson works
-> Each stage tells you **what you're trying to achieve and why** — then invites you to work out *how* on the canvas. Have a real go first. If you get stuck, every tricky step has a **▸ Stuck? Reveal** box with the exact answer. Using it isn't cheating; working it out first is just where the learning happens.
+> Each stage tells you **what you're trying to achieve and why** — then invites you to work out *how* on the canvas, including writing your own prompts. Have a real go first. If you get stuck, every tricky step has a **▸ Stuck? Reveal** box with a worked answer. Using it isn't cheating; working it out first is just where the learning happens.
 
 ---
 
@@ -53,16 +56,26 @@ Open the node sidebar and look in the *Source* group for a node that supplies sa
 
 ## Stage 2 — Run the model (the extraction)
 
-**Goal:** get `arc:nano` to read each description and return the four fields — place, period, site type, nation — as JSON in a new field called `inference_output`.
+**Goal:** get `arc:nano` to read each description and return four fields — place, period, site type, nation — as JSON in a new field called `inference_output`.
 
-Add an **Inference** node and feed it from your source. Two decisions matter here, and they're worth thinking about rather than being told:
+Add an **Inference** node and feed it from your source. Two settings to work out first:
 
-- **Which model?** You want the *small, fast* one for this task — part of the point is to see how well a small model copes. Which of the ARC models is the small one?
-- **Should the output be repeatable?** An evaluation needs the model to give the *same* answer if you run it twice. There's a setting that controls randomness — what should it be for repeatability?
+- **Which model?** You want the *small, fast* one for this task — part of the point is to see how well a small model copes.
+- **Should the output be repeatable?** An evaluation needs the model to give the *same* answer if you run it twice. There's a setting that controls randomness.
 
-Then give it the prompt below, and set the output field.
+Then comes the part worth real thought: **the prompt itself.**
 
-The prompt to paste:
+> ## Hints for writing the extraction prompt
+> Before you reveal the answer, try drafting your own. A good extraction prompt usually does four things:
+> 1. **States exactly what to extract**, by name. Don't say "the key facts" — name the four fields.
+> 2. **Constrains the output format.** If you don't specify a shape (e.g. JSON with named keys), you'll get a paragraph back that's hard to read into other fields. Show the model the exact shape you want.
+> 3. **Says what to do when something's missing.** Without this, a model will often guess or invent a value rather than admit it isn't there.
+> 4. **Tells it to stick to the text.** A single line like "use only the text provided" is doing a lot of work — it stops the model filling gaps from its own general knowledge, which is exactly what you don't want in an extraction task.
+>
+> Try writing a prompt that does all four before you look below.
+
+<details>
+<summary>▸ Stuck? Reveal the prompt</summary>
 
 ```
 Extract the following four fields from the site description. Use ONLY the
@@ -74,15 +87,17 @@ Respond as JSON:
 {"place":"","period_or_date":"","site_type":"","nation":""}
 ```
 
+</details>
+
 > ## What is `{{description}}`?
 > The double-brace token is a substitution placeholder. For each record, the tool swaps `{{description}}` for that record's actual description before sending it to the model. You'll use the same trick to point other nodes at other fields.
 
 <details>
-<summary>▸ Stuck? Reveal the settings</summary>
+<summary>▸ Stuck? Reveal the node settings</summary>
 
 - Model: **`arc:nano`** (the small one).
 - Temperature: **0** (makes the output repeatable — run twice, get the same answer).
-- Paste the prompt above.
+- Paste your prompt (or the one above).
 - Output field: **`inference_output`**.
 - Click **Run**.
 
@@ -118,77 +133,117 @@ Then work through the records. One rule that matters: **keep dates as the text s
 </details>
 
 > ## You don't have to annotate every record
-> Even a handful of annotated records is enough to learn from. Records you leave un-annotated simply won't get a quality score — that's fine.
+> Even a handful of annotated records is enough to learn from. Records you leave un-annotated simply won't get scored later — that's fine.
 
 > ## Checkpoint
 > Each record you annotated has a `_note` field containing a clean JSON object with your four values. You never typed a brace or a quote — the node built the JSON for you.
 
 ---
 
-## Stage 4 — Judge the model against the gold standard
+## Stage 4 — Judge the model, field by field
 
-**Goal:** have an LLM judge compare the model's `inference_output` against your `_note` gold standard and score it.
+**Goal:** have an LLM judge compare the model's `inference_output` against your `_note`, scoring **each of the four fields separately** — not one overall mark. Scoring field by field is what lets you see *which* field the model got wrong, rather than just "it did okay".
 
-Add an **Evaluator** node after the QuickNote. You need to tell it which field is the *reference* (your gold standard) and which is the *candidate* (the thing being judged), and choose a judge model.
-
-One decision worth pausing on: **which model should judge?**
+Add an **Evaluator** node after the QuickNote. Set the reference and candidate fields, and choose a judge model that **isn't** the one being judged.
 
 > ## Which model should be the judge?
 > Not the same one that produced the answer. A model marking its own work is biased toward liking it. `arc:nano` answered — so pick a *different* model to judge. `arc:nexus` is a good choice.
 
-Then paste the rubric below.
+Now the rubric. This is harder to design well than the inference prompt, so think about the shape before you reveal it.
+
+> ## Hints for writing the evaluation rubric
+> A good judging rubric usually does five things:
+> 1. **One criterion per thing you care about.** Don't ask "is this good?" — for extraction, that means *one criterion per field*: is `place` right, is `period_or_date` right, and so on. A single vague criterion hides which part actually failed.
+> 2. **Anchor every score.** Don't just say "score 0–2" — say what a 0, a 1, and a 2 each *mean* for that specific field. Without anchors, the judge invents its own meaning each time it runs, and your scores stop being repeatable.
+> 3. **Ask for a reason before the score.** A model judges more carefully when it has to justify itself first, even briefly.
+> 4. **Ground it in the two texts only.** Say so explicitly — "judge only using the texts provided, do not use outside knowledge" — or the judge may mark against what *it* thinks is true rather than against your annotation.
+> 5. **Constrain the output to clean JSON.** Show the exact shape you want back, so the score can be read straight into the canvas.
+>
+> Try sketching your own four-field rubric using these five rules before you reveal the answer.
+
+<details>
+<summary>▸ Stuck? Reveal the rubric</summary>
 
 ```
-You are scoring a model's response against a human gold-standard annotation.
-Judge ONLY on the two texts provided. Do not use outside knowledge.
-Length and fluency are not criteria — a short, correct answer beats a long, padded one.
+You are scoring a model's field extraction against a human annotation.
+Judge ONLY using the two texts provided. Do not use outside knowledge.
+Length and fluency are not criteria.
 
-HUMAN GOLD STANDARD (reference):
+HUMAN ANNOTATION (gold standard):
 {{__reference}}
 
 MODEL OUTPUT (to be judged):
 {{__candidate}}
 
-Score two criteria. Give a one-sentence reason, then the score.
+Score each criterion. Give a one-sentence reason, then the score.
 
-c1 quality: how well does the model output match the gold standard's substance?
-   2 = fully matches the core meaning
-   1 = partially matches; gets some of it, misses or muddles the rest
-   0 = wrong, empty, or unrelated
+c1 place: 2 = same place; 1 = correct but broader/narrower; 0 = wrong or missing
 
-c2 fabrication: does the output introduce any claim, name, date, or detail not supported by the reference or source text?
-   1 = stays grounded; nothing invented
-   0 = introduces unsupported content (even if plausible-sounding)
+c2 period_or_date: 2 = same period; 1 = correct era, wrong specificity; 0 = wrong or missing
+
+c3 site_type: 2 = same type; 1 = related but less/more specific; 0 = wrong or missing
+
+c4 nation: 2 = same nation; 1 = related nation; 0 = wrong or missing
 
 Respond with ONLY this JSON, no other text:
-{"c1_reason":"","c1":0,"c2_reason":"","c2":0}
+{"c1_reason":"","c1":0,"c2_reason":"","c2":0,"c3_reason":"","c3":0,"c4_reason":"","c4":0}
 ```
 
+</details>
+
 <details>
-<summary>▸ Stuck? Reveal the settings</summary>
+<summary>▸ Stuck? Reveal the node settings</summary>
 
 - Reference field: **`_note`**.
 - Candidate field: **`inference_output`**.
 - Judge model: **`arc:nexus`** (different from the candidate).
-- Paste the rubric above.
+- Paste the rubric.
 - Temperature: **0** (should be fixed).
 - Click **Judge**.
 
 </details>
 
 > ## Save your work now
-> Save the workflow as a JSON file. This preserves every node's settings — **including your pasted prompts** — so an accidental page reload won't lose them. Save again whenever you've edited a prompt. (Treat this as normal practice, not a chore — it's how you protect your work in any tool.)
+> Save the workflow as a JSON file. This preserves every node's settings — **including your prompts** — so an accidental page reload won't lose them. Save again whenever you've edited a prompt. (Treat this as normal practice, not a chore — it's how you protect your work in any tool.)
 
 > ## Checkpoint
-> Each annotated record now has evaluation scores (`eval_c1`, `eval_c2`, or similar). Records you didn't annotate are marked as not scored, rather than getting a made-up score.
+> Each annotated record now has four scores (`eval_c1`–`eval_c4`), one per field. Records you didn't annotate are marked as not scored, rather than getting a made-up score.
 
 ---
 
-## Stage 5 — Read the results
+## Stage 5 — Score it yourself
 
-**Goal:** see, per record and in summary, what the model extracted and how the judge scored it.
+**Goal:** score the same four fields yourself, on the same scale the judge used, so you can check whether the judge can be trusted.
 
-Add a **Comparison Report** node after the Evaluator. It needs to know which field plays which role in the report — map the source text, your note, the model's response, and the judge's score to the right fields.
+Add another **QuickNote** node after the **Evaluator**, and set it to **Score** mode (the last of *Note · Structured · Score*). Configure the same four criteria as the rubric, point it at the model's output so you can see what you're scoring, and click through the records scoring each field.
+
+> ## Why mirror the rubric?
+> The comparison only makes sense if you and the judge are scoring the *same criteria on the same scale*. Match c1–c4 to the rubric exactly.
+
+<details>
+<summary>▸ Stuck? Reveal the configuration</summary>
+
+- Mode: **Score** (the last option).
+- Criteria: `c1` place, `c2` period_or_date, `c3` site_type, `c4` nation — all scale **0, 1, 2**.
+- Display field: **`inference_output`**.
+- Target field: **`human_score`**.
+- Click the buttons to score each record; optional one-line reason.
+
+</details>
+
+> ## You click; the tool structures it
+> You never type JSON here. You click 0, 1 or 2 per field and the node records it cleanly. No malformed scores possible.
+
+> ## Checkpoint
+> Records you scored now carry both a judge score and your own score, field by field, on the same scale.
+
+---
+
+## Stage 6 — Read the results
+
+**Goal:** see, per record and in summary, what the model extracted, how the judge scored each field, and how that compares to your own scoring.
+
+Add a **Comparison Report** node after the human-score QuickNote. Map the source text, your note, the model's response, the judge's score, and your score to the right fields.
 
 <details>
 <summary>▸ Stuck? Reveal the mapping</summary>
@@ -197,28 +252,34 @@ Add a **Comparison Report** node after the Evaluator. It needs to know which fie
 - *note* → `_note`
 - *response* → `inference_output`
 - *judge score* → the evaluator's score field
+- *human score* → `human_score`
 
 </details>
 
-The report shows one **card per record** — source text, your gold standard, the model's answer, the judge's score — and a **summary** at the top across all your scored records.
+The report shows one **card per record** — source text, your gold standard, the model's answer, both sets of scores side by side — and a **summary** at the top across all your scored records.
 
 > ## Checkpoint
-> You can read, per record, what the model extracted and how the judge scored it — and at a glance, how well `arc:nano` did overall.
+> You can read, per record and per field, what the model extracted, how the judge scored it, and whether you agreed — and at a glance, how well `arc:nano` did overall.
 
 ---
 
 ## What to look for
 
 > ## Discuss
-> - **Did the model invent precision?** Look for records where the description was vague ("second half of the 19th century") but the model gave a specific year. The *fabrication* score should catch this.
-> - **Stated vs inferred.** For Ironbridge, the text names Coalbrookdale but not the county. If the model added "Shropshire" — correct, but not *stated* — is that good extraction or outside knowledge creeping in? There's no single right answer; that's worth a conversation.
+> - **Which field broke?** With four separate scores, you can see exactly where the model struggled — was it always `period_or_date`, or scattered across all four? A low overall impression hides this; per-field scores don't.
+> - **Did the model invent precision?** Look for records where the description was vague ("second half of the 19th century") but the model gave a specific year. That should show up as a low **c2** score, with the judge's reason explaining why.
+> - **Stated vs inferred.** For Ironbridge, the text names Coalbrookdale but not the county. If the model added "Shropshire" — correct, but not *stated* — what does that do to the **c1 (place)** score? Is that good extraction, or outside knowledge creeping in? There's no single right answer; that's worth a conversation.
 > - **Was the small model good enough?** For clear extraction from short text, `arc:nano` is often nearly as good as a much larger model.
+> - **Did you agree with the judge?** Where your score and the judge's score diverged on a field, who was right?
 
 > ## Stretch — try it on your own data
-> Find another dataset on the canvas (or wire up a different source), and run the *same* pipeline on it. You'll need to adjust the fields to whatever suits the new records. What breaks? Does the model cope as well with messier or longer text? This is where you find out how robust the approach really is.
+> Find another dataset on the canvas (or wire up a different source), and run the *same* pipeline on it. You'll need to write a new prompt and rubric suited to whatever fields make sense for the new records. What breaks? Does the model cope as well with messier or longer text? This is where you find out how robust the approach really is — and where the prompt-writing hints above earn their keep.
 
 > ## Key points
 > - An evaluation needs a **gold standard** — a human-made correct answer to compare against.
+> - **Score per field, not overall** — a single holistic mark hides exactly which part of the task is failing.
+> - A good prompt names what to extract, constrains the format, says what to do when something's missing, and tells the model to stick to the text.
+> - A good rubric has one criterion per thing you care about, anchored scores, a reason before the number, and grounding in the texts provided.
 > - **Temperature 0** makes both the model run and the judge repeatable.
 > - The **judge** should be a different model from the one being judged.
 > - For clear extraction tasks, **small models are often good enough** — and proving that is the point.
