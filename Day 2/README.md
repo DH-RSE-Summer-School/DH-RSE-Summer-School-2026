@@ -9,7 +9,7 @@
 - 12:30-13:30 LUNCH
 - 13:30-15:00 Introduction to High Performance Computing for DH
 - 15:00-15:30 BREAK
-- 15:30-17:00 Introduction to High Performance Computing for DH
+- 15:30-17:00 LLM Jargon and comparison practical
 
 ## Introduction to High Performance Computing for Digital Humanities
 
