@@ -6,8 +6,8 @@
 - [Scenario](#scenario)
 - [Starter code](#starter-code)
 - [**A. Obtain and inspect the software project**](#a-obtain-and-inspect-the-software-project)
-  - [**A**.1 *Essential task:* Make a copy the software project](#a1-essential-task-make-a-copy-the-software-project)
-  - [**A.2** *Essential task:* Open and expect software project in a code editor of choice](#a2-essential-task-open-and-expect-software-project-in-a-code-editor-of-choice)
+  - [**A.1** *Essential task:* Make a copy the software project](#a1-essential-task-make-a-copy-the-software-project)
+  - [**A.2** *Essential task:* Open and inspect software project in a code editor of choice](#a2-essential-task-open-and-inspect-software-project-in-a-code-editor-of-choice)
 - [**B. Reproducible software environments**](#b-reproducible-software-environments)
   - [**B.1** *Essential task:* Create a virtual development environment using `venv`](#b1-essential-task-create-a-virtual-development-environment-using-venv)
   - [**B.2** *Essential task:* Install your software's dependencies into virtual development environment using `pip`](#b2-essential-task-install-your-softwares-dependencies-into-virtual-development-environment-using-pip)
@@ -28,7 +28,6 @@
   - [**2.4** *Optional task:* Go through a software quality checklist](#24-optional-task-go-through-a-software-quality-checklist)
 - [**3. Publishing software**](#3-publishing-software)
   - [**3.1** *Essential task:* Create a DOI](#31-essential-task-create-a-doi)
-  - [Essential task: Create a DOI](#essential-task-create-a-doi)
   - [**3.2** *Essential task:* Add a `LICENSE` file](#32-essential-task-add-a-license-file)
   - [**3.3** *Essential task:* Add a copyright statement](#33-essential-task-add-a-copyright-statement)
   - [**3.4** *Essential task:* Add a `CITATION.cff` file](#34-essential-task-add-a-citationcff-file)
@@ -67,7 +66,7 @@ Throughout the session, you will learn and apply better research software practi
 
 ## **A. Obtain and inspect the software project (10 minutes)**
 
-### **A**.1 *Essential task:* Make a copy the software project
+### **A.1** *Essential task:* Make a copy the software project
 
 - **Description:** Make a copy of the software project into your GitHub space so you can continue working on it.
 - **Task:**
@@ -85,11 +84,11 @@ Throughout the session, you will learn and apply better research software practi
      Or:
     2. From your copy of the code repository on GitHub, open the project in GitHub Codespaces (click the green `Code` button then select the `Codespaces` tab).
 
-### **A.2** *Essential task:* Expect software project in a code editor of choice or on GitHub
+### **A.2** *Essential task:* Inspect software project in a code editor of choice or on GitHub
 
 - **Description:** Working in a code editor or Integrated Development Environment (IDE) gives you syntax highlighting, linting and easy navigation between files (among other features).
 These functionalities will make the upcoming tasks much easier.
-- **Task:** 
+- **Task:**
   - If you are working locally, open the software project you obtained in Visual Studio Code (VS Code) or another code editor of your choice.
       Alternatively, go to your project in GitHub Codespaces.
   - Inspect the Python script `eva_data_analysis.py` and JSON data file with spacewalks `eva_data.json`. Try and see if you can understand what the code does.
@@ -106,7 +105,7 @@ Then you do not have to worry about changes to the environment of the current pr
 
 ### **B.1** *Essential task:* Create a virtual development environment using `venv`
 
-- **Description:**  `venv` command-line tool (and a Python module) is a package installer and manager for Python (as of Python v3.3 it is included as part of a standard Python distribution).
+- **Description:** `venv` command-line tool (and a Python module) is a package installer and manager for Python (as of Python v3.3 it is included as part of a standard Python distribution).
 The venv module supports creating lightweight “virtual environments”, each with their own independent set of Python packages installed in their site directories.
 - **Task:** Create and activate a Python virtual environment using `venv`.
 - **More information:** : <https://docs.python.org/3/library/venv.html>
@@ -119,7 +118,7 @@ $ source .venv/bin/activate # Linux and macOS
 $ source .venv/Scripts/activate # Windows
 ```
 
->[!NOTE]
+> [!NOTE]
 > On some systems you may have to invoke the Python and Pip commands as `python` and `pip`, respectively.
 
 The above commands will create a folder **".venv"** within the root of your project, where information about your virtual environment will be located.
@@ -129,25 +128,25 @@ You could have called your virtual environment something else - by convention th
 
 When you are done working on your project, you can exit/deactivate the environment with:
 
-```python
+```bash
 (.venv) $ deactivate
 ```
 
 ### **B.2** *Essential task:* Install your software's dependencies into virtual development environment using `pip`
 
-- **Description:**  `pip` command-line tool (and a Python module) is a package installer and manager for Python (as of Python v3.3 it is included as part of a standard Python distribution). You can use it to install packages from the Python Package Index and other indexes.
+- **Description:** `pip` command-line tool (and a Python module) is a package installer and manager for Python (as of Python v3.3 it is included as part of a standard Python distribution). You can use it to install packages from the Python Package Index and other indexes.
 - **Task:** Identify dependencies for your software and install them into an active virtual environment using `pip`.
-- **More information:** : <https://pip.pypa.io/en/stable/>
+- **More information:** <https://pip.pypa.io/en/stable/>
 
 You can install your software's dependencies into your active environment using `pip` as follows:
 
-```python
+```bash
 (.venv) $ pip3 install matplotlib pandas
 ```
 
 You can see all packages currently installed in your environment with:
 
-```python
+```bash
 (.venv) $ pip3 list
 ```
 
@@ -155,19 +154,19 @@ You can see all packages currently installed in your environment with:
 
 - **Description:** The `requirements.txt` file can be used to list the packages (and their versions) that the project depends on for proper execution and makes installation of these dependencies easy using `pip` command-line tool. A `requirements.txt` file reduces the likelihood of compatibility issues and ensures that a project is well-documented, maintainable, and reproducible.
 - **Task:** Create a `requirements.txt` file in the root directory of the project. Populate this file with a list of Python packages that the program relies on using `pip` and make sure that you include only packages that are actually used by your software.
-- **More information:** : <https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/>
+- **More information:** <https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/>
 
 To export your active virtual development environment that contains your software's dependencies you can use `pip freeze` command.
 It will produce a list of packages installed in your virtual development environment.
 A common convention is to save this list in a `requirements.txt` file in your project’s root directory:
 
-```python
+```bash
 (.venv) $ pip3 freeze > requirements.txt
 ```
 
 You should put `requirements.txt` under version control and share it along with our code - so that others can more easily reproduce the same environment, should they wish to run or modify your code.
 
-```python
+```bash
 (.venv) $ git add requirements.txt
 (.venv) $ git commit -m "Initial commit of requirements.txt"
 (.venv) $ git push origin main
@@ -175,7 +174,7 @@ You should put `requirements.txt` under version control and share it along with 
 
 To recreate a virtual environment from `requirements.txt` (e.g. on another machine), from the project root one should create the virtual environment and then install dependencies from the requirements file into that environment:
 
-```python
+```bash
 $ python3 -m venv .venv
 $ source venv/bin/activate
 (.venv) $ pip install -r requirements.txt
@@ -208,7 +207,7 @@ lines kept to a reasonable length (e.g. 80-100 characters), consistent notation.
 For example, no blank-line separation between logical sections such as "read data", "summarise by astronaut", and "plot". 
 Reformat the script so that related statements are visually grouped with blank lines, and check it against [PEP 8](https://peps.python.org/pep-0008/). 
 You may find it helpful to run a formatter/linter such as `pylint`, `black` or `flake8` over the Python script.
-- **More information:** : The Python style guide [PEP 8](https://peps.python.org/pep-0008/) provides rules for consistent formatting, including use of blank space, naming conventions, and comments, and is generally followed by production-level software projects.
+- **More information:** The Python style guide [PEP 8](https://peps.python.org/pep-0008/) provides rules for consistent formatting, including use of blank space, naming conventions, and comments, and is generally followed by production-level software projects.
 
 ### **1.3** *Essential task:* Improve variable naming
 
@@ -257,6 +256,7 @@ fieldnames = ("EVA number", "Country", "Crew", "Vehicle", "Date", "Duration", "P
 def calculate_crew_size(crew):
     ...
 ```
+
 </details>
 
 ### **1.5** *Essential task:* Refactor the script into multiple functions and fix non-DRY code
@@ -310,7 +310,6 @@ def plot_cumulative_time_in_space(df, graph_file):
 
 </details>
 
-
 ### **1.6** *Essential task:* Use `main()` function
 
 - **Description:** Many programming languages have a special function that is automatically executed when an operating system starts to run a program (usually called `main()`). 
@@ -352,7 +351,7 @@ if __name__ == "__main__":
 - **Description:** Executable scripts allow for flexible processing and code reuse through the use of input arguments. 
 By changing the script to accept input arguments, the analysis could be easily applied to other collections of files.
 - **Task:** Locate the lines marked `TODO Inputs` in `eva_data_analysis.py` - currently the input file path is hardcoded to `f = 'eva_data.json'`. Change the script to accept the input file as a command-line argument (e.g. via `sys.argv` or the `argparse` module), falling back to `eva_data.json` as a default if none is given.
-- **More information:** : https://www.geeksforgeeks.org/command-line-arguments-in-python/ 
+- **More information:** https://www.geeksforgeeks.org/command-line-arguments-in-python/ 
 
 <details>
 <summary><i>Solution</i></summary>
@@ -367,7 +366,6 @@ def main():
 ```
 
 </details>
-
 
 ### **1.8** *Optional task:* Add an input command-line argument to allow for flexible file locations for results
 
@@ -464,8 +462,7 @@ def plot_cumulative_time_in_space(df, graph_file):
 
     Convert the duration column from strings to number of hours
     Calculate cumulative sum of durations
-    Generate a plot of cumulative time spent in space over years and
-    save it to the specified location
+    Generate a plot of cumulative time spent in space over years and save it to the specified location
 
     Args:
         df (pd.DataFrame): The input dataframe.
@@ -474,7 +471,6 @@ def plot_cumulative_time_in_space(df, graph_file):
     Returns:
         None
     """
-
 ```
 
 </details>
@@ -499,8 +495,7 @@ Analysis of NASA Extra-Vehicular Activity (spacewalk) data from 1965-2013.
 
 ## Description
 
-This project analyses EVA data to calculate statistics about spacewalks
-and visualise the cumulative time astronauts have spent in space over time.
+This project analyses EVA data to calculate statistics about spacewalks and visualise the cumulative time astronauts have spent in space over time.
 
 ## Installation
 
@@ -558,17 +553,50 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 ## **3. Publishing software (45 minutes)**
 
-### **3.1** *Essential task:* Create a DOI
+### **3.1** *Essential task:* Create a DOI using Zenodo Sandbox + GitHub integration
 
-### Essential task: Create a DOI
+- **Description:** A digital object identifier (DOI) is a unique and persistent identifier that enables proper attribution and reproduction. [Zenodo](https://zenodo.org/) is a data archive run by CERN which allows anyone to upload data and receive a DOI. Zenodo is directly integrated with GitHub, and when you enable this integration, Zenodo will automatically archive a snapshot of your repository each time you make a release and mint a DOI for it.
+We use [Zenodo Sandbox](https://sandbox.zenodo.org/) (a testing clone of Zenodo) rather than the real Zenodo so that we do not pollute the "real" DOI space with test DOIs generated during the workshop. Remember that a DOI, once created, is meant to exist forever.
 
-- **Description:** A digital object identifier (DOI) is a unique and persistent identifier that enables proper attribution and reproduction. Zenodo is a data archiving tool that is commonly used to create DOIs for digital research objects. 
-- **Task:** In [Zenodo Sandbox](https://sandbox.zenodo.org/), log in or create an account via the menu in the top right corner.
-Note we are using Zenodo Sandbox rather than real Zenodo so we do not pollute the "real" DOI space with test DOIs we generate during the workshop.
-Then, go to “new upload” and add details about the project. Click the “reserve” button to get the DOI. 
-Include this DOI in the project README and in any other relevant documents such as the CITATION.cff file (created in the below task, Publishing: Add a CITATION.cff file). 
-Download the repository from GitHub as a compressed `.zip` file and upload the compressed repository to Zenodo. Add details of all contributors to the project in the Zenodo entry and include a link to the GitHub repository. 
-- **More information:** To learn more about depositing records on Zenodo, visit the records documentation page here: https://help.zenodo.org/docs/deposit/about-records/; Zenodo is also directly integrated with GitHub and allows you to mint a DOI for public repositories which you own. A tutorial for minting DOIs directly for GitHub repositories can be found here: https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content 
+- **Task:** Link your GitHub repository with Zenodo Sandbox and create a **pre-release** to obtain a DOI. Follow these steps:
+
+  1. Log in to Zenodo Sandbox via GitHub: Go to the [Zenodo Sandbox login page](https://sandbox.zenodo.org/login) and choose to log in with GitHub. Authorise Zenodo Sandbox to connect to your GitHub account when prompted.
+
+  2. Enable your repository in Zenodo Sandbox: Navigate to the [GitHub settings page](https://sandbox.zenodo.org/account/settings/github/) in your Zenodo Sandbox account (found in the drop-down menu with your username in the top-right corner). You will see a list of all your GitHub repositories. If your newly created repository does not appear, click the **"Sync"** button to refresh the list. Find your repository and toggle it **"On"**.
+
+  3. Create a pre-release on GitHub:
+    Go to your repository on GitHub and click on **"Releases"** (in the right-hand sidebar or under the "Code" tab). Click **"Draft a new release"**. Fill in the following:
+     - **Tag:** Create a new tag, e.g. `v0.1.0-alpha`
+     - **Release title:** e.g. *"v0.1.0-alpha — Initial pre-release for DOI minting"*
+     - **Description:** Briefly describe the current state of the software (e.g. *"Pre-release for workshop purposes. Code is being improved as part of the DH-RSE Summer School 2026."*)
+     - **Tick the "Set as a pre-release" checkbox** - this signals that the software is not yet production-ready.
+     - Click **"Publish release"**.
+
+     > **Why a pre-release?** A pre-release lets you mint a DOI and test the Zenodo integration without implying the software is finished or production-ready. You can create a full release later once the code is polished.
+
+  4. Verify the DOI on Zenodo Sandbox:
+     Go back to your [Zenodo Sandbox GitHub settings page](https://sandbox.zenodo.org/account/settings/github/) and refresh the page. Your repository should now appear in the **"Enabled"** list with a DOI badge. Click on the DOI to view the archived record.
+
+     Zenodo will have created **two DOIs** for you:
+     - A **concept DOI** that always resolves to the latest release (useful for citing the software as a whole).
+     - A **version-specific DOI** that always points to this particular release.
+
+  5. Add the DOI badge to your README:
+     On the Zenodo Sandbox record page, click on the DOI badge in the "Details" section. You will be shown the badge in various formats. Copy the *Markdown* version and paste it near the top of your `README.md`. For example:
+
+     ```markdown
+     [![DOI](https://sandbox.zenodo.org/badge/DOI/10.5072/zenodo.XXXXXX.svg)](https://doi.org/10.5072/zenodo.XXXXXX)
+     ```
+
+  6. Commit and push this change.
+
+- **More information:**
+  - Zenodo records documentation: <https://help.zenodo.org/docs/deposit/about-records/>
+  - Carpentries lesson on getting an identifier and archiving code: <https://carpentries-incubator.github.io/better-research-software/08-open-collaboration.html#getting-an-identifier-and-archiving-code>
+  - GitHub guide to referencing and citing content: <https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content>
+
+> [!WARNING]
+> **Browser compatibility note:** The integration between GitHub and Zenodo does not interact well with some browsers' privacy features and extensions. Firefox can be particularly problematic — if you encounter errors, try disabling privacy extensions or switching to another browser such as Chrome.
 
 ### **3.2** *Essential task:* Add a `LICENSE` file
 
@@ -576,9 +604,9 @@ Download the repository from GitHub as a compressed `.zip` file and upload the c
 The licence is a legal agreement between the software developer(s) and the users. 
 By default, any creative work (such as code) is under exclusive copyright, so the authors of open-source code must explicitly grant permission for others to use their work through a licence. 
 Depending on the needs of your project, there are many open-source licenses that may be appropriate. 
-You can find guidelines on choosing a licence at: https://choosealicense.com/, and the Open Source Initiative (OSI) also maintains a list of open-source and accredit licences here: https://opensource.org/licenses  
-- **Task:** Select a licence file appropriate for the given project and add it as a plain text file named LICENSE.txt in the top-most (root) project directory. 
-- **More information:** : For more information on licensing, we recommend the [Turing Way Handbook's guide on licencing](https://book.the-turing-way.org/reproducible-research/licensing) and https://www.data.cam.ac.uk/data-management-guide/choosing-software-licence.
+You can find guidelines on choosing a licence at: <https://choosealicense.com/>, and the Open Source Initiative (OSI) also maintains a list of open-source and accredit licences here: <https://opensource.org/licenses>  
+- **Task:** Select a licence file appropriate for the given project and add it as a plain text file named LICENSE.txt in the top-most (root) project directory.
+- **More information:** For more information on licensing, we recommend the [Turing Way Handbook's guide on licencing](https://book.the-turing-way.org/reproducible-research/licensing) and <https://www.data.cam.ac.uk/data-management-guide/choosing-software-licence>.
 
 ### **3.3** *Essential task:* Add a copyright statement
 
@@ -587,7 +615,7 @@ It is important to establish who owns the intellectual property and therefore wh
 All contributors to the project are considered copyright holders but sometimes, if the contributors are not students and the work was completed using time or resources provided by an employer, the contributor’s employer may hold the copyright. 
 This differs from institution to institution.
 - **Task:** Include a copyright statement at the beginning of your licence file, stating the copyright holders (in this case, yourself and the fictional post doc).
-- **More information:** : [The Legal Side of Open Source](https://opensource.guide/legal/).
+- **More information:** [The Legal Side of Open Source](https://opensource.guide/legal/).
 
 ### **3.4** *Essential task:* Add a `CITATION.cff` file
 
@@ -599,7 +627,7 @@ This differs from institution to institution.
   
 ### **3.5** *Essential task:* Release software on GitHub + Zenodo
 
-- **Description:** Once a software project has reached a milestone in its development, either in the development of new features or integration of new packages, a “release” of the package is created
+- **Description:** Once a software project has reached a milestone in its development, either in the development of new features or integration of new packages, a “release” of the package is created.
 - **Task:** Create an initial release of your project, following these instructions: <https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository>
 - **More information:** : <https://docs.github.com/en/repositories/releasing-projects-on-github>
 
