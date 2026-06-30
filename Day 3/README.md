@@ -35,7 +35,7 @@
 
 ### Trainers
 
-- [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute, Reseach Software Training Lead
+- [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute, Research Software Training Lead
 - [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Research Software Training Manager
 
 [byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
