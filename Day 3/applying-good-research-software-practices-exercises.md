@@ -208,13 +208,20 @@ There are additional unmarked variables in the script (e.g. `h`, `m`, `val`) tha
 <summary><i>Solution</i></summary>
 
 ```python
-input_file = 'eva_data.json'        # was f
-output_file = 'eva_data.csv'        # was o
-eva_df = pd.read_json(...)          # was d
-graph_file = 'cumulative_eva_graph.png'  # was g
-duration_hours_list = []            # was hrs / hrs2
-for duration_str in subset['duration']:   # was val
-    hours_part, minutes_part = duration_str.split(":")  # was h, m
+# File paths
+input_file = 'eva_data.json'              # was 'f'
+output_file = 'eva_data.csv'              # was 'o'
+graph_file = 'cumulative_eva_graph.png'   # was 'g'
+
+# DataFrames
+eva_df = pd.read_json(...)                # was 'd'
+
+# Duration conversion
+duration_hours_list = []                  # was 'hrs' / 'hrs2'
+
+for duration_str in subset['duration']:  # was 'val'
+    hours_part, minutes_part = duration_str.split(":")  # was 'h', 'm'
+    duration_hours_list.append(int(hours_part) + int(minutes_part) / 60)
 ```
 
 </details>
@@ -226,6 +233,15 @@ for duration_str in subset['duration']:   # was val
 - **Task:** The function `calculate_crew_size` is defined near the bottom of `eva_data_analysis.py` (marked with a `TODO`) but is never called anywhere in the script.
 Decide whether to remove it, or to actually use it by adding a `crew_size` column to the dataset - either is a reasonable choice, but document your decision in a comment.
 Similarly, variable `fieldnames` is unused and "pollutes" the code and should be removed.
+
+```python
+# DELETE this line
+fieldnames = ("EVA number", "Country", "Crew", "Vehicle", "Date", "Duration", "Purpose")
+
+# DELETE this function
+def calculate_crew_size(crew):
+    ...
+```
 
 ### **1.5** *Essential task:* Refactor the script into multiple functions and fix non-DRY code
 
@@ -328,7 +344,10 @@ By changing the script to accept input arguments, the analysis could be easily a
 ```python
 import sys
 
-input_file = sys.argv[1] if len(sys.argv) > 1 else 'eva_data.json'
+def main():
+    # Use command-line argument if provided, otherwise use default
+    input_file = sys.argv[1] if len(sys.argv) > 1 else 'eva_data.json'
+    # ... rest of main()
 ```
 
 </details>
@@ -339,7 +358,6 @@ input_file = sys.argv[1] if len(sys.argv) > 1 else 'eva_data.json'
 - **Description:** As above task, but allow to specify where result files get saved. The output CSV path (`o = 'eva_data.csv'`), the per-astronaut summary CSV (`dur_out = 'duration_by_astronaut.csv'`), and the graph image path (`g = 'cumulative_eva_graph.png'`) are all hardcoded, each marked with a `TODO Inputs` comment.
 - **Task:** Extend the command-line arguments so that the output locations can be customised, falling back to the current hardcoded values as defaults if not provided.
 
-
 ## **2. Software documentation**
 
 ### **2.1** *Essential task:* Add descriptive comments to code
@@ -349,6 +367,15 @@ They can explain the overall outline of the code, describe specific intent of ce
 In Python, comments begin with a hash (#) symbol on each line of the comment.
 - **Task:** Comments are provided throughout the project, but there are instances where comments are missing (indicated by the placeholder comment “Descriptive comment”), the comments are not sufficiently descriptive, or the formatting of comments is inconsistent. Step through the notebook and add or edit comments throughout to explain specific lines and blocks.
 - **More information:** : <https://realpython.com/python-comments-guide/>
+
+```python
+# Clean the data by removing any rows where duration is missing
+eva_df.dropna(axis=0, subset=['duration', 'date'], inplace=True)
+
+subset['crew'] = subset['crew'].str.split(';') # split crew field by semicolon to separate individual astronaut names.
+
+subset = subset.explode('crew') # separating lists of crew into individual rows
+```
 
 ### **2.2** *Essential task:* Add docstrings to functions
 
@@ -362,20 +389,74 @@ In Python, comments begin with a hash (#) symbol on each line of the comment.
 ```python
 def text_to_duration(duration):
     """
-    Convert a duration string in 'HH:MM' format into a decimal number of hours.
+    Convert a text format duration "HH:MM" to duration in hours
 
     Args:
-        duration (str): Duration formatted as 'HH:MM'.
+        duration (str): The text format duration
 
     Returns:
-        float: The equivalent duration in hours.
+        duration_hours (float): The duration in hours
     """
-    hours, minutes = duration.split(":")
-    return int(hours) + int(minutes) / 60
+    # ... rest of the function
+
+def read_json_to_dataframe(input_file):
+    """
+    Read the data from a JSON file into a Pandas dataframe.
+    Clean the data by removing any rows where the 'duration' value is missing.
+
+    Args:
+        input_file (file or str): The file object or path to the JSON file.
+
+    Returns:
+         eva_df (pd.DataFrame): The cleaned data as a dataframe structure
+    """
+    # ... rest of the function
+
+def write_dataframe_to_csv(df, output_file):
+    """
+    Write the dataframe to a CSV file.
+
+    Args:
+        df (pd.DataFrame): The input dataframe.
+        output_file (file or str): The file object or path to the output CSV file.
+
+    Returns:
+        None
+    """
+    # ... rest of the function
+
+def summary_duration_by_astronaut(df):
+    """
+    Summarise the duration data by each astronaut and saves resulting table to a CSV file
+
+    Args: 
+        df (pd.DataFrame): Input dataframe to be summarised
+    
+    Returns:
+        sum_by_astro (pd.DataFrame): Data frame with a row for each astronaut and a summarised column 
+    """
+    # ... rest of the function
+
+def plot_cumulative_time_in_space(df, graph_file):
+    """
+    Plot the cumulative time spent in space over years.
+
+    Convert the duration column from strings to number of hours
+    Calculate cumulative sum of durations
+    Generate a plot of cumulative time spent in space over years and
+    save it to the specified location
+
+    Args:
+        df (pd.DataFrame): The input dataframe.
+        graph_file (file or str): The file object or path to the output graph file.
+
+    Returns:
+        None
+    """
+
 ```
 
 </details>
-
 
 ### **2.3** *Essential task:* Add a README file
 
@@ -385,6 +466,66 @@ Include stepwise instructions on downloading and running the project and how to 
 Also include a message encouraging others to contribute to the project and outlining how contributions can be made. 
 Use the following template to organise the contents of the README: <https://ha0ye.github.io/CW21-README-tips/template_README.html>.
 - **More information:** : <https://book.the-turing-way.org/project-design/pd-overview/project-repo/project-repo-readme/>
+
+<details>
+<summary>Solution</summary>
+
+Your README.md could look something like this:
+
+# EVA Data Analysis
+
+Analysis of NASA Extra-Vehicular Activity (spacewalk) data from 1965-2013.
+
+## Description
+
+This project analyses EVA data to calculate statistics about spacewalks
+and visualise the cumulative time astronauts have spent in space over time.
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+   cd YOUR_REPO
+   ```
+
+2. Create and activate a virtual environment:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+Run the analysis script:
+```bash
+python eva_data_analysis.py
+```
+
+This will:
+- Read `eva_data.json`
+- Generate `eva_data.csv` (cleaned data)
+- Generate `duration_by_astronaut.csv` (summary statistics)
+- Generate `cumulative_eva_graph.png` (visualisation)
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## License
+
+[Your chosen license]
+
+## Authors
+
+- [Your name]
+
+</details>
 
 ### **2.4** *Optional task:* Go through a software quality checklist
 
