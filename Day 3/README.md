@@ -30,8 +30,8 @@
 
 - [Introduction](applying-good-research-software-practices-intro.md)
 - [Slides](https://docs.google.com/presentation/d/1cGyoB7HSrqk35a8xTNXVXz6ipUYTTMy981tuKxnzg-g/edit?usp=sharing)
-- [Tasks & exercises](applying-good-research-software-practices-exercises.md)
-- [Example code](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code)
+- [Exercises](applying-good-research-software-practices-exercises.md)
+- [Starter code](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code)
 
 ### Trainers
 
