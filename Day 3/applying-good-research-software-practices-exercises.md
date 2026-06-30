@@ -489,57 +489,57 @@ Use the following template to organise the contents of the README: <https://ha0y
 
 Your README.md could look something like this:
 
-# EVA Data Analysis
-
-Analysis of NASA Extra-Vehicular Activity (spacewalk) data from 1965-2013.
-
-## Description
-
-This project analyses EVA data to calculate statistics about spacewalks and visualise the cumulative time astronauts have spent in space over time.
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   cd YOUR_REPO
-   ```
-
-2. Create and activate a virtual environment:
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## Usage
-
-Run the analysis script:
-```bash
-python eva_data_analysis.py
-```
-
-This will:
-- Read `eva_data.json`
-- Generate `eva_data.csv` (cleaned data)
-- Generate `duration_by_astronaut.csv` (summary statistics)
-- Generate `cumulative_eva_graph.png` (visualisation)
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-
-[Your chosen license]
-
-## Authors
-
-- [Your name]
+> # EVA Data Analysis
+> 
+> Analysis of NASA Extra-Vehicular Activity (spacewalk) data from 1965-2013.
+> 
+> ## Description
+> 
+> This project analyses EVA data to calculate statistics about spacewalks and visualise the cumulative time astronauts have spent in space over time.
+> 
+> ## Installation
+> 
+> 1. Clone the repository:
+>    ```bash
+>    git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+>    cd YOUR_REPO
+>    ```
+> 
+> 2. Create and activate a virtual environment:
+>    ```bash
+>    python3 -m venv .venv
+>    source .venv/bin/activate
+>    ```
+> 
+> 3. Install dependencies:
+>    ```bash
+>    pip install -r requirements.txt
+>    ```
+> 
+> ## Usage
+> 
+> Run the analysis script:
+> ```bash
+> python eva_data_analysis.py
+> ```
+> 
+> This will:
+> - Read `eva_data.json`
+> - Generate `eva_data.csv` (cleaned data)
+> - Generate `duration_by_astronaut.csv` (summary statistics)
+> - Generate `cumulative_eva_graph.png` (visualisation)
+> 
+> ## Contributing
+> 
+> Contributions are welcome! Please open an issue or submit a pull request.
+> 
+> ## License
+> 
+> [Your chosen license]
+> 
+> ## Authors
+> 
+> - [Your name]
 
 </details>
 
