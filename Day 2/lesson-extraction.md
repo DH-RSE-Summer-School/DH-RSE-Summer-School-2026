@@ -3,12 +3,12 @@
 > ## Objectives
 > By the end of this lesson you will be able to:
 > - Load a set of records into the workflow canvas
-> - Run a small language model to extract structured fields from text
-> - Write a prompt that gets clean, structured output from a model
 > - Record a human "gold standard" answer for each record
-> - Write a rubric that lets an LLM judge score a model's extraction field by field
+> - Write a prompt that gets clean, structured output from a model
+> - Run a small language model to extract structured fields from text
 > - Score the outputs yourself and compare against the judge
-> - Read the results in a comparison report
+> - Write a rubric that lets an LLM judge score a model's extraction field by field
+> - Read the results in a comparison report!
 
 > ## Prerequisites
 > - You have completed PoC orientation (placing and connecting nodes)
