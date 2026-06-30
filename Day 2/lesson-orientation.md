@@ -54,7 +54,7 @@ Add a **GBIF Search** node from the *Search* group. The node has its own search 
 <details>
 <summary>▸ Stuck? Reveal</summary>
 
-1. Sidebar → *Search* → click **GBIF Search**. It appears on the canvas.
+1. Sidebar → *Data Services* → click **GBIF Search**. It appears on the canvas.
 2. Type `mammoth` in the node's search box and click **Search**. A record count appears at the bottom of the node.
 3. Sidebar → *Output* → click **Table Output**.
 4. Drag from the GBIF Search node's right-hand handle to the Table Output's left-hand handle. The table fills with records.
