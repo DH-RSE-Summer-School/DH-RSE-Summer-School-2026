@@ -16,24 +16,25 @@
 
 ## Version Control for Digital Humanists
 
-Blurb
+### Trainers
 
-## Sustainable Software Practices
+- [Phil Reed](https://github.com/philreeddata), University of Manchester, SSI Fellow, Office for Open Research Fellow
+- [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Training and Community Manager
+
+
+## Good Practices for Sustainable Software & Reproducible Research
 
 - [Introduction](applying-good-research-software-practices-intro.md)
 - [Slides](https://docs.google.com/presentation/d/1cGyoB7HSrqk35a8xTNXVXz6ipUYTTMy981tuKxnzg-g/edit?usp=sharing)
 - [Tasks & exercises](applying-good-research-software-practices-exercises.md)
 - [Example code](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code)
 
-## Speakers and Trainers
+### Trainers
 
-- [Phil Reed](https://github.com/philreeddata), University of Manchester, SSI Fellow, Office for Open Research Fellow
-- [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Training and Community Manager
 - [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute, Reseach Software Training Lead
+- [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Training and Community Manager
 
-## On-the-day Slides and Instructions
 
-Here
 
 [byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
 [swc-git-novice]: https://swcarpentry.github.io/git-novice/
