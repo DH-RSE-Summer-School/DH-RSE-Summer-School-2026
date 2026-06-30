@@ -22,7 +22,7 @@
 - [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Training and Community Manager
 
 
-## Good Practices for Sustainable Software & Reproducible Research
+## Building Better Research Software
 
 - [Introduction](applying-good-research-software-practices-intro.md)
 - [Slides](https://docs.google.com/presentation/d/1cGyoB7HSrqk35a8xTNXVXz6ipUYTTMy981tuKxnzg-g/edit?usp=sharing)
