@@ -3,11 +3,11 @@
 ## Tentative Schedule
 
 - 09:10-10:30 Version Control for Digital Humanists (Part 1)
-  - Track 1: Beginner track
+  - Track 1: [Beginner track][version-control-2026]
   - Track 2: [Intermediate track][byte-sized-rse-intermediate-git]
 - 10:30-11:00 BREAK
 - 11:00-12:30 Version Control for Digital Humanists (Part 2)
-  - Track 1: Beginner track
+  - Track 1: [Beginner track][version-control-2026]
   - Track 2: [Intermediate track][byte-sized-rse-intermediate-git]
 - 12:30-13:30 LUNCH
 - 13:30-15:00 [Building Better Research Software - good practices for sustainable software & reproducible research][applying-sustainable-practices] (Part 1)
@@ -41,3 +41,4 @@
 [byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
 [swc-git-novice]: https://swcarpentry.github.io/git-novice/
 [applying-sustainable-practices]: https://github.com/DH-RSE-Summer-School/DH-RSE-Summer-School-2026/blob/main/Day%203/README.md#building-better-research-software
+[version-control-2026]: https://github.com/PhilReedData/version-control-2026
