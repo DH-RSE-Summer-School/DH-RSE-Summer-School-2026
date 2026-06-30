@@ -15,6 +15,11 @@
 
 Blurb
 
+## LLM Jargon and comparison practical
+
+A light end-of-day session to look at some of the jargon that surrounds LLMs, particularly with regard to benchmarks.
+We work through a pipeline to compare performance on an entity extraction task.
+
 ## Speakers and Trainers
 
 - [Neil Jakeman](https://kdl.kcl.ac.uk/about/people/neil-jakeman/), King's College London
