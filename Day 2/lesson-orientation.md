@@ -73,23 +73,23 @@ Alternatively, after Step 2, drag from the GBIF Search output handle onto empty 
 
 A **Param** node holds a single value — a text string, a number, a URL — and supplies it to any node you connect it to. Storing the search term in a Param means you change it once in the Param, not inside the search node itself. You'll use the same pattern in the next stage for an API key.
 
-Clear the canvas (or just leave the GBIF pipeline where it is and work below it). Add a **Param** node and an **ADS Advanced Search** node, connect Param → ADS Advanced Search, and then connect ADS Advanced Search → a new Table Output.
+Clear the canvas (or just leave the GBIF pipeline where it is and work below it). Add a **Param** node and an **Ariadne Search** node, connect Param → Ariadne Search, and then connect Ariadne Search → a new Table Output.
 
 <details>
 <summary>▸ Stuck? Reveal</summary>
 
 1. Sidebar → *Input* → **Param**. Set Type to *Text*, Value to `Stonehenge`.
 2. Sidebar → *Data Services* → **Ariadne Search**.
-3. Drag from Param's output handle to ADS Advanced Search's `query` input handle.
-4. Connect ADS Advanced Search's output handle to a new **Table Output** node.
-5. Click **Search** on the ADS Advanced Search node.
+3. Drag from Param's output handle to Ariadne Search's `query` input handle.
+4. Connect Ariadne Search's output handle to a new **Table Output** node.
+5. Click **Search** on the Ariadne node.
 
 </details>
 
-The results will appear in the table — but you may not see much beyond a title and some identifiers. Look at the Table Output toolbar: click **Show All columns**. A lot more columns appear. Scroll right to find the `description` column (it may appear as `ads.description` — try also enabling **Expand namespaces** in the toolbar to flatten namespace prefixes into plain column names).
+The results will appear in the table — but you may not see much beyond a title and some identifiers. Look at the Table Output toolbar: click **Show All columns**. A lot more columns appear. Scroll right to find the `description` column (it may appear as `ariadne.description` — try also enabling **Expand namespaces** in the toolbar to flatten namespace prefixes into plain column names).
 
 > ## Why is `description` hidden by default?
-> ARIADNE records carry many fields. By default Table Output shows a curated subset — the ones that are most commonly useful. **Show All columns** reveals everything, including fields nested inside namespace sub-objects like `ads`. The `description` field lives inside the `ads` namespace and is not shown by default. Enabling **Expand namespaces** additionally flattens `ads.description` into a plain `description` column that reads more cleanly in the table and in downstream node field pickers.
+> ARIADNE records carry many fields. By default Table Output shows a curated subset — the ones that are most commonly useful. **Show All columns** reveals everything, including fields nested inside namespace sub-objects like `ariadne`. The `description` field lives inside the `ariadne` namespace and is not shown by default. Enabling **Expand namespaces** additionally flattens `ariadne.description` into a plain `description` column that reads more cleanly in the table and in downstream node field pickers.
 
 > ## Checkpoint
 > You can see archaeological site records with a `description` column containing free text about each site. Read a few descriptions — the text varies in length and style. That variation is exactly what makes it interesting to run a language model over.
@@ -118,7 +118,7 @@ Add a second **Param** node, set its Type to *Text*, and paste your KCL API key 
 
 Now configure the inference node:
 
-- **Field**: select `description` (or `ads.description` if that's what appears in the dropdown).
+- **Field**: select `description` (or `ariadne.description` if that's what appears in the dropdown).
 - **Model**: `arc:lite` is a good balance of speed and quality for this task.
 - **Temperature**: 0 (makes the output repeatable — run twice, get the same results).
 - **Output field**: `kcl_places`.
