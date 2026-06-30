@@ -2,7 +2,7 @@
 
 ## Tentative Schedule
 
-- 09:00-10:30 Version Control for Digital Humanists (Part 1)
+- 09:10-10:30 Version Control for Digital Humanists (Part 1)
   - Track 1: Beginner track
   - Track 2: [Intermediate track][byte-sized-rse-intermediate-git]
 - 10:30-11:00 BREAK
@@ -19,7 +19,7 @@
 ### Trainers
 
 - [Phil Reed](https://github.com/philreeddata), University of Manchester, SSI Fellow, Office for Open Research Fellow
-- [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Training and Community Manager
+- [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Research Software Training Manager
 
 
 ## Building Better Research Software
@@ -32,9 +32,7 @@
 ### Trainers
 
 - [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute, Reseach Software Training Lead
-- [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Training and Community Manager
-
-
+- [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Research Software Training Manager
 
 [byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
 [swc-git-novice]: https://swcarpentry.github.io/git-novice/
