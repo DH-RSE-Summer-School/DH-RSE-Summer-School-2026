@@ -10,7 +10,7 @@
 
 > ## Prerequisites
 > - You have completed **Evaluation 1 — Extraction** (you'll reuse the same pipeline shape)
-> - You have `uk_whs.csv` loaded, or a few records in Param nodes
+> - You have the World Heritage Site records loaded
 
 In the extraction task, the answers sat plainly in the text. This task is different. We ask the model what each site is **significant for** — the underlying reason it matters, beyond what it physically is. That is **interpretation**, and reasonable people will word it differently. There is no clean answer key.
 
@@ -20,18 +20,21 @@ The pipeline is almost the same as Evaluation 1, with one addition — a **human
 
 ```
 Source → Inference (arc:nano) → QuickNote (gold standard)
-       → Evaluator → QuickNote (your human score) → Comparison Report
+       → Evaluator → QuickNote (human score) → Comparison Report
 ```
+
+> ## How this lesson works
+> As before: each stage gives you the **goal and the why**, and you work out the *how*. Reveal boxes are there if you're stuck. You've built most of this pipeline already in Evaluation 1, so lean on that.
 
 ---
 
 ## Stage 1 — Set up the pipeline
 
-If you still have the canvas from Evaluation 1, you can reuse most of it. Otherwise rebuild the start quickly:
+**Goal:** get back to a working Source → Inference pipeline, but this time the model is asked for an *interpretation*, not fields.
 
-1. **Source** node loaded with `uk_whs.csv` (or a few Param nodes).
-2. **Inference** node connected to the source, model **`arc:nano`**, **temperature 0**, output field `inference_output`.
-3. In the inference prompt box, paste this **interpretation** prompt:
+If you still have the canvas from Evaluation 1, reuse it — you only need to change the inference prompt. Otherwise rebuild the start: a Sample data source with the World Heritage records, and an Inference node fed from it, set to the small model and made repeatable (same two decisions as last time).
+
+The new **interpretation** prompt to paste into the inference node:
 
 ```
 In one sentence, state what this World Heritage Site is most significant FOR —
@@ -41,7 +44,15 @@ description of what it physically is. Use only the text provided.
 Description: {{description}}
 ```
 
-4. Click **Run**.
+<details>
+<summary>▸ Stuck? Reveal the settings</summary>
+
+- Source: Sample data → World Heritage Site package.
+- Inference node fed from the source, model **`arc:nano`**, temperature **0**.
+- Paste the interpretation prompt above; output field **`inference_output`**.
+- Click **Run**.
+
+</details>
 
 > ## Checkpoint
 > Each record has an `inference_output` containing a one-sentence significance claim. Read a few — notice they're prose, not neat fields. That's what makes scoring them harder.
@@ -50,13 +61,20 @@ Description: {{description}}
 
 ## Stage 2 — Write the gold standard (as prose this time)
 
-For extraction we used structured fields. For interpretation, the gold standard is a **sentence** — your reading of what the site is really significant for. So we use QuickNote in **Note** mode (free text), not Structured.
+For extraction we used structured fields. For interpretation, the gold standard is a **sentence** — your reading of what the site is really significant for.
 
-1. Add a **QuickNote** node, connected to the inference node.
-2. Set its mode to **Note** (the first of *Note · Structured · Score*).
-3. Set the **display field** to `description` so you can read the source.
-4. Set the **target field** to `_note`.
-5. For each record, write one sentence capturing the *significance* — not a description of what the thing is.
+**Goal:** record one sentence per record capturing the *significance* — not a description of what the thing is. Because it's prose, you use QuickNote in **Note** mode this time, not Structured.
+
+Add a **QuickNote** node, set it to **Note** mode (the first of *Note · Structured · Score*), point it at the source text to read, and have it write to `_note`. Then write a significance sentence for each record.
+
+<details>
+<summary>▸ Stuck? Reveal the configuration</summary>
+
+- Mode: **Note** (free text, the first option).
+- Display field: **`description`**.
+- Target field: **`_note`**.
+
+</details>
 
 Some worked readings (yours may differ — that's expected and important):
 
@@ -69,7 +87,6 @@ Some worked readings (yours may differ — that's expected and important):
 > ## These are readings, not facts
 > Notice "paternalism" (Saltaire) carries a mild judgement — UNESCO's own wording does too. Another annotator might write "philanthropy", which sounds approving rather than critical. Both are defensible. Hold on to that thought — it's the heart of this lesson.
 
-
 > ## Checkpoint
 > Each record has a `_note` containing your one-sentence reading. Unlike extraction, this is prose, not JSON.
 
@@ -77,10 +94,9 @@ Some worked readings (yours may differ — that's expected and important):
 
 ## Stage 3 — Judge the model
 
-1. Add an **Evaluator** node, connected to the QuickNote.
-2. **Reference** field → `_note`; **Candidate** field → `inference_output`.
-3. Judge model → **`arc:nexus`** (different from the model being judged).
-4. Paste the same two-criterion rubric you used in Evaluation 1:
+**Goal:** have the LLM judge score the model's interpretation against your reading, using the same two-criterion rubric as before.
+
+Add an **Evaluator** node after the QuickNote. Set the reference and candidate fields, and pick a judge model that *isn't* the one being judged. Paste the rubric.
 
 ```
 You are scoring a model's response against a human gold-standard annotation.
@@ -108,7 +124,15 @@ Respond with ONLY this JSON, no other text:
 {"c1_reason":"","c1":0,"c2_reason":"","c2":0}
 ```
 
-5. Temperature **0**. Click **Judge**. **Save the workflow** (keeps your prompts safe on reload).
+<details>
+<summary>▸ Stuck? Reveal the settings</summary>
+
+- Reference field: **`_note`**; Candidate field: **`inference_output`**.
+- Judge model: **`arc:nexus`** (different from the candidate).
+- Paste the rubric; temperature **0**; click **Judge**.
+- **Save the workflow** afterwards so your prompts survive a reload.
+
+</details>
 
 > ## Checkpoint
 > Each annotated record has judge scores. Look at a few of the judge's one-sentence reasons — do you agree with them? Hold any disagreements; the next stage is where you record your own view.
@@ -119,16 +143,23 @@ Respond with ONLY this JSON, no other text:
 
 Here's the step extraction didn't have. You will now score the **same model outputs yourself**, on the **same two criteria** the judge used. Then we can ask: *does the LLM judge agree with a human?*
 
-1. Add another **QuickNote** node, connected to the **Evaluator** node's output.
-2. Set its mode to **Score** (the last of *Note · Structured · Score*).
-3. Configure the criteria to **mirror the rubric exactly**:
-   - `c1` quality — scale **0, 1, 2**
-   - `c2` fabrication — scale **0, 1**
-4. Set the **display field** to `inference_output` so you can see the model's answer while you score it.
-5. Go through the records and score each one by clicking the buttons. Optionally add a one-line reason.
+**Goal:** record your own 0–2 quality and 0–1 fabrication scores for each output, so they can be compared against the judge's.
+
+Add another **QuickNote** node after the **Evaluator**, and put it in **Score** mode (the last of *Note · Structured · Score*). Configure the criteria to **mirror the rubric exactly**, and point it at the model's output so you can see what you're scoring. Then click through the records scoring each one.
 
 > ## Why mirror the rubric?
-> The whole point of this stage is to compare your scores against the judge's. That only works if you're both scoring the *same criteria on the same scale*. If your scale doesn't match, the comparison is meaningless.
+> The whole point is to compare your scores against the judge's. That only works if you're both scoring the *same criteria on the same scale*. If your scale doesn't match, the comparison is meaningless.
+
+<details>
+<summary>▸ Stuck? Reveal the configuration</summary>
+
+- Mode: **Score** (the last option).
+- Criteria: `c1` quality, scale **0, 1, 2**; `c2` fabrication, scale **0, 1**.
+- Display field: **`inference_output`** (so you see the model's answer while scoring).
+- Target field: **`human_score`**.
+- Click the buttons to score each record; optional one-line reason.
+
+</details>
 
 > ## You click; the tool structures it
 > Just like the structured gold standard, you never type JSON here. You click 0, 1 or 2 and the node records it cleanly. No malformed scores possible.
@@ -140,27 +171,36 @@ Here's the step extraction didn't have. You will now score the **same model outp
 
 ## Stage 5 — Compare judge against human
 
-1. Add a **Comparison Report** node, connected to the human-score QuickNote.
-2. Map the columns:
-   - *original* → `description`
-   - *note* → `_note`
-   - *response* → `inference_output`
-   - *judge score* → the evaluator's score field
-   - *human score* → `human_score`
-3. Read the **cards**: each shows the source, your reading, the model's answer, and the two scores side by side, with agreement or disagreement flagged.
-4. Read the **summary** at the top: how often did the judge and you agree, per criterion, across the records you scored.
+**Goal:** see where the LLM judge and you agreed, and find the records where you disagreed.
 
-> ## Clear denominators
+Add a **Comparison Report** node after the human-score QuickNote, and map its columns — including both the judge score and your human score.
+
+<details>
+<summary>▸ Stuck? Reveal the mapping</summary>
+
+- *original* → `description`
+- *note* → `_note`
+- *response* → `inference_output`
+- *judge score* → the evaluator's score field
+- *human score* → `human_score`
+
+</details>
+
+Read the **cards** (source, your reading, the model's answer, both scores side by side with agreement flagged) and the **summary** at the top (how often judge and you agreed, per criterion, across the records you scored).
+
+> ## Honest denominators
 > The summary only counts records you actually scored. If you scored 8 of 32, it says "agreed on 7/8", not "7/32". Un-scored records are never quietly treated as agreement.
 
 > ## Checkpoint
-> You can now see, at a glance, where the LLM judge and you agreed — and exactly which records you disagreed on. Use the filter to show just the disagreements.
+> You can see, at a glance, where the LLM judge and you agreed — and exactly which records you disagreed on. Use the filter to show just the disagreements.
 
 ---
 
 ## Stage 6 — The twist: swap gold standards
 
 This is the part that makes the lesson land. Find another pair who scored the **same records**.
+
+**Goal:** see whether the model's scores change when judged against a *different person's* reading of the same sites.
 
 1. Swap your `_note` gold-standard readings with theirs (the prose, not the scores).
 2. Re-run the **Evaluator** using *their* `_note` as the reference, against the *same* `inference_output`.
@@ -178,12 +218,11 @@ This is the part that makes the lesson land. Find another pair who scored the **
 > - **Confident over-reading.** Did any model assert Stonehenge was "an astronomical calendar"? The text only says its significance is "still being explored". Stating it as settled fact is over-reading — the *fabrication* criterion should catch it.
 > - **Did the judge agree with you?** Where you and the LLM judge diverged, who was right? Sometimes the judge; sometimes you. That uncertainty is the honest finding.
 
-> ## Optional — compare two models
-> Run the interpretation prompt on `arc:apex` as well, into `inference_output_apex`, and judge it too. The quality gap between `arc:apex` and `arc:nano` is usually clearer here than it was for extraction — because interpretation is where a bigger model earns its keep.
+> ## Stretch — compare two models
+> Run the interpretation prompt on `arc:apex` as well, into a new field `inference_output_apex`, and judge it too. The quality gap between `arc:apex` and `arc:nano` is usually clearer here than it was for extraction — because interpretation is where a bigger model earns its keep. Did it?
 
 > ## Key points
 > - Interpretation has **no single right answer** — the gold standard is a *reading*, not a fact.
 > - Scoring the model yourself, on the **same criteria** as the judge, lets you check whether the judge can be trusted.
 > - Two reasonable gold standards can rank the same answer differently — so **"which model is better" depends on whose standard you use**.
 > - This is the same problem as bias in interpreting the past: you can't remove it, only make your criteria explicit.
-

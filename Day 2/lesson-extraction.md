@@ -22,36 +22,47 @@ Source  →  Inference (arc:nano)  →  QuickNote (gold standard)  →  Evaluato
 
 Don't worry if that looks like a lot. We add one node per stage and check it works before moving on.
 
+> ## How this lesson works
+> Each stage tells you **what you're trying to achieve and why** — then invites you to work out *how* on the canvas. Have a real go first. If you get stuck, every tricky step has a **▸ Stuck? Reveal** box with the exact answer. Using it isn't cheating; working it out first is just where the learning happens.
+
 ---
 
 ## Stage 1 — Load the records onto the canvas
 
-1. On the canvas, open the node sidebar.
-2. Add a **Sample data** node (under *Source*).
-3. Choose the World Heritage Site package and load the CSV.
-4. The node should report how many records it has loaded.
+**Goal:** get a set of World Heritage Site records onto the canvas and confirm you can see their `description` text in a table.
 
-5. Add a **Table Output** node (under *Output*).
-6. Connect the source node's output handle to the Table Output's input handle (drag from the small circle on the right of the source to the circle on the left of the table).
+Open the node sidebar and look in the *Source* group for a node that supplies sample data. Add it, choose the World Heritage Site package, and load it. Then add a **Table Output** node (in *Output*) and connect the two so you can see what loaded.
 
 > ## Connecting nodes
-> Nodes are joined by dragging from an **output handle** (right side of a node) to an **input handle** (left side of the next). If a connection won't "take", check you started from the right-hand circle.
+> Nodes are joined by dragging from an **output handle** (the small circle on the *right* of a node) to an **input handle** (the circle on the *left* of the next). If a connection won't "take", check you started from the right-hand circle.
 
+<details>
+<summary>▸ Stuck? Reveal</summary>
+
+1. In the sidebar, under *Source*, add a **Sample data** node.
+2. Choose the **World Heritage Site** package and load the CSV.
+3. Add a **Table Output** node from the *Output* group.
+4. Drag from the Sample data node's right-hand handle to the Table Output's left-hand handle.
+
+</details>
 
 > ## Checkpoint
-> The Table Output should now show your records, with a `description` column containing the UNESCO 'description' text. If the table is empty, re-check the connection and that the source actually loaded the file.
+> The Table Output shows your records, with a `description` column containing the UNESCO text. If it's empty, re-check the connection and that the source actually loaded.
 
 ---
 
 ## Stage 2 — Run the model (the extraction)
 
-Now we ask `arc:nano` to extract four fields from each description.
+**Goal:** get `arc:nano` to read each description and return the four fields — place, period, site type, nation — as JSON in a new field called `inference_output`.
 
-1. Add an **Inference** node (the KCL inference by field node).
-2. Connect the **source** node's output to the inference node's input.
-3. Set the model to **`arc:nano`**.
-4. Set the **temperature to 0**. This makes the model's output repeatable — run it twice and you get the same answer, which an evaluation needs.
-5. In the prompt box, paste:
+Add an **Inference** node and feed it from your source. Two decisions matter here, and they're worth thinking about rather than being told:
+
+- **Which model?** You want the *small, fast* one for this task — part of the point is to see how well a small model copes. Which of the ARC models is the small one?
+- **Should the output be repeatable?** An evaluation needs the model to give the *same* answer if you run it twice. There's a setting that controls randomness — what should it be for repeatability?
+
+Then give it the prompt below, and set the output field.
+
+The prompt to paste:
 
 ```
 Extract the following four fields from the site description. Use ONLY the
@@ -63,58 +74,69 @@ Respond as JSON:
 {"place":"","period_or_date":"","site_type":"","nation":""}
 ```
 
-6. Set the **output field** to `inference_output`.
-7. Click **Run**.
-
 > ## What is `{{description}}`?
-> The double-brace token is a substitition placeholder. For each record, the tool swaps `{{description}}` for that record's actual description before sending it to the model. You'll use the same trick to point other nodes at other fields.
+> The double-brace token is a substitution placeholder. For each record, the tool swaps `{{description}}` for that record's actual description before sending it to the model. You'll use the same trick to point other nodes at other fields.
+
+<details>
+<summary>▸ Stuck? Reveal the settings</summary>
+
+- Model: **`arc:nano`** (the small one).
+- Temperature: **0** (makes the output repeatable — run twice, get the same answer).
+- Paste the prompt above.
+- Output field: **`inference_output`**.
+- Click **Run**.
+
+</details>
 
 > ## Checkpoint
-> Connect a Table Output to the inference node (or reuse the one from Stage 2). Each record should now have an `inference_output` field containing a small JSON object like `{"place":"Wiltshire","period_or_date":"prehistoric",...}`. The exact values don't matter yet — we just need the column to appear.
+> Connect a Table Output to the inference node. Each record now has an `inference_output` field containing a small JSON object like `{"place":"Wiltshire","period_or_date":"prehistoric",...}`. The exact values don't matter yet — we just need the column to appear.
 
 ---
 
 ## Stage 3 — Write the gold standard
 
-The model has produced an answer. To judge it, we need to know what a **correct** answer looks like. You provide that — it's the "gold standard". We use the **QuickNote** node in **Structured** mode so you can type plain values into boxes instead of writing JSON yourself.
+To judge the model's answer, we need to know what a **correct** answer looks like. You provide that — it's the "gold standard".
 
-1. Add a **QuickNote** node.
-2. Connect the **inference** node's output to it.
-3. Set its mode to **Structured** (the mode selector reads *Note · Structured · Score* — choose the middle one).
-4. Configure the fields once, to match the extraction schema:
-   - `place` — label "Place"
-   - `period_or_date` — label "Period / date"
-   - `site_type` — label "Site type"
-   - `nation` — label "Nation"
-5. Set the **display field** to `description` (so you can read the source while you annotate).
-6. Set the **target field** to `_note`.
-7. Now go through each record and fill the four boxes from the description. Keep dates **as the text states them** — if it says "second half of the 19th century", write exactly that, *not* "1850".
+**Goal:** for each record, record the correct place / period / site type / nation, so there's something to judge the model against. We use the **QuickNote** node in **Structured** mode so you type plain values into boxes — the node builds the JSON for you, so you never type a brace or quote.
+
+Add a **QuickNote** node after the inference node. Put it in **Structured** mode (the mode selector reads *Note · Structured · Score*). Configure the four fields once, point it at the right source field to read while you annotate, and choose where it writes.
+
+Then work through the records. One rule that matters: **keep dates as the text states them.** If the description says "second half of the 19th century", write exactly that — *not* "1850".
 
 > ## Why type it as the text says, not more precisely?
 > If the description is vague, the correct answer is vague. Writing "1850" when the text only says "second half of the 19th century" invents precision. Later you'll see the model do exactly this — and your honest gold standard is what catches it.
 
+<details>
+<summary>▸ Stuck? Reveal the configuration</summary>
+
+- Mode: **Structured** (the middle option).
+- Fields: `place` (label "Place"), `period_or_date` ("Period / date"), `site_type` ("Site type"), `nation` ("Nation").
+- Display field: **`description`** (so you can read the source while annotating).
+- Target field: **`_note`**.
+- Then fill the four boxes per record from the description.
+
+</details>
 
 > ## You don't have to annotate every record
 > Even a handful of annotated records is enough to learn from. Records you leave un-annotated simply won't get a quality score — that's fine.
 
 > ## Checkpoint
-> Each record you annotated now has a `_note` field containing a clean JSON object with your four values. You never typed a brace or a quote — the node built the JSON for you.
+> Each record you annotated has a `_note` field containing a clean JSON object with your four values. You never typed a brace or a quote — the node built the JSON for you.
 
 ---
 
 ## Stage 4 — Judge the model against the gold standard
-Now an LLM judge compares the model's `inference_output` against your `_note` and scores it.
 
-1. Add an **Evaluator** node.
-2. Connect the **QuickNote** node's output to it.
-3. Set the **Reference** field to `_note` (your gold standard).
-4. Set the **Candidate** field to `inference_output` (the model's answer).
-5. Set the **judge model** to **`arc:nexus`**.
+**Goal:** have an LLM judge compare the model's `inference_output` against your `_note` gold standard and score it.
 
-> ## Why a different model for the judge?
-> The judge should not be the same model that produced the answer — a model marking its own work is biased toward liking it. `arc:nano` answered, so `arc:nexus` judges.
+Add an **Evaluator** node after the QuickNote. You need to tell it which field is the *reference* (your gold standard) and which is the *candidate* (the thing being judged), and choose a judge model.
 
-6. In the rubric box, paste:
+One decision worth pausing on: **which model should judge?**
+
+> ## Which model should be the judge?
+> Not the same one that produced the answer. A model marking its own work is biased toward liking it. `arc:nano` answered — so pick a *different* model to judge. `arc:nexus` is a good choice.
+
+Then paste the rubric below.
 
 ```
 You are scoring a model's response against a human gold-standard annotation.
@@ -142,31 +164,46 @@ Respond with ONLY this JSON, no other text:
 {"c1_reason":"","c1":0,"c2_reason":"","c2":0}
 ```
 
-7. Check the temperature is **0** (it should be fixed).
-8. Click **Judge**.
+<details>
+<summary>▸ Stuck? Reveal the settings</summary>
+
+- Reference field: **`_note`**.
+- Candidate field: **`inference_output`**.
+- Judge model: **`arc:nexus`** (different from the candidate).
+- Paste the rubric above.
+- Temperature: **0** (should be fixed).
+- Click **Judge**.
+
+</details>
 
 > ## Save your work now
-> Save the workflow as a JSON file (export/save). This preserves every node's settings — **including your pasted prompts** — so an accidental page reload won't lose them. Save again whenever you've edited a prompt.
+> Save the workflow as a JSON file. This preserves every node's settings — **including your pasted prompts** — so an accidental page reload won't lose them. Save again whenever you've edited a prompt. (Treat this as normal practice, not a chore — it's how you protect your work in any tool.)
 
 > ## Checkpoint
-> Each annotated record now has evaluation scores (`eval_c1`, `eval_c2`, or similar). Records you didn't annotate are marked as not scored rather than getting a made-up score.
+> Each annotated record now has evaluation scores (`eval_c1`, `eval_c2`, or similar). Records you didn't annotate are marked as not scored, rather than getting a made-up score.
 
 ---
 
 ## Stage 5 — Read the results
 
-1. Add a **Comparison Report** node.
-2. Connect the **Evaluator** node's output to it.
-3. Map the report's columns to your fields:
-   - *original* → `description`
-   - *note* → `_note`
-   - *response* → `inference_output`
-   - *judge score* → the evaluator's score field
-4. The report shows one **card per record**: the source text, your gold standard, the model's answer, and the judge's score, laid out to read.
-5. At the top, a **summary** shows how the model did across all your scored records.
+**Goal:** see, per record and in summary, what the model extracted and how the judge scored it.
+
+Add a **Comparison Report** node after the Evaluator. It needs to know which field plays which role in the report — map the source text, your note, the model's response, and the judge's score to the right fields.
+
+<details>
+<summary>▸ Stuck? Reveal the mapping</summary>
+
+- *original* → `description`
+- *note* → `_note`
+- *response* → `inference_output`
+- *judge score* → the evaluator's score field
+
+</details>
+
+The report shows one **card per record** — source text, your gold standard, the model's answer, the judge's score — and a **summary** at the top across all your scored records.
 
 > ## Checkpoint
-> You can now read, per record, what the model extracted and how the judge scored it — and at a glance, how well `arc:nano` did overall.
+> You can read, per record, what the model extracted and how the judge scored it — and at a glance, how well `arc:nano` did overall.
 
 ---
 
@@ -177,11 +214,8 @@ Respond with ONLY this JSON, no other text:
 > - **Stated vs inferred.** For Ironbridge, the text names Coalbrookdale but not the county. If the model added "Shropshire" — correct, but not *stated* — is that good extraction or outside knowledge creeping in? There's no single right answer; that's worth a conversation.
 > - **Was the small model good enough?** For clear extraction from short text, `arc:nano` is often nearly as good as a much larger model.
 
-
-> ## Optional — compare two models
-> Repeat Stage 3 with the model set to `arc:apex`, writing to a new field `inference_output_apex`, and add a second Evaluator and Comparison Report for it. Now compare: did the big model actually do better on this task? Often, for extraction, it barely does.
-
-
+> ## Stretch — try it on your own data
+> Find another dataset on the canvas (or wire up a different source), and run the *same* pipeline on it. You'll need to adjust the fields to whatever suits the new records. What breaks? Does the model cope as well with messier or longer text? This is where you find out how robust the approach really is.
 
 > ## Key points
 > - An evaluation needs a **gold standard** — a human-made correct answer to compare against.
