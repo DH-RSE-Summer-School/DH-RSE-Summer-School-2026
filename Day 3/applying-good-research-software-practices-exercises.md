@@ -619,11 +619,71 @@ This differs from institution to institution.
 
 ### **3.4** *Essential task:* Add a `CITATION.cff` file
 
-- **Description:** Adding a citation file provides clear information on how to cite your work and ensures authors receive credit for their software development work while improving dissemination and software sustainability. The citation file format (cff) provides citation metadata for software in a human- and machine-readable format.
-- **Task:** Include a CITATION.cff file in the top-most (root) directory of the project repository, using the `example_citation.cff` file in the repository as a template.
-- **More information:** : <https://citation-file-format.github.io/>, <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files>
+- **Description:** Adding a citation file provides clear information on how to cite your work and ensures authors receive credit for their software development work while improving dissemination and software sustainability. The Citation File Format (CFF) provides citation metadata for software in a human- and machine-readable format.
+- **Task:** Use the [cffinit](https://citation-file-format.github.io/cff-initializer-javascript/) web application to create a valid `CITATION.cff` file for your project, then add it to the root directory of your repository.
+
+  Follow these steps:
+
+  1. Go to cffinit: Open your browser and navigate to <https://citation-file-format.github.io/cff-initializer-javascript/>
+  2. Start creating your file: Click **"Create"** to begin. You will see a form on the left and a live preview of your `CITATION.cff` file on the right.
+  3. Fill in the basic information.
+  4. Validate and download: The cffinit tool validates your file automatically as you fill in the fields. When there are no errors (no red highlights), click **"Download"** to save your `CITATION.cff` file.
+  5. Add to your repository
+  6. Verify on GitHub: After pushing, visit your repository on GitHub. You should see a "Cite this repository" option appear in the right sidebar of your repository's main page. Click it to see the citation information GitHub has extracted from your `CITATION.cff` file.
+
+- **More information:**
+  - cffinit web application: <https://citation-file-format.github.io/cff-initializer-javascript/#/>
+  - Citation File Format documentation: <https://citation-file-format.github.io/>
+  - GitHub documentation on CITATION files: <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files>
+  - The Turing Way guide to cffinit: <https://the-turing-way.netlify.app/communication/citable/citable-cffinit.html>
+  - Carpentries lesson on making software citable: <https://carpentries-incubator.github.io/better-research-software/instructor/aio.html#creating-cff-file-and-making-your-software-citable>
+
 - **Task Dependencies:** This task relies on the following tasks to be completed prior to beginning this task:
-  - Publishing: Create a DOI
+  - Publishing: Create a DOI (task 3.1) — _optional but  you can include the DOI in your citation file_
+  - Publishing: Add a LICENSE file (task 3.2) — _optional but you can reference your license_
+
+<details>
+<summary><i>Solution</i></summary>
+
+After using cffinit, your `CITATION.cff` file might look something like this:
+
+```yaml
+cff-version: 1.2.0
+title: EVA Data Analysis
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Your
+    family-names: Name
+    email: your.name@example.com
+    affiliation: Your Institution
+    orcid: 'https://orcid.org/0000-0001-2345-6789'
+  - given-names: Post
+    family-names: Doc
+    affiliation: Previous Institution
+repository-code: 'https://github.com/YOUR_USERNAME/DH-RSE-Summer-School-2026-Day3-code'
+url: 'https://github.com/YOUR_USERNAME/DH-RSE-Summer-School-2026-Day3-code'
+abstract: >-
+  Analysis of NASA Extra-Vehicular Activity (spacewalk) data
+  from 1965-2013. This software reads EVA data, generates
+  summary statistics by astronaut, and visualises cumulative
+  time spent in space over time.
+keywords:
+  - spacewalks
+  - NASA
+  - EVA
+  - extravehicular activity
+  - data analysis
+  - Python
+license: MIT
+version: 0.1.0
+date-released: '2026-07-15'
+doi: '10.5072/zenodo.XXXXXX'
+```
+
+</details>
   
 ### **3.5** *Essential task:* Release software on GitHub + Zenodo
 
