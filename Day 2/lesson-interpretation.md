@@ -20,8 +20,11 @@ The pipeline is almost the same as Evaluation 1, with one addition — a **human
 
 ```
 Source → Inference (arc:nano) → QuickNote (gold standard)
-       → Evaluator → QuickNote (your human score) → Comparison Report
+       → QuickNote (your human score) → Evaluator → Comparison Report
 ```
+
+> ## Why score before the judge runs?
+> Your scores are most useful as an independent check on the judge. If you score *after* seeing the judge's verdict, you're really judging the judge, not the model. So you score blind, then the judge scores blind, and the comparison is honest.
 
 > ## How this lesson works
 > As before: each stage gives you the **goal and the why**, and you work out the *how*. Reveal boxes are there if you're stuck. You've already learned the principles of a good prompt and a good rubric in Evaluation 1 — this time the hints are shorter, because the job is to *adapt* what you know rather than invent it from scratch.
@@ -103,13 +106,43 @@ Some worked readings (yours may differ — that's expected and important):
 
 ---
 
-## Stage 3 — Judge the model
+## Stage 3 — Add your own human score
 
-**Goal:** have the LLM judge score the model's interpretation against your reading.
+You will now score the model outputs yourself, *before* the LLM judge has a go. Scoring blind to the judge's verdict is what makes the comparison honest later — the judge and you must reach your scores independently.
 
-Unlike extraction's four field-level criteria, interpretation is scored holistically — there's nothing to break into separate fields, just one prose claim to weigh against another. Two criteria do the job: **quality** (does it match your reading's substance) and **fabrication** (did it invent anything not in the source).
+**Goal:** record your own scores for each model output on two criteria — **quality** (0–2) and **fabrication** (0–1). The judge in Stage 4 will score the same two criteria on the same scale.
 
-Add an **Evaluator** node after the QuickNote. Set the reference and candidate fields, and pick a judge model that *isn't* the one being judged.
+Add another **QuickNote** node after the gold-standard QuickNote, and put it in **Score** mode (the last of *Note · Structured · Score*). Configure the criteria, point it at the model's output so you can see what you're scoring, and click through the records.
+
+> ## Why two criteria?
+> Interpretation is one prose claim against another — there's nothing to break into separate fields like in extraction. **Quality** asks how well the meaning matches; **fabrication** asks whether the model invented anything. Two criteria, two judgements, kept clean.
+
+<details>
+<summary>▸ Stuck? Reveal the configuration</summary>
+
+- Mode: **Score** (the last option).
+- Criteria: `c1` quality, scale **0, 1, 2**; `c2` fabrication, scale **0, 1**.
+- Display field: **`inference_output`** (so you see the model's answer while scoring).
+- Target field: **`human_score`**.
+- Click the buttons to score each record; optional one-line reason.
+
+</details>
+
+> ## You click; the tool structures it
+> Just like the structured gold standard, you never type JSON here. You click 0, 1 or 2 and the node records it cleanly. No malformed scores possible.
+
+> ## Checkpoint
+> Records you scored now carry a `human_score` with two values. The LLM judge will produce its own scores in the next stage, blind to yours.
+
+---
+
+## Stage 4 — Judge the model
+
+**Goal:** have the LLM judge score the model's interpretation against your reading, on the **same two criteria** you just scored yourself — so the two sets of scores can be compared honestly.
+
+Interpretation is scored holistically — there's nothing to break into separate fields like in extraction, just one prose claim to weigh against another. Two criteria do the job: **quality** (does it match your reading's substance) and **fabrication** (did it invent anything not in the source).
+
+Add an **Evaluator** node after the human-score QuickNote. Set the reference and candidate fields, and pick a judge model that *isn't* the one being judged.
 
 > ## Which model should be the judge?
 > Not the same one that produced the answer. A model marking its own work is biased toward liking it. `arc:nano` answered — so pick a *different* model to judge. `arc:nexus` is a good choice.
@@ -163,37 +196,7 @@ Respond with ONLY this JSON, no other text:
 </details>
 
 > ## Checkpoint
-> Each annotated record has judge scores. Look at a few of the judge's one-sentence reasons — do you agree with them? Hold any disagreements; the next stage is where you record your own view.
-
----
-
-## Stage 4 — Add your own human score
-
-You will now score the **same model outputs yourself**, on the **same two criteria** the judge used. Then we can ask: *does the LLM judge agree with a human?*
-
-**Goal:** record your own 0–2 quality and 0–1 fabrication scores for each output, so they can be compared against the judge's.
-
-Add another **QuickNote** node after the **Evaluator**, and put it in **Score** mode (the last of *Note · Structured · Score*). Configure the criteria to **mirror the rubric exactly**, and point it at the model's output so you can see what you're scoring. Then click through the records scoring each one.
-
-> ## Why mirror the rubric?
-> The whole point is to compare your scores against the judge's. That only works if you're both scoring the *same criteria on the same scale*. If your scale doesn't match, the comparison is meaningless.
-
-<details>
-<summary>▸ Stuck? Reveal the configuration</summary>
-
-- Mode: **Score** (the last option).
-- Criteria: `c1` quality, scale **0, 1, 2**; `c2` fabrication, scale **0, 1**.
-- Display field: **`inference_output`** (so you see the model's answer while scoring).
-- Target field: **`human_score`**.
-- Click the buttons to score each record; optional one-line reason.
-
-</details>
-
-> ## You click; the tool structures it
-> Just like the structured gold standard, you never type JSON here. You click 0, 1 or 2 and the node records it cleanly. No malformed scores possible.
-
-> ## Checkpoint
-> Records you scored now carry both a judge score and your human score, on the same scale.
+> Each annotated record now has both `eval_c1`/`eval_c2` (the judge's scores) and `human_c1`/`human_c2` (yours, from Stage 3) — same criteria, same scale, recorded independently. The next stage shows them side by side.
 
 ---
 

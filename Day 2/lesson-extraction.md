@@ -20,10 +20,13 @@ We will build this pipeline, one node at a time:
 
 ```
 Source → Inference (arc:nano) → QuickNote (gold standard)
-       → Evaluator (LLM judge) → QuickNote (your score) → Comparison Report
+       → QuickNote (your score) → Evaluator (LLM judge) → Comparison Report
 ```
 
 Don't worry if that looks like a lot. We add one node per stage and check it works before moving on.
+
+> ## Why score before the judge runs?
+> Your scores are most useful as a check on the judge — but only if you record them *without* seeing the judge's verdict first. Scoring after would mean you're really judging the judge, not the model. So you score blind, then the judge scores blind, and the comparison is honest.
 
 > ## How this lesson works
 > Each stage tells you **what you're trying to achieve and why** — then invites you to work out *how* on the canvas, including writing your own prompts. Have a real go first. If you get stuck, every tricky step has a **▸ Stuck? Reveal** box with a worked answer. Using it isn't cheating; working it out first is just where the learning happens.
@@ -140,20 +143,50 @@ Then work through the records. One rule that matters: **keep dates as the text s
 
 ---
 
-## Stage 4 — Judge the model, field by field
+## Stage 4 — Score it yourself
 
-**Goal:** have an LLM judge compare the model's `inference_output` against your `_note`, scoring **each of the four fields separately** — not one overall mark. Scoring field by field is what lets you see *which* field the model got wrong, rather than just "it did okay".
+**Goal:** score each field of the model's output yourself, *before* the LLM judge has a go, so your scores are an independent check rather than a reaction to the judge's.
 
-Add an **Evaluator** node after the QuickNote. Set the reference and candidate fields, and choose a judge model that **isn't** the one being judged.
+You'll score **four criteria**, one per extracted field — `place`, `period_or_date`, `site_type`, `nation` — each on a 0–2 scale. (You'll see in Stage 5 that the LLM judge gets the same four criteria. That's deliberate: human and judge must score the *same things on the same scale* or the comparison is meaningless.)
+
+Add another **QuickNote** node after the gold-standard QuickNote, and set it to **Score** mode (the last of *Note · Structured · Score*). Configure the four criteria, point it at the model's output so you can see what you're scoring, and click through the records.
+
+> ## Why score per field, not overall?
+> A single "is this good" score hides which field broke. Per-field scoring tells you exactly where the model struggled — and it's the only way to see *patterns* of failure across the record set (e.g. "it always over-specifies dates").
+
+<details>
+<summary>▸ Stuck? Reveal the configuration</summary>
+
+- Mode: **Score** (the last option).
+- Criteria: `c1` place, `c2` period_or_date, `c3` site_type, `c4` nation — all scale **0, 1, 2**.
+- Display field: **`inference_output`**.
+- Target field: **`human_score`**.
+- Click the buttons to score each record; optional one-line reason.
+
+</details>
+
+> ## You click; the tool structures it
+> You never type JSON here. You click 0, 1 or 2 per field and the node records it cleanly. No malformed scores possible.
+
+> ## Checkpoint
+> Records you scored now carry a `human_score` with four field-level scores. The LLM judge will produce its own scores in the next stage, blind to yours.
+
+---
+
+## Stage 5 — Judge the model, field by field
+
+**Goal:** have an LLM judge compare the model's `inference_output` against your `_note`, scoring the **same four fields** you just scored yourself — so the two sets of scores can be compared honestly.
+
+Add an **Evaluator** node after the human-score QuickNote. Set the reference and candidate fields, and choose a judge model that **isn't** the one being judged.
 
 > ## Which model should be the judge?
 > Not the same one that produced the answer. A model marking its own work is biased toward liking it. `arc:nano` answered — so pick a *different* model to judge. `arc:nexus` is a good choice.
 
-Now the rubric. This is harder to design well than the inference prompt, so think about the shape before you reveal it.
+Now the rubric. The judge needs to score the same four criteria you just used in Stage 4, anchored the same way. Designing it well is harder than the inference prompt — think about the shape before you reveal it.
 
 > ## Hints for writing the evaluation rubric
 > A good judging rubric usually does five things:
-> 1. **One criterion per thing you care about.** Don't ask "is this good?" — for extraction, that means *one criterion per field*: is `place` right, is `period_or_date` right, and so on. A single vague criterion hides which part actually failed.
+> 1. **One criterion per thing you care about.** You just scored four fields by hand — the rubric should ask the judge to do the same. Don't collapse them into one "is this good?" score; that hides which field actually failed.
 > 2. **Anchor every score.** Don't just say "score 0–2" — say what a 0, a 1, and a 2 each *mean* for that specific field. Without anchors, the judge invents its own meaning each time it runs, and your scores stop being repeatable.
 > 3. **Ask for a reason before the score.** A model judges more carefully when it has to justify itself first, even briefly.
 > 4. **Ground it in the two texts only.** Say so explicitly — "judge only using the texts provided, do not use outside knowledge" — or the judge may mark against what *it* thinks is true rather than against your annotation.
@@ -207,35 +240,7 @@ Respond with ONLY this JSON, no other text:
 > Save the workflow as a JSON file. This preserves every node's settings — **including your prompts** — so an accidental page reload won't lose them. Save again whenever you've edited a prompt. (Treat this as normal practice, not a chore — it's how you protect your work in any tool.)
 
 > ## Checkpoint
-> Each annotated record now has four scores (`eval_c1`–`eval_c4`), one per field. Records you didn't annotate are marked as not scored, rather than getting a made-up score.
-
----
-
-## Stage 5 — Score it yourself
-
-**Goal:** score the same four fields yourself, on the same scale the judge used, so you can check whether the judge can be trusted.
-
-Add another **QuickNote** node after the **Evaluator**, and set it to **Score** mode (the last of *Note · Structured · Score*). Configure the same four criteria as the rubric, point it at the model's output so you can see what you're scoring, and click through the records scoring each field.
-
-> ## Why mirror the rubric?
-> The comparison only makes sense if you and the judge are scoring the *same criteria on the same scale*. Match c1–c4 to the rubric exactly.
-
-<details>
-<summary>▸ Stuck? Reveal the configuration</summary>
-
-- Mode: **Score** (the last option).
-- Criteria: `c1` place, `c2` period_or_date, `c3` site_type, `c4` nation — all scale **0, 1, 2**.
-- Display field: **`inference_output`**.
-- Target field: **`human_score`**.
-- Click the buttons to score each record; optional one-line reason.
-
-</details>
-
-> ## You click; the tool structures it
-> You never type JSON here. You click 0, 1 or 2 per field and the node records it cleanly. No malformed scores possible.
-
-> ## Checkpoint
-> Records you scored now carry both a judge score and your own score, field by field, on the same scale.
+> Each annotated record now has both `eval_c1`–`eval_c4` (the judge's scores) and `human_c1`–`human_c4` (yours, from Stage 4) — same fields, same scale, recorded independently. The next stage shows them side by side.
 
 ---
 
