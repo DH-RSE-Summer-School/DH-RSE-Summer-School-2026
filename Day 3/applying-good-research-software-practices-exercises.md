@@ -176,6 +176,17 @@ $ source venv/bin/activate
 - **Description:** Conventionally, all import statements are placed at the top of the script so that dependent libraries are clearly visible and not buried inside the code.
 - **Task:** In `eva_data_analysis.py`, only `import pandas as pd` is at the top of the file. `import matplotlib.pyplot as plt` appears mid-script, right before it's first used to plot the graph, and `import re` appears even further down, right before the (unused) `calculate_crew_size` function that needs it. Both are marked with a `TODO: Import statements should be grouped at the top` comment. Move both import statements to the top of the file, alongside `pandas`.
 
+<details>
+<summary><i>Solution</i></summary>
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import re
+```
+
+</details>
+
 ### **1.2** *Essential task:* Improve code formatting & structure to use functions
 
 - **Description:** Code can become considerably more readable with the addition of blank lines that group lines of code into logical sections, and by following a consistent style guide such as PEP 8 for Python.
@@ -193,6 +204,22 @@ You may find it helpful to run a formatter/linter such as `pylint`, `black` or `
 - **Task:** Locate the lines marked `TODO Naming` in `eva_data_analysis.py` and rename the flagged variables (e.g. `f` → something describing the input file, `d` → something describing the cleaned EVA dataframe, `o` and `g` → something describing the output CSV/graph paths, `hrs`/`hrs2` → something describing duration in hours) to be clear and descriptive.
 There are additional unmarked variables in the script (e.g. `h`, `m`, `val`) that could also be improved - don't limit yourself to only the marked lines.
 
+<details>
+<summary><i>Solution</i></summary>
+
+```python
+input_file = 'eva_data.json'        # was f
+output_file = 'eva_data.csv'        # was o
+eva_df = pd.read_json(...)          # was d
+graph_file = 'cumulative_eva_graph.png'  # was g
+duration_hours_list = []            # was hrs / hrs2
+for duration_str in subset['duration']:   # was val
+    hours_part, minutes_part = duration_str.split(":")  # was h, m
+```
+
+</details>
+
+
 ### **1.4** *Essential task:* Remove unused functions and variables
 
 - **Description:** Dead code - variables or functions that are defined but never used - adds confusion for future readers, who may assume it serves some purpose or waste time trying to find where it is being used or called.
@@ -209,6 +236,49 @@ DRY code is streamlined to remove code repetitions, for instance when multiple l
 Identify the distinct pieces of functionality in the script (reading the JSON file, writing a dataframe to CSV, converting a duration string to hours, summarising duration by astronaut, plotting the cumulative time graph) and factor each into its own function.
 Locate the lines indicated by “TODO DRY” and modify these sections to remove repetition by taking advantage of existing code, adding in a function call, or using a loop, as appropriate.
 
+<details>
+<summary><i>Solution</i></summary>
+
+```python
+def text_to_duration(duration):
+    """Convert a 'HH:MM' duration string into a number of hours (float)."""
+    hours, minutes = duration.split(":")
+    return int(hours) + int(minutes) / 60
+
+
+def read_json_to_dataframe(input_file):
+    eva_df = pd.read_json(input_file, convert_dates=['date'], encoding='ascii')
+    eva_df.dropna(axis=0, subset=['duration', 'date'], inplace=True)
+    return eva_df
+
+
+def write_dataframe_to_csv(df, output_file):
+    df.to_csv(output_file, index=False, encoding='utf-8')
+
+
+def summary_duration_by_astronaut(df):
+    subset = df.loc[:, ['crew', 'duration']]
+    subset.crew = subset.crew.str.split(';').apply(lambda x: [i for i in x if i.strip()])
+    subset = subset.explode('crew')
+    subset['duration_hours'] = subset['duration'].apply(text_to_duration)
+    subset = subset.drop('duration', axis=1)
+    return subset.groupby('crew').sum().reset_index()
+
+
+def plot_cumulative_time_in_space(df, graph_file):
+    df['duration_hours'] = df['duration'].apply(text_to_duration)
+    df['cumulative_time'] = df['duration_hours'].cumsum()
+    plt.plot(df['date'], df['cumulative_time'], 'ko-')
+    plt.xlabel('Year')
+    plt.ylabel('Total time spent in space to date (hours)')
+    plt.tight_layout()
+    plt.savefig(graph_file)
+    plt.show()
+```
+
+</details>
+
+
 ### **1.6** *Essential task:* Use `main()` function
 
 - **Description:** Many programming languages have a special function that is automatically executed when an operating system starts to run a program (usually called `main()`). 
@@ -218,12 +288,51 @@ Nevertheless, having a defined starting point for the execution of a program is 
 - **Task:** Add a `main()` function that calls the functions you defined in the previous exercise in sequence, and add `if __name__ == "__main__":` block that calls `main()` to start off the script execution.
 - **More information:** : https://realpython.com/python-main-function/.
 
+<details>
+<summary><i>Solution</i></summary>
+
+```python
+def main():
+    input_file = 'eva_data.json'
+    output_file = 'eva_data.csv'
+    duration_by_astronaut_file = 'duration_by_astronaut.csv'
+    graph_file = 'cumulative_eva_graph.png'
+
+    eva_df = read_json_to_dataframe(input_file)
+    write_dataframe_to_csv(eva_df, output_file)
+
+    duration_by_astronaut_df = summary_duration_by_astronaut(eva_df)
+    write_dataframe_to_csv(duration_by_astronaut_df, duration_by_astronaut_file)
+
+    eva_df.sort_values('date', inplace=True)
+    plot_cumulative_time_in_space(eva_df, graph_file)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+</details>
+
+
 ### **1.7** *Optional task:* Add an input command-line argument to allow for a flexible input dataset
 
 - **Description:** Executable scripts allow for flexible processing and code reuse through the use of input arguments. 
 By changing the script to accept input arguments, the analysis could be easily applied to other collections of files.
 - **Task:** Locate the lines marked `TODO Inputs` in `eva_data_analysis.py` - currently the input file path is hardcoded to `f = 'eva_data.json'`. Change the script to accept the input file as a command-line argument (e.g. via `sys.argv` or the `argparse` module), falling back to `eva_data.json` as a default if none is given.
 - **More information:** : https://www.geeksforgeeks.org/command-line-arguments-in-python/ 
+
+<details>
+<summary><i>Solution</i></summary>
+
+```python
+import sys
+
+input_file = sys.argv[1] if len(sys.argv) > 1 else 'eva_data.json'
+```
+
+</details>
+
 
 ### **1.8** *Optional task:* Add an input command-line argument to allow for flexible file locations for results
 
@@ -236,7 +345,7 @@ By changing the script to accept input arguments, the analysis could be easily a
 ### **2.1** *Essential task:* Add descriptive comments to code
 
 - **Description:** Comments should be useful and informative to future developers of the project.
-They can explain the overall outline of the code, describe specific intent of certain sections of the code, and explain specific algorithmic decisions. 
+They can explain the overall outline of the code, describe specific intent of certain sections of the code, and explain specific algorithmic decisions.
 In Python, comments begin with a hash (#) symbol on each line of the comment.
 - **Task:** Comments are provided throughout the project, but there are instances where comments are missing (indicated by the placeholder comment “Descriptive comment”), the comments are not sufficiently descriptive, or the formatting of comments is inconsistent. Step through the notebook and add or edit comments throughout to explain specific lines and blocks.
 - **More information:** : <https://realpython.com/python-comments-guide/>
@@ -246,6 +355,27 @@ In Python, comments begin with a hash (#) symbol on each line of the comment.
 - **Description:** In Python, the initial comment in a function or script that describes the objectives and interface is referred to as a docstring. The docstring describes the purpose, parameters, and return values of the function or script. Python includes a built-in function help() that prints the docstring for the input to help() to the console, so docstrings should ideally contain all information that will help guide a user in using the function or script. Docstrings are denoted by three quotation marks (""") before and after the docstring and can span multiple lines.
 - **Task:** Include a docstring at the beginning of the main script and at the beginning of each function. The docstrings should describe the objective, interface (the expected inputs and outputs), and specific implementation.
 - **More information:** : For more guidance on how to write docstrings and examples of docstrings, see this tutorial: <https://www.dataquest.io/blog/documenting-in-python-with-docstrings/>
+
+<details>
+<summary><i>Solution</i></summary>
+
+```python
+def text_to_duration(duration):
+    """
+    Convert a duration string in 'HH:MM' format into a decimal number of hours.
+
+    Args:
+        duration (str): Duration formatted as 'HH:MM'.
+
+    Returns:
+        float: The equivalent duration in hours.
+    """
+    hours, minutes = duration.split(":")
+    return int(hours) + int(minutes) / 60
+```
+
+</details>
+
 
 ### **2.3** *Essential task:* Add a README file
 
