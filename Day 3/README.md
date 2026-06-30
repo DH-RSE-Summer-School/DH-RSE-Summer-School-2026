@@ -11,8 +11,12 @@
   - Track 2: [Intermediate track][byte-sized-rse-intermediate-git]
 - 12:30-13:30 LUNCH
 - 13:30-15:00 [Building Better Research Software - good practices for sustainable software & reproducible research][applying-sustainable-practices] (Part 1)
+  - Introduction & setup (45 minutes)
+  - Improving code structure & style (45 minutes)
 - 15:00-15:30 BREAK
 - 15:30-17:00 [Building Better Research Software - good practices for sustainable software & reproducible research][applying-sustainable-practices] (Part 2)
+  - Software documentation (45 minutes)
+  - Software publishing (45 minutes)
 
 ## Version Control for Digital Humanists
 

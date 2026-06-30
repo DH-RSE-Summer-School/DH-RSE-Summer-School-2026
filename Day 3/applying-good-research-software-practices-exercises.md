@@ -65,7 +65,7 @@ In detail, the project contains:
 This project is intentionally constructed to illustrate some common mistakes in research software development.
 Throughout the session, you will learn and apply better research software practices — including elements of FAIR — as you work to improve the software project.
 
-## **A. Obtain and inspect the software project**
+## **A. Obtain and inspect the software project (10 minutes)**
 
 ### **A**.1 *Essential task:* Make a copy the software project
 
@@ -94,7 +94,7 @@ These functionalities will make the upcoming tasks much easier.
       Alternatively, go to your project in GitHub Codespaces.
   - Inspect the Python script `eva_data_analysis.py` and JSON data file with spacewalks `eva_data.json`. Try and see if you can understand what the code does.
 
-## **B. Reproducible software environments**
+## **B. Reproducible software environments (20 minutes)**
 
 **Virtual development environments** help us create an **isolated working copy** of a software project that uses a specific version of Python interpreter together with specific versions of a number of external libraries (that our software depends on) installed into that virtual environment.
 Python virtual environments are implemented as directories with a particular structure within software projects, containing links to specified dependencies allowing isolation from other software projects on your machine that may require different versions of Python or external libraries.
@@ -181,7 +181,7 @@ $ source venv/bin/activate
 (.venv) $ pip install -r requirements.txt
 ```
 
-## **1. Code formatting & structure for readability**
+## **1. Code formatting & structure for readability (60 minutes)**
 
 ### **1.1** *Essential task:* Place import statements at the top
 
@@ -374,7 +374,7 @@ def main():
 - **Description:** As above task, but allow to specify where result files get saved. The output CSV path (`o = 'eva_data.csv'`), the per-astronaut summary CSV (`dur_out = 'duration_by_astronaut.csv'`), and the graph image path (`g = 'cumulative_eva_graph.png'`) are all hardcoded, each marked with a `TODO Inputs` comment.
 - **Task:** Extend the command-line arguments so that the output locations can be customised, falling back to the current hardcoded values as defaults if not provided.
 
-## **2. Software documentation**
+## **2. Software documentation (45 minutes)**
 
 ### **2.1** *Essential task:* Add descriptive comments to code
 
@@ -556,7 +556,7 @@ Contributions are welcome! Please open an issue or submit a pull request.
 - **Task Dependencies:** This task relies on the following tasks to be completed prior to beginning this task:
   - Documentation: Add a README file
 
-## **3. Publishing software**
+## **3. Publishing software (45 minutes)**
 
 ### **3.1** *Essential task:* Create a DOI
 
@@ -592,7 +592,7 @@ This differs from institution to institution.
 ### **3.4** *Essential task:* Add a `CITATION.cff` file
 
 - **Description:** Adding a citation file provides clear information on how to cite your work and ensures authors receive credit for their software development work while improving dissemination and software sustainability. The citation file format (cff) provides citation metadata for software in a human- and machine-readable format.
-- **Task:** Include a CITATION.cff file in the top-most (root) directory of the project repository, using the example_citation.cff file in the repository as a template.
+- **Task:** Include a CITATION.cff file in the top-most (root) directory of the project repository, using the `example_citation.cff` file in the repository as a template.
 - **More information:** : <https://citation-file-format.github.io/>, <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files>
 - **Task Dependencies:** This task relies on the following tasks to be completed prior to beginning this task:
   - Publishing: Create a DOI
