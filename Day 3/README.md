@@ -10,9 +10,9 @@
   - Track 1: Beginner track
   - Track 2: [Intermediate track][byte-sized-rse-intermediate-git]
 - 12:30-13:30 LUNCH
-- 13:30-15:00 [Applying good research software practices][applying-sustainable-practices-tasks] (Part 1)
+- 13:30-15:00 [Building Better Research Software - good practices for sustainable software & reproducible research][applying-sustainable-practices-tasks] (Part 1)
 - 15:00-15:30 BREAK
-- 15:30-17:00 [Applying good research software practices][applying-sustainable-practices-tasks] (Part 2)
+- 15:30-17:00 [Building Better Research Software - good practices for sustainable software & reproducible research][applying-sustainable-practices-tasks] (Part 2)
 
 ## Version Control for Digital Humanists
 
