@@ -69,6 +69,7 @@ Add an **Inference** node and feed it from your source. Two settings to work out
 Then comes the part worth real thought: **the prompt itself.**
 
 > ## Hints for writing the extraction prompt
+> You want to extract the **place**, **site_type**, **period or date** and **nation**
 > Before you reveal the answer, try drafting your own. A good extraction prompt usually does four things:
 > 1. **States exactly what to extract**, by name. Don't say "the key facts" — name the four fields.
 > 2. **Constrains the output format.** If you don't specify a shape (e.g. JSON with named keys), you'll get a paragraph back that's hard to read into other fields. Show the model the exact shape you want.
@@ -107,7 +108,7 @@ Respond as JSON:
 </details>
 
 > ## Checkpoint
-> Connect a Table Output to the inference node. Each record now has an `inference_output` field containing a small JSON object like `{"place":"Wiltshire","period_or_date":"prehistoric",...}`. The exact values don't matter yet — we just need the column to appear.
+> Connect a Table Output to the inference node. Each record now has an `kcl_response' (by default) or 'inference_output` field containing a small JSON object like `{"place":"Wiltshire","period_or_date":"prehistoric",...}`. The exact values don't matter yet — we just need the column to appear.
 
 ---
 
