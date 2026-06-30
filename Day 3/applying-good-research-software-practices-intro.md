@@ -109,3 +109,32 @@ We will go through a number of exercises that cover the following good practices
 Some exercises we will do in "live-coding" style - the instructor will share their screen and do the exercise while everyone will follow along.
 Other exercises you will do individually or in small groups.
 
+> [!NOTE]
+> ### Setup check
+>
+> From a command line terminal on your operating system or within VS Code run the following commands. This will ensure you have installed all the necessary tools and if they are functioning correctly.
+>
+> #### Checking the command line terminal:
+>
+> 1. `$ date`
+> 2. `$ echo $SHELL`
+> 3. `$ pwd`
+> 4. `$ whoami`
+>
+> #### Checking Python:
+>
+> 5. `$ python --version`
+> 6. `$ python3 --version`
+> 7. `$ which python`
+> 8. `$ which python3`
+>
+> #### Checking Git and GitHub:
+>
+> 9. `$ git --help`
+> 10. `$ git config --list`
+> 11. `$ ssh -T git@github.com`
+>
+> #### Checking VS Code:
+>
+>  12. `$ code`
+>  13. `$ code --list-extensions --show-versions`
