@@ -74,13 +74,25 @@ Throughout the session, you will learn and apply better research software practi
   - Log in to GitHub.
   - Go to <https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code/>.
   - Click `Use this template` button to create a copy of the template code repository in your own GitHub.
+  - Do one of the following:
+    1. Checkout your copy of the project locally using Git, e.g. from your home directory do:
+      
+      ```bash
+      $ cd ~
+      $ git clone https://github.com/<YOUT_GITHUB>/DH-RSE-Summer-School-2026-Day3-code/
+      $ cd DH-RSE-Summer-School-2026-Day3-code
+      ``` 
+     Or:
+    2. From your copy of the code repository on GitHub, open the project in GitHub Codespaces (click the green `Code` button then select the `Codespaces` tab).
 
-### **A.2** *Essential task:* Open and expect software project in a code editor of choice
+### **A.2** *Essential task:* Expect software project in a code editor of choice or on GitHub
 
-- **Description:** Working in a proper code editor (rather than viewing files on GitHub) gives you syntax highlighting, linting, and easy navigation between files - all of which make the upcoming refactoring and documentation tasks much easier.
-- **Task:**
-  - Using Git from command line, checkout locally your copy of the software project from GitHub and open in, for example, VS Code or another code editor of your choice.
-  - Alternatively, open the software project in GitHub's Codespace.
+- **Description:** Working in a code editor or Integrated Development Environment (IDE) gives you syntax highlighting, linting and easy navigation between files (among other features).
+These functionalities will make the upcoming tasks much easier.
+- **Task:** 
+  - If you are working locally, open the software project you obtained in Visual Studio Code (VS Code) or another code editor of your choice.
+      Alternatively, go to your project in GitHub Codespaces.
+  - Inspect the Python script `eva_data_analysis.py` and JSON data file with spacewalks `eva_data.json`. Try and see if you can understand what the code does.
 
 ## **B. Reproducible software environments**
 
