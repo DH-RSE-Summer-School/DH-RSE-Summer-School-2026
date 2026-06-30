@@ -19,7 +19,7 @@ In this evaluation you will test how well a small model (`arc:nano`) pulls **str
 We will build this pipeline, one node at a time:
 
 ```
-Source → Inference (arc:nano) → QuickNote (gold standard)
+Source → QuickNote (gold standard)  →  Inference (arc:nano) → 
        → QuickNote (your score) → Evaluator (LLM judge) → Comparison Report
 ```
 
