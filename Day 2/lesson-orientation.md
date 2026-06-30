@@ -48,7 +48,7 @@ Try adding a node each way now, then delete both before continuing.
 
 **Goal:** build the simplest possible pipeline — one search node feeding one output — to practise connecting handles before adding more complexity.
 
-Add a **GBIF Search** node from the *Search* group. The node has its own search box; type a term directly into it (try `mammoth`), then click **Search**. Now add a **Table Output** node from the *Output* group and connect the two.
+Add a **GBIF Search** node from the *Data Services* group. The node has its own search box; type a term directly into it (try `mammoth`), then click **Run**. Now add a **Table Output** node from the *Output* group and connect the two.
 
 <details>
 <summary>▸ Stuck? Reveal</summary>
