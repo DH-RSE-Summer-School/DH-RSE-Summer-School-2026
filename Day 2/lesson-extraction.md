@@ -79,7 +79,7 @@ Then comes the part worth real thought: **the prompt itself.**
 > Try writing a prompt that does all four before you look below.
 
 <details>
-<summary>▸ Stuck? Reveal the prompt</summary>
+<summary>▸ Stuck? Reveal a template for the prompt</summary>
 
 ```
 Extract the following four fields from the site description. Use ONLY the
