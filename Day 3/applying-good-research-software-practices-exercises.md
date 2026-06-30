@@ -14,13 +14,13 @@
   - [**B.3** *Essential task:* Create `requirements.txt` file to record dependencies](#b3-essential-task-create-requirementstxt-file-to-record-dependencies)
 - [**1. Code formatting \& structure for readability**](#1-code-formatting--structure-for-readability)
   - [**1.1** *Essential task:* Place import statements at the top](#11-essential-task-place-import-statements-at-the-top)
-  - [**1.2** *Essential task:* Improve code structure \& formatting](#12-essential-task-improve-code-structure--formatting)
+  - [**1.2** *Essential task:* Improve code formatting \& structure to use functions](#12-essential-task-improve-code-formatting--structure-to-use-functions)
   - [**1.3** *Essential task:* Improve variable naming](#13-essential-task-improve-variable-naming)
-  - [**1.4** *Essential task:* Remove unused variables](#14-essential-task-remove-unused-variables)
-  - [**1.5** *Essential task:* Refactor the script into functions and use standard libraries](#15-essential-task-refactor-the-script-into-functions-and-use-standard-libraries)
-  - [*Essential task:* Use `main()` function (Can be removed?)](#essential-task-use-main-function-can-be-removed)
-  - [**1.6** *Optional task:* Add input command-line arguments to allow for a flexible input dataset](#16-optional-task-add-input-command-line-arguments-to-allow-for-a-flexible-input-dataset)
-  - [**1.7** *Optional task:* Add input command-line arguments to allow for a flexible location to save results](#17-optional-task-add-input-command-line-arguments-to-allow-for-a-flexible-location-to-save-results)
+  - [**1.4** *Essential task:* Remove unused functions and variables](#14-essential-task-remove-unused-functions-and-variables)
+  - [**1.5** *Essential task:* Refactor the script into multiple functions and fix non-DRY code](#15-essential-task-refactor-the-script-into-multiple-functions-and-fix-non-dry-code)
+  - [**1.6** *Essential task:* Use `main()` function](#16-essential-task-use-main-function)
+  - [**1.7** *Optional task:* Add an input command-line argument to allow for a flexible input dataset](#17-optional-task-add-an-input-command-line-argument-to-allow-for-a-flexible-input-dataset)
+  - [**1.8** *Optional task:* Add an input command-line argument to allow for flexible file locations for results](#18-optional-task-add-an-input-command-line-argument-to-allow-for-flexible-file-locations-for-results)
 - [**2. Software documentation**](#2-software-documentation)
   - [**2.1** *Essential task:* Add descriptive comments to code](#21-essential-task-add-descriptive-comments-to-code)
   - [**2.2** *Essential task:* Add docstrings to functions](#22-essential-task-add-docstrings-to-functions)
@@ -28,6 +28,7 @@
   - [**2.4** *Optional task:* Go through a software quality checklist](#24-optional-task-go-through-a-software-quality-checklist)
 - [**3. Publishing software**](#3-publishing-software)
   - [**3.1** *Essential task:* Create a DOI](#31-essential-task-create-a-doi)
+  - [Essential task: Create a DOI](#essential-task-create-a-doi)
   - [**3.2** *Essential task:* Add a `LICENSE` file](#32-essential-task-add-a-license-file)
   - [**3.3** *Essential task:* Add a copyright statement](#33-essential-task-add-a-copyright-statement)
   - [**3.4** *Essential task:* Add a `CITATION.cff` file](#34-essential-task-add-a-citationcff-file)
@@ -76,7 +77,7 @@ Throughout the session, you will learn and apply better research software practi
 
 ### **A.2** *Essential task:* Open and expect software project in a code editor of choice
 
-- **Description:**
+- **Description:** Working in a proper code editor (rather than viewing files on GitHub) gives you syntax highlighting, linting, and easy navigation between files - all of which make the upcoming refactoring and documentation tasks much easier.
 - **Task:**
   - Using Git from command line, checkout locally your copy of the software project from GitHub and open in, for example, VS Code or another code editor of your choice.
   - Alternatively, open the software project in GitHub's Codespace.
