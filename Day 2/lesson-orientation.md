@@ -17,7 +17,7 @@ In this lesson you will build a pipeline that searches the ARIADNE European arch
 
 ```
 Param (search term)
-  → ADS ARIADNE Search
+  → ARIADNE Search
     → Table Output           ← check here after Stage 3
       → KingsInference by Field   ← extract place names (Stages 4–5)
         → Reconciliation           ← match to Wikidata (Stage 6)
@@ -79,8 +79,8 @@ Clear the canvas (or just leave the GBIF pipeline where it is and work below it)
 <details>
 <summary>▸ Stuck? Reveal</summary>
 
-1. Sidebar → *Canvas* (or *Input*) → **Param**. Set Type to *Text*, Value to `Stonehenge`.
-2. Sidebar → *Search* → **ADS Advanced Search**.
+1. Sidebar → *Input* → **Param**. Set Type to *Text*, Value to `Stonehenge`.
+2. Sidebar → *Data Services* → **Ariadne Search**.
 3. Drag from Param's output handle to ADS Advanced Search's `query` input handle.
 4. Connect ADS Advanced Search's output handle to a new **Table Output** node.
 5. Click **Search** on the ADS Advanced Search node.
@@ -105,7 +105,7 @@ The results will appear in the table — but you may not see much beyond a title
 
 Add a **KingsInference by Field** node. It has two input handles on the left — look at them before connecting anything:
 
-- **`data`** — where your records come in (connect ADS Advanced Search here).
+- **`data`** — where your records come in (connect Ariadne here).
 - **`key`** — where a Param node supplies your KCL API key.
 
 > ## Connect the right handle to the right handle — this is the most common error
@@ -115,7 +115,7 @@ Add a **KingsInference by Field** node. It has two input handles on the left —
 >
 > Before making either connection: read the handle label, identify what you're connecting, then connect deliberately.
 
-Add a second **Param** node, set its Type to *Text*, and paste your KCL API key as its Value. Connect it to the **`key`** handle. Connect the ADS Advanced Search output to the **`data`** handle.
+Add a second **Param** node, set its Type to *Text*, and paste your KCL API key as its Value. Connect it to the **`key`** handle. Connect the Ariadne Search output to the **`data`** handle.
 
 Now configure the inference node:
 
@@ -149,7 +149,7 @@ Text: {{value}}
 <details>
 <summary>▸ Stuck? Reveal the node settings</summary>
 
-- Field: **`description`** (or `ads.description`).
+- Field: **`description`** (or `ariadne.description`).
 - Mode: **Per record** (the default — each record is processed individually).
 - Model: **`arc:lite`**.
 - Temperature: **0**.
@@ -227,7 +227,7 @@ Click **Reconcile**, then add a final **Table Output** to inspect the results. E
 > - **Two ways to add nodes**: sidebar (browse all available types) or drag from an output handle onto empty canvas (autosuggestion, creates a node already connected).
 > - **Handles are labelled**: output on the right, input on the left; hover to see the name. Always read both labels before connecting.
 > - **Param nodes** hold a single value and supply it wherever you connect them — search terms, API keys, numeric thresholds.
-> - **Show All columns** in Table Output reveals fields hidden by default, including namespace sub-objects like `ads.description`. **Expand namespaces** flattens those into plain column names.
+> - **Show All columns** in Table Output reveals fields hidden by default, including namespace sub-objects like `ariadne.description`. **Expand namespaces** flattens those into plain column names.
 > - **KingsInference by Field** runs per record and writes partial results live — you see the column fill in as the model works.
 > - The `data` handle takes records; the `key` handle takes an API key Param — connecting them the wrong way is the most common error on inference nodes.
 > - **Reconciliation** expects one value per record; multi-value strings reconcile poorly.
