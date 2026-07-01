@@ -6,7 +6,7 @@
 - [Scenario](#scenario)
 - [Starter code](#starter-code)
 - [**A. Obtain and inspect the software project (10 minutes)**](#a-obtain-and-inspect-the-software-project-10-minutes)
-  - [**A.1** *Essential task:* Make a copy the software project](#a1-essential-task-make-a-copy-the-software-project)
+  - [**A.1** *Essential task:* Make a copy of the software project](#a1-essential-task-make-a-copy-of-the-software-project)
   - [**A.2** *Essential task:* Inspect software project in a code editor of choice or on GitHub](#a2-essential-task-inspect-software-project-in-a-code-editor-of-choice-or-on-github)
 - [**B. Reproducible software environments (20 minutes)**](#b-reproducible-software-environments-20-minutes)
   - [**B.1** *Essential task:* Create a virtual development environment using `venv`](#b1-essential-task-create-a-virtual-development-environment-using-venv)
@@ -66,21 +66,22 @@ Throughout the session, you will learn and apply better research software practi
 
 ## **A. Obtain and inspect the software project (10 minutes)**
 
-### **A.1** *Essential task:* Make a copy the software project
+### **A.1** *Essential task:* Make a copy of the software project
 
 - **Description:** Make a copy of the software project into your GitHub space so you can continue working on it.
 - **Task:**
   - Log in to GitHub.
   - Go to <https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code/>.
-  - Click `Use this template` button to create a copy of the template code repository in your own GitHub.
+  - Click `Use this template` button to create a copy of the template code repository in your own GitHub account.
   - Do one of the following:
-    1. Checkout your copy of the project locally using Git, e.g. from your home directory do:
-      
+    1. Clone your copy of the project locally using Git, e.g. from your home directory do:
+
       ```bash
       $ cd ~
-      $ git clone https://github.com/<YOUT_GITHUB>/DH-RSE-Summer-School-2026-Day3-code/
+      $ git clone https://github.com/<YOUT_USERNAME>/DH-RSE-Summer-School-2026-Day3-code/
       $ cd DH-RSE-Summer-School-2026-Day3-code
-      ``` 
+      ```
+
      Or:
     2. From your copy of the code repository on GitHub, open the project in GitHub Codespaces (click the green `Code` button then select the `Codespaces` tab).
 
@@ -89,8 +90,7 @@ Throughout the session, you will learn and apply better research software practi
 - **Description:** Working in a code editor or Integrated Development Environment (IDE) gives you syntax highlighting, linting and easy navigation between files (among other features).
 These functionalities will make the upcoming tasks much easier.
 - **Task:**
-  - If you are working locally, open the software project you obtained in Visual Studio Code (VS Code) or another code editor of your choice.
-      Alternatively, go to your project in GitHub Codespaces.
+  - If you are working locally, open the software project you obtained in Visual Studio Code (VS Code) or another code editor of your choice. Alternatively, go to your project in GitHub Codespaces.
   - Inspect the Python script `eva_data_analysis.py` and JSON data file with spacewalks `eva_data.json`. Try and see if you can understand what the code does.
 
 ## **B. Reproducible software environments (20 minutes)**
@@ -112,7 +112,7 @@ The venv module supports creating lightweight “virtual environments”, each w
 
 Creating a virtual environment called **".venv"** with the `venv` command line tool is done by executing the following command from the project root:
 
-```python
+```bash
 $ python3 -m venv .venv
 $ source .venv/bin/activate # Linux and macOS
 $ source .venv/Scripts/activate # Windows
@@ -168,7 +168,7 @@ You should put `requirements.txt` under version control and share it along with 
 
 ```bash
 (.venv) $ git add requirements.txt
-(.venv) $ git commit -m "Initial commit of requirements.txt"
+(.venv) $ git commit -m "Add requirements.txt"
 (.venv) $ git push origin main
 ```
 
@@ -176,7 +176,7 @@ To recreate a virtual environment from `requirements.txt` (e.g. on another machi
 
 ```bash
 $ python3 -m venv .venv
-$ source venv/bin/activate
+$ source .venv/bin/activate
 (.venv) $ pip install -r requirements.txt
 ```
 
@@ -471,6 +471,7 @@ def plot_cumulative_time_in_space(df, graph_file):
     Returns:
         None
     """
+    # ... rest of the function
 ```
 
 </details>
@@ -490,55 +491,60 @@ Use the following template to organise the contents of the README: <https://ha0y
 Your README.md could look something like this:
 
 > # EVA Data Analysis
-> 
+>
 > Analysis of NASA Extra-Vehicular Activity (spacewalk) data from 1965-2013.
-> 
+>
 > ## Description
-> 
+>
 > This project analyses EVA data to calculate statistics about spacewalks and visualise the cumulative time astronauts have spent in space over time.
-> 
+>
 > ## Installation
-> 
+>
 > 1. Clone the repository:
+> 
 >    ```bash
 >    git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
 >    cd YOUR_REPO
 >    ```
-> 
+>
 > 2. Create and activate a virtual environment:
+> 
 >    ```bash
 >    python3 -m venv .venv
 >    source .venv/bin/activate
 >    ```
-> 
+>
 > 3. Install dependencies:
+>
 >    ```bash
 >    pip install -r requirements.txt
 >    ```
-> 
+>
 > ## Usage
-> 
+>
 > Run the analysis script:
+> 
 > ```bash
 > python eva_data_analysis.py
 > ```
-> 
+>
 > This will:
+>
 > - Read `eva_data.json`
 > - Generate `eva_data.csv` (cleaned data)
 > - Generate `duration_by_astronaut.csv` (summary statistics)
 > - Generate `cumulative_eva_graph.png` (visualisation)
-> 
+>
 > ## Contributing
-> 
+>
 > Contributions are welcome! Please open an issue or submit a pull request.
-> 
+>
 > ## License
-> 
+>
 > [Your chosen license]
-> 
+>
 > ## Authors
-> 
+>
 > - [Your name]
 
 </details>
