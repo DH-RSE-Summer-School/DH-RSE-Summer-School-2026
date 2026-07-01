@@ -141,13 +141,13 @@ When you are done working on your project, you can exit/deactivate the environme
 You can install your software's dependencies into your active environment using `pip` as follows:
 
 ```bash
-(.venv) $ pip3 install matplotlib pandas
+(.venv) $ python3 -m pip install matplotlib pandas
 ```
 
 You can see all packages currently installed in your environment with:
 
 ```bash
-(.venv) $ pip3 list
+(.venv) $ python3 -m pip list
 ```
 
 ### **B.3** *Essential task:* Create `requirements.txt` file to record dependencies
