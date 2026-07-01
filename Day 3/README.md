@@ -45,7 +45,7 @@
 
 ## Acknowledgements
 
-These materials are largely based on the resources by Mary Chester-Kadwell used at DH Summer School 2024.
+These materials in this folder are largely based on the resources by Mary Chester-Kadwell used at [DH Summer School 2024][RSESummerSchool2024].
 
 ## Licence
 
@@ -57,3 +57,4 @@ This means you can copy, share, adapt and build upon this work — even for comm
 [applying-sustainable-practices]: https://github.com/DH-RSE-Summer-School/DH-RSE-Summer-School-2026/blob/main/Day%203/README.md#building-better-research-software
 [version-control-2026]: https://github.com/PhilReedData/version-control-2026
 [licence]: ./LICENSE
+[RSESummerSchool2024]: https://github.com/DCS-training/DH-RSESummerSchool2024/
