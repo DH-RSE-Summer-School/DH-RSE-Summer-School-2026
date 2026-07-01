@@ -180,6 +180,8 @@ $ source .venv/bin/activate
 (.venv) $ pip install -r requirements.txt
 ```
 
+Note: you should ignore `.venv` folder in Git as you only need to share the `requirements.txt` file which can be used to recreate the environment.
+
 ## **1. Code formatting & structure for readability (45 minutes)**
 
 ### **1.1** *Essential task:* Place import statements at the top
