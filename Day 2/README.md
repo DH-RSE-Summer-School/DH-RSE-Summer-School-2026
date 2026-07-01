@@ -20,6 +20,11 @@ Blurb
 A light end-of-day session to look at some of the jargon that surrounds LLMs, particularly with regard to benchmarks.
 We work through a pipeline to compare performance on an entity extraction task.
 
+[LLM Jargon presentation](./Summer_school_LLMs_session.pdf)  
+[Node Canvas orientation](./lesson-orientation.md)  
+[LLM entitiy extraction on the node canvas](./lesson-extraction.md)  
+[LLM text interpretation on the node canvas](./lesson-interpretation.md)  
+
 ## Speakers and Trainers
 
 - [Neil Jakeman](https://kdl.kcl.ac.uk/about/people/neil-jakeman/), King's College London
