@@ -706,3 +706,9 @@ doi: '10.5072/zenodo.XXXXXX'
 
 - **Description:** The Journal of Open Source Software (JOSS) is an open access journal for research software packages. JOSS enables the quality of software to be improved through a formal peer review process while giving researchers a citable DOI from an academic journal.
 - **Task:** The JOSS review criteria (<https://joss.readthedocs.io/en/latest/review_criteria.html>) contain several of the recommended tasks already completed in this workshop. To prepare a submission for JOSS, you must prepare a short paper and a metadata file. See the JOSS guidelines for submission (<https://joss.readthedocs.io/en/latest/submitting.html>) for more guidance.
+
+> [!NOTE]
+> <details>
+> <summary><b>Solution after all tasks are complete</b></summary>
+> The final code state can be found here: <a href="https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code/blob/final/eva_data_analysis_solution.py">eva_data_analysis_solution.py</a>
+> </details>
