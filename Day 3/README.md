@@ -38,7 +38,12 @@
 - [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute, Research Software Training Lead
 - [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Research Software Training Manager
 
+## LICENCE
+
+All material in this folder of the repository is licenced under [CC-BY-4.0 licence][licence].
+
 [byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
 [swc-git-novice]: https://swcarpentry.github.io/git-novice/
 [applying-sustainable-practices]: https://github.com/DH-RSE-Summer-School/DH-RSE-Summer-School-2026/blob/main/Day%203/README.md#building-better-research-software
 [version-control-2026]: https://github.com/PhilReedData/version-control-2026
+[licence]: ./LICENSE.txt
