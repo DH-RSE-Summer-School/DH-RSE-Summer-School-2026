@@ -2,6 +2,8 @@
 
 ## Tentative Schedule
 
+- 09:00-09:10 Mini-talk: Software Sustainability Institute
+  - [Slides for the presentation](DHRSE26-presentation.pdf) 
 - 09:10-10:30 Version Control for Digital Humanists (Part 1)
   - Track 1: [Beginner track][version-control-2026]
   - Track 2: [Intermediate track][byte-sized-rse-intermediate-git]
