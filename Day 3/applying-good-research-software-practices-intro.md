@@ -37,7 +37,7 @@ Next time you start a project from scratch - you will start using these practice
 
 ### Improving code correctness and confidence in results it produces
 
-* Testing can save time spent on debugging and ensures that your code is correct and does what it is set out to do, giving you and others confidence in your code and the results it produces.
+* Testing can save time spent on debugging and ensures that your code is correct and does what it is set out to do, giving you and others confidence in your code and the results it produces. We are not covering testing in this course but there are many resources on it available online - e.g. https://carpentries-incubator.github.io/better-research-software/06-code-correctness.html.
 
 ### Making software easier for other people to reuse and repurpose
 
