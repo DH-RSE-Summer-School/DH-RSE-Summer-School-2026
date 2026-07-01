@@ -52,6 +52,8 @@ These materials in this folder are largely based on the resources by Mary Cheste
 All material in this folder of the repository is licensed under [CC-BY-4.0 licence][licence].
 This means you can copy, share, adapt and build upon this work — even for commercial purposes — provided you give appropriate credit to the original creators. 
 
+Materials is sub-folders of this folder are not licensed for reuse and you would have to get permission from their original authors.
+
 [byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
 [swc-git-novice]: https://swcarpentry.github.io/git-novice/
 [applying-sustainable-practices]: https://github.com/DH-RSE-Summer-School/DH-RSE-Summer-School-2026/blob/main/Day%203/README.md#building-better-research-software
