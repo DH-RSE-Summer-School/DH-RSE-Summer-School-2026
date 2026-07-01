@@ -38,9 +38,19 @@
 - [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute, Research Software Training Lead
 - [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Research Software Training Manager
 
-## LICENCE
+## Authors
+
+- [Aleksandra Nenadic](https://github.com/anenadic), Software Sustainability Institute, Research Software Training Lead
+- [Aman Goel](https://github.com/amangoel185), Software Sustainability Institute, Research Software Training Manager
+
+## Acknowledgements
+
+These materials are largely based on the resources by Mary Chester-Kadwell used at DH Summer School 2024.
+
+## Licence
 
 All material in this folder of the repository is licensed under [CC-BY-4.0 licence][licence].
+This means you can copy, share, adapt and build upon this work — even for commercial purposes — provided you give appropriate credit to the original creators. 
 
 [byte-sized-rse-intermediate-git]: https://carpentries-incubator.github.io/byte-sized-rse-git-intermediate/index.html
 [swc-git-novice]: https://swcarpentry.github.io/git-novice/
