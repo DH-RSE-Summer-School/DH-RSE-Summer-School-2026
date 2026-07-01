@@ -33,7 +33,8 @@
 - [Introduction](applying-good-research-software-practices-intro.md)
 - [Slides](https://docs.google.com/presentation/d/1cGyoB7HSrqk35a8xTNXVXz6ipUYTTMy981tuKxnzg-g/edit?usp=sharing)
 - [Exercises](applying-good-research-software-practices-exercises.md)
-- [Starter code](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code)
+- [Starter Code](https://github.com/softwaresaved/DH-RSE-Summer-School-2026-Day3-code)
+- [Shared Notes][shared-notes]
 
 ### Trainers
 
@@ -62,3 +63,4 @@ Materials is sub-folders of this folder are not licensed for reuse and you would
 [version-control-2026]: https://github.com/PhilReedData/version-control-2026
 [licence]: ./LICENSE
 [RSESummerSchool2024]: https://github.com/DCS-training/DH-RSESummerSchool2024/
+[shared-notes]: https://docs.google.com/document/d/15EpsWpA-cQrCnEIzCwzcm502A1y2I8AXtq2SXUtt04w/edit?usp=sharing
