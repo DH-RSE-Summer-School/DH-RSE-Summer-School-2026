@@ -52,7 +52,7 @@ Goals:
 
 - [Essential setup](ai-coding-setup.md)
 - [Workshop tutorial](ai-coding-tutorial.md)
-- Slides: coming soon
+- [Slides](working_critically_ai_coding_chester-kadwell.pdf)
 
 ## Speakers and Trainers
 
