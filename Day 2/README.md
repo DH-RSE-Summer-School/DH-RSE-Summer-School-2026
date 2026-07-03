@@ -12,8 +12,7 @@
 - 15:30-17:00 LLM Jargon and comparison practical
 
 ## Introduction to High Performance Computing for Digital Humanities
-
-Blurb
+- [Training materials](https://uomresearchit.github.io/High-Performance-Computing-for-Digital-Humanities/)
 
 ## LLM Jargon and comparison practical
 
